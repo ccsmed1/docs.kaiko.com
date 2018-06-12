@@ -614,3 +614,12 @@ html, body {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+
+
+a, a:visited {
+  color: #fc9b00;
+}
+
+a:hover, a:focus {
+  color: #e38d03;
+}

@@ -262,6 +262,9 @@
                     <a href="#exchange-trades" class="toc-h2 toc-link" data-title="exchange-trades">Exchange Trades</a>
                   </li>
                   <li>
+                    <a href="#recent-trades" class="toc-h2 toc-link" data-title="recent-trades">Recent trades</a>
+                  </li>
+                  <li>
                     <a href="#market-data-aggregations" class="toc-h2 toc-link" data-title="market-data-aggregations">Market Data Aggregations</a>
                   </li>
               </ul>
@@ -623,7 +626,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 100 most recent trades.</p>
+<p>This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 1000 first trades in our dataset. Trades are sorted by time, ascendingly.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-6'>Parameters</h3>
@@ -657,7 +660,83 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>page_size</code></td>
 <td>No</td>
-<td>See <a href="#pagination">Pagination</a> (default: 100, max: 10000).</td>
+<td>See <a href="#pagination">Pagination</a> (min: 100, default: 1000, max: 10000).</td>
+</tr>
+<tr>
+<td><code>continuation_token</code></td>
+<td>No</td>
+<td>See <a href="#pagination">Pagination</a>.</td>
+</tr>
+</tbody></table>
+<h2 id='recent-trades'>Recent trades</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTC-USD/trades/recent"
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:27:38.171Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.78</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1352</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:27:14.149Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.79</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03612889</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:27:23.138Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.79</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05140238</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:27:32.329Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 1000 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/trades/latest{?page_size}</code></p>
+<h3 id='parameters-7'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>exchange_id</code></td>
+<td>Yes</td>
+<td>See <a href="#exchanges">/v1/exchanges</a>.</td>
+</tr>
+<tr>
+<td><code>pair_id</code></td>
+<td>Yes</td>
+<td>See <a href="#exchange-pairs">/v1/pairs</a>.</td>
+</tr>
+<tr>
+<td><code>start_time</code></td>
+<td>No</td>
+<td>Starting time in ISO 8601 (inclusive).</td>
+</tr>
+<tr>
+<td><code>end_time</code></td>
+<td>No</td>
+<td>Ending time in ISO 8601 (inclusive).</td>
+</tr>
+<tr>
+<td><code>page_size</code></td>
+<td>No</td>
+<td>See <a href="#pagination">Pagination</a> (min: 100, default: 1000, max: 10000).</td>
 </tr>
 <tr>
 <td><code>continuation_token</code></td>
@@ -709,10 +788,10 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. By default returns the most recent OHLCV values. The <code>interval</code> parameter can be suffixed with <code>m</code>, <code>h</code> or <code>d</code> to specify minutes, hours or days, respectively.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<p>This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. Returns the earliest available OHLCV by default. The <code>interval</code> parameter can be suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/aggregation/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}</code></p>
-<h3 id='parameters-7'>Parameters</h3>
+<h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -733,12 +812,12 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>aggregation_type</code></td>
 <td>Yes</td>
-<td>Which aggregation to get (currently supported: <code>ohlcv</code>).</td>
+<td>Which <a href="#aggregation-types">aggregation type</a> to get (currently supported: <code>ohlcv</code>).</td>
 </tr>
 <tr>
 <td><code>interval</code></td>
 <td>No</td>
-<td>Interval period in seconds (max: 1440).</td>
+<td><a href="#intervals">Interval</a> period in seconds (max: 1440).</td>
 </tr>
 <tr>
 <td><code>start_time</code></td>
@@ -753,7 +832,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>page_size</code></td>
 <td>No</td>
-<td>See <a href="#pagination">Pagination</a> (default: 100, max: 10000).</td>
+<td>See <a href="#pagination">Pagination</a> (min: 100, default: 1000, max: 10000).</td>
 </tr>
 <tr>
 <td><code>continuation_token</code></td>
@@ -804,6 +883,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 
 <p>[comment]: &lt;&gt; (count | Number of trades in interval.)
 [comment]: &lt;&gt; (vwap | <a href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank">Volume-weighted average price</a>.)</p>
+<h3 id='intervals'>Intervals</h3>
+<p>The following intervals are currently supported: <code>1m</code>, <code>2m</code>, <code>3m</code>, <code>5m</code>, <code>10m</code>, <code>15m</code>, <code>30m</code>, <code>1h</code>, <code>2h</code>, <code>4h</code>, <code>1d</code>.</p>
 <h1 id='errors'>Errors</h1>
 <p>The Kaiko Query API uses the following error codes:</p>
 

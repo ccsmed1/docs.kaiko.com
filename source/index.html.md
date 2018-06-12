@@ -371,12 +371,12 @@ continuation_token | No | See [Pagination](#pagination).
 
 
 
-## Exchange Aggregations
+## Market Data Aggregations
 
 > Request Example
 
 ```curl
-curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTCUSD/aggregation"
+curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTCUSD/aggregation/ohlcv"
   -H "x-api-key: <client-api-key>"
 ```
 

@@ -424,28 +424,36 @@ This endpoint retrieves trade data aggregated history for an asset pair on a spe
 
 ### HTTP Request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/aggregation{?interval,start_time,end_time,fields,page_size,continuation_token}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/aggregation/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-exchange_id | Yes | See [/v1/exchanges](#exchanges).
-pair_id | Yes | See [/v1/pairs](#exchange-pairs).
-interval | No | Interval period in seconds (max: 1440).
-fields | No | Fields to include (default: open,high,low,close,count)
-start_time | No | Starting time in ISO 8601 (inclusive).
-end_time | No | Ending time in ISO 8601 (inclusive).
-page_size | No | See [Pagination](#pagination) (default: 100, max: 10000).
-continuation_token | No | See [Pagination](#pagination).
+`exchange_id` | Yes | See [/v1/exchanges](#exchanges).
+`pair_id` | Yes | See [/v1/pairs](#exchange-pairs).
+`aggregation_type` | Yes | Which aggregation to get (currently supported: `ohlcv`).
+`interval` | No | Interval period in seconds (max: 1440).
+`start_time` | No | Starting time in ISO 8601 (inclusive).
+`end_time` | No | Ending time in ISO 8601 (inclusive).
+`page_size` | No | See [Pagination](#pagination) (default: 100, max: 10000).
+`continuation_token` | No | See [Pagination](#pagination).
+
+### Aggregation types
+
+Aggregation | Fields
+--------- |  ---------
+`ohlcv` | `open`,`high`,`low`,`close`,`volume`
 
 ### Fields
 
 Field | Description
 --------- |  ---------
-open | Opening price of interval.
-high | Highest price during interval.
-low | Lowest price during interval.
-close | Closing price of interval.
-count | Number of trades in interval.
-vwap | <a href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank">Volume-weighted average price</a>.
+`open` | Opening price of interval.
+`high` | Highest price during interval.
+`low` | Lowest price during interval.
+`close` | Closing price of interval.
+`volume` | Volume traded in interval.
+
+[comment]: <> (count | Number of trades in interval.)
+[comment]: <> (vwap | <a href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank">Volume-weighted average price</a>.)

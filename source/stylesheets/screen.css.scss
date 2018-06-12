@@ -616,10 +616,10 @@ html, body {
 }
 
 
-a, a:visited {
+.content a, .content a:visited {
   color: #fc9b00;
 }
 
-a:hover, a:focus {
+.content a:hover, content a:focus {
   color: #e38d03;
 }

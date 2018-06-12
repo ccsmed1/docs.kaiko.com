@@ -472,7 +472,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTCUSD/aggregation/ohlcv"
 }
 ```
 
-This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. Returns the earliest available OHLCV by default. The `interval` parameter can be suffixed with `s`, `m`, `h` or `d` to specify minutes, hours or days, respectively. Values are sorted by time, ascendingly.
+This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. Returns the earliest available OHLCV by default. The `interval` parameter can be suffixed with `s`, `m`, `h` or `d` to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.
 
 
 ### HTTP Request

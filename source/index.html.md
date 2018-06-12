@@ -1,15 +1,12 @@
 ---
-title: API Reference
+title: Kaiko Query API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - curl
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://www.kaiko.com/'>Kaiko</a>
+  - <a href='https://www.kaiko.com/pages/contact'>Contact us</a>
 
 includes:
   - errors
@@ -19,221 +16,436 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Kaiko Query API.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Kaiko provides historical institutional quality market data for the leading digital assets. Our system retrieves and validates millions of trades each day from the world's leading cryptocurrency exchanges to deliver robust and reliable market data to financial firms globally.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+## Authentication
 
-> To authorize, use this code:
+> Request Syntax
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```curl
+curl "https://query-api.kaiko.io/v1"
+  -H "x-api-key: <client-api-key>"
 ```
 
-```python
-import kittn
+The base URL for the API is: 
 
-api = kittn.authorize('meowmeowmeow')
-```
+`https://query-api.kaiko.io/v1`
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+Clients must include an API key in the header of every request they make to the API. The format is as follows:
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`x-api-key: <client-api-key>`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </aside>
 
-# Kittens
 
-## Get All Kittens
+## Timestamps
 
-```ruby
-require 'kittn'
+All timestamps are in UTC and returned in the following ISO 8601 datetime format:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+`YYYY-MM-DD`**T**`hh:mm:ss.sss`**Z**
 
-```python
-import kittn
+For example:
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+`2017-12-17T13:35:24.351Z`
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+The "T" separates the date from the time. The “Z” at the end indicates that this is a UTC time.
 
-```javascript
-const kittn = require('kittn');
+Timestamp arguments must also be in this format.
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
 
-> The above command returns JSON structured like this:
+## Market Open and Close
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
+Digital asset exchanges operate approximately 24x7x365. 
 
-This endpoint retrieves all kittens.
+For exchange data, the opening price is calculated as the first trade at or after 00:00:00 UTC. The closing price is calculated as the last trade prior to 00:00:00 UTC.
 
-### HTTP Request
+## Envelope
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Response Example
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+	"result": "success",
+	"time": "2017-12-22T03:27:30.965Z",
+	"query": {...},
+	"data": [...]
 }
+
 ```
 
-This endpoint retrieves a specific kitten.
+All API responses are in JSON format. A `result` field, with a value of `success` or `error` is returned with each request. Upon an `error` a `message` field will provide an error message.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Key | Data type | Description
+--------- | -------- | ---------
+`result`	| `string` | `success` if query successful, `error` otherwise.
+`time`	| `string` | The current time at our endpoint.
+`message`	| `string` | Error message, if query was not successful.
+`query`	| `{}` | All handled query parameters echoed back.
+`data`	| <code>[] &#124; {}</code> | Response result data.
 
-### HTTP Request
+## Pagination
 
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> Pagination Example
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+	"result": "success",
+	"time": "2017-12-22T03:27:30.965Z",
+	"query": {...},
+	"continuation_token": "b25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
+	"next_url": "https://query-api.kaiko.io/bf/BTCUSD/trades/?continuation_token=b25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
+	"data": [...]
+}
+
+```
+
+For queries that result in a larger dataset than can be returned in a single response, a `continuation_token` field is included. Calling the same endpoint again with the `continuation_token` query parameter added will return the next result page. For convenience, a `next_url` field is also included, containing a URL that can be called directly to get the next page. Paginated endpoints also takes a `page_size` parameter that specifies the maximum number of items that should be included in each response.
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+page_size | No | Maximum number of records to return in one response
+continuation_token | No |
+
+# Metadata
+
+## Assets
+
+> Request Example
+
+```curl
+curl "https://query-api.kaiko.io/v1/assets"
+  -H "x-api-key: <client-api-key>"
+```
+
+> Response Example
+
+```json
+{
+	"result": "success",
+	"time": "2017-12-22T03:27:30.965Z",
+	"data": [
+		{
+			"asset_id": "BTC",
+			"name": "Bitcoin",
+			"type": "crypto"
+		},
+		{
+			"asset_id": "BCH",
+			"name": "Bitcoin Cash",
+			"type": "crypto"
+		},
+		{
+			"asset_id": "JPY",
+			"name": "Japanese Yen",
+			"type": "fiat"
+		}
+	]
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint retrieves a list of supported assets.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET https://query-api.kaiko.io/v1/assets`
 
-### URL Parameters
+### Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+Parameter | Required | Description
+--------- | -------- | ---------
+none	|
 
+
+
+## Asset Pairs
+
+> Request Example
+
+```curl
+curl "https://query-api.kaiko.io/v1/pairs"
+  -H "x-api-key: <client-api-key>"
+```
+
+
+> Response Example
+
+```json
+{
+	"result": "success",
+	"time": "2017-12-22T03:27:30.965Z",
+	"data": [
+		{
+			"pair_code": "BTC-USD",
+			"base_code": "BTC",
+			"base_name": "Bitcoin",
+			"quote_code": "USD",
+			"quote_name": "US Dollar"
+		},
+		{
+			"pair_code": "ETH-USD",
+			"base_code": "ETH",
+			"base_name": "Ethereum",
+			"quote_code": "USD",
+			"quote_name": "US Dollar"
+		}
+	]
+}
+```
+
+This endpoint retrieves a list of supported asset pairs.
+
+
+### HTTP Request
+
+`GET https://query-api.kaiko.io/v1/pairs`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+none	| |
+
+
+# Exchange Data
+
+## Exchanges
+
+> Request Example
+
+```curl
+curl "https://query-api.kaiko.io/v1/exchanges"
+  -H "x-api-key: <client-api-key>"
+```
+
+> Response Example
+
+```json
+{
+	"result": "success",
+	"time": "2017-12-22T03:27:30.965Z",
+	"data": [
+		{
+			"exchange_id": "BFNX",
+			"name": "Bitfinex",
+			"website": "https://www.bitfinex.com"
+		},
+		{
+			"exchange_id": "BFLY",
+			"name": "bitFlyer",
+			"website": "https://www.bitflyer.com/"
+		}
+	]
+}
+```
+
+This endpoint retrieves a list of supported exchanges.
+
+
+### HTTP Request
+
+`GET https://query-api.kaiko.io/v1/exchanges`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+none	| |
+
+
+
+
+## Exchange Pairs
+
+> Request Example
+
+```curl
+curl "https://query-api.kaiko.io/v1/exchanges/BFNX"
+  -H "x-api-key: <client-api-key>"
+```
+
+
+> Response Example
+
+```json
+{
+	"result": "success",
+	"time": "2017-12-22T03:27:30.965Z",
+	"data": [
+		{
+			"pair_code": "BTC-USD",
+			"base_code": "BTC",
+			"base_name": "Bitcoin",
+			"quote_code": "USD",
+			"quote_name": "US Dollar"
+		},
+		{
+			"pair_code": "ETH-USD",
+			"base_code": "ETH",
+			"base_name": "Ethereum",
+			"quote_code": "USD",
+			"quote_name": "US Dollar"
+		}
+	]
+}
+```
+
+This endpoint retrieves a list of asset pairs for a specific exchange.
+
+### HTTP Request
+
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+exchange_id | Yes | See [/v1/exchanges](#exchanges).
+
+
+## Exchange Trades
+
+> Request Example
+
+```curl
+curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTC-USD/trades"
+  -H "x-api-key: <client-api-key>"
+```
+
+
+> Response Example
+
+```json
+{
+	"result": "success",
+	"time": "2018-01-07T14:27:38.171Z",
+	"query": {
+	},
+	"continuation_token": "ABC123",
+	"next_url": "https://query-api.kaiko.io/v1/exchanges/BFNX/BTC-USD/trades?continuation_token=ABC123",
+
+	"data": [
+		{
+			"price": 16565.79,
+			"amount": 0.05140238,
+			"time": "2018-01-07T14:27:32.329Z"
+		},
+		{
+			"price": 16565.79,
+			"amount": 0.03612889,
+			"time": "2018-01-07T14:27:23.138Z"
+		},
+		{
+			"price": 16565.78,
+			"amount": 0.1352,
+			"time": "2018-01-07T14:27:14.149Z"
+		}
+	]
+}
+```
+
+This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 100 most recent trades.
+
+
+### HTTP Request
+
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/trades{?start_time,end_time,page_size,continuation_token}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+exchange_id | Yes | See [/v1/exchanges](#exchanges).
+pair_id | Yes | See [/v1/pairs](#exchange-pairs).
+start_time | No | Starting time in ISO 8601 (inclusive).
+end_time | No | Ending time in ISO 8601 (inclusive).
+page_size | No | See [Pagination](#pagination) (default: 100, max: 10000).
+continuation_token | No | See [Pagination](#pagination).
+
+
+
+## Exchange Aggregations
+
+> Request Example
+
+```curl
+curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTCUSD/aggregation"
+  -H "x-api-key: <client-api-key>"
+```
+
+
+> Response Example
+
+```json
+{
+	"result": "success",
+	"time": "2018-01-07T14:29:07.592Z",
+	"data": [
+		{
+			"time": "2018-01-07T14:28:00.000Z",
+			"open": 16565.79,
+			"high": 16565.79,
+			"low": 16565.78,
+			"close": 16565.78,
+			"volume": 3.87739761,
+			"count": 15
+		},
+		{
+			"time": "2018-01-07T14:27:00.000Z",
+			"open": 16565.79,
+			"high": 16565.79,
+			"low": 16565.78,
+			"close": 16565.78,
+			"volume": 0.92360209,
+			"count": 9
+		},
+		{
+			"time": "2018-01-07T14:26:00.000Z",
+			"open": 16565.79,
+			"high": 16565.79,
+			"low": 16565.78,
+			"close": 16565.78,
+			"volume": 0.44495095,
+			"count": 7
+		}
+	]
+}
+```
+
+This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. By default returns the most recent OHLCV values. The `interval` parameter can be suffixed with `m`, `h` or `d` to specify minutes, hours or days, respectively.
+
+
+### HTTP Request
+
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/aggregation{?interval,start_time,end_time,fields,page_size,continuation_token}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+exchange_id | Yes | See [/v1/exchanges](#exchanges).
+pair_id | Yes | See [/v1/pairs](#exchange-pairs).
+interval | No | Interval period in seconds (max: 1440).
+fields | No | Fields to include (default: open,high,low,close,count)
+start_time | No | Starting time in ISO 8601 (inclusive).
+end_time | No | Ending time in ISO 8601 (inclusive).
+page_size | No | See [Pagination](#pagination) (default: 100, max: 10000).
+continuation_token | No | See [Pagination](#pagination).
+
+### Fields
+
+Field | Description
+--------- |  ---------
+open | Opening price of interval.
+high | Highest price during interval.
+low | Lowest price during interval.
+close | Closing price of interval.
+count | Number of trades in interval.
+vwap | <a href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank">Volume-weighted average price</a>.

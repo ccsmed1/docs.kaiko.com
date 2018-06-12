@@ -351,8 +351,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTC-USD/trades"
 }
 ```
 
-This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 100 most recent trades.
-
+This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 1000 first trades in our dataset. Trades are sorted by time, ascendingly.
 
 ### HTTP Request
 
@@ -366,10 +365,64 @@ Parameter | Required | Description
 `pair_id` | Yes | See [/v1/pairs](#exchange-pairs).
 `start_time` | No | Starting time in ISO 8601 (inclusive).
 `end_time` | No | Ending time in ISO 8601 (inclusive).
-`page_size` | No | See [Pagination](#pagination) (default: 100, max: 10000).
+`page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
 `continuation_token` | No | See [Pagination](#pagination).
 
 
+## Recent trades
+
+> Request Example
+
+```curl
+curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTC-USD/trades/recent"
+  -H "x-api-key: <client-api-key>"
+```
+
+
+> Response Example
+
+```json
+{
+	"result": "success",
+	"time": "2018-01-07T14:27:38.171Z",
+	"query": {
+	},
+	"data": [
+		{
+			"price": 16565.78,
+			"amount": 0.1352,
+			"time": "2018-01-07T14:27:14.149Z"
+		},
+		{
+			"price": 16565.79,
+			"amount": 0.03612889,
+			"time": "2018-01-07T14:27:23.138Z"
+		},
+		{
+			"price": 16565.79,
+			"amount": 0.05140238,
+			"time": "2018-01-07T14:27:32.329Z"
+		}
+	]
+}
+```
+
+This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 1000 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly.
+
+### HTTP Request
+
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/trades/latest{?page_size}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+`exchange_id` | Yes | See [/v1/exchanges](#exchanges).
+`pair_id` | Yes | See [/v1/pairs](#exchange-pairs).
+`start_time` | No | Starting time in ISO 8601 (inclusive).
+`end_time` | No | Ending time in ISO 8601 (inclusive).
+`page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
+`continuation_token` | No | See [Pagination](#pagination).
 
 ## Market Data Aggregations
 
@@ -419,7 +472,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTCUSD/aggregation/ohlcv"
 }
 ```
 
-This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. By default returns the most recent OHLCV values. The `interval` parameter can be suffixed with `m`, `h` or `d` to specify minutes, hours or days, respectively.
+This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. Returns the earliest available OHLCV by default. The `interval` parameter can be suffixed with `s`, `m`, `h` or `d` to specify minutes, hours or days, respectively. Values are sorted by time, ascendingly.
 
 
 ### HTTP Request
@@ -432,11 +485,11 @@ Parameter | Required | Description
 --------- | -------- | ---------
 `exchange_id` | Yes | See [/v1/exchanges](#exchanges).
 `pair_id` | Yes | See [/v1/pairs](#exchange-pairs).
-`aggregation_type` | Yes | Which aggregation to get (currently supported: `ohlcv`).
-`interval` | No | Interval period in seconds (max: 1440).
+`aggregation_type` | Yes | Which [aggregation type](#aggregation-types) to get (currently supported: `ohlcv`).
+`interval` | No | [Interval](#intervals) period in seconds (max: 1440).
 `start_time` | No | Starting time in ISO 8601 (inclusive).
 `end_time` | No | Ending time in ISO 8601 (inclusive).
-`page_size` | No | See [Pagination](#pagination) (default: 100, max: 10000).
+`page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
 `continuation_token` | No | See [Pagination](#pagination).
 
 ### Aggregation types
@@ -457,3 +510,7 @@ Field | Description
 
 [comment]: <> (count | Number of trades in interval.)
 [comment]: <> (vwap | <a href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank">Volume-weighted average price</a>.)
+
+### Intervals
+
+The following intervals are currently supported: `1m`, `2m`, `3m`, `5m`, `10m`, `15m`, `30m`, `1h`, `2h`, `4h`, `1d`.

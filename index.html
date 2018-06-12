@@ -262,7 +262,7 @@
                     <a href="#exchange-trades" class="toc-h2 toc-link" data-title="exchange-trades">Exchange Trades</a>
                   </li>
                   <li>
-                    <a href="#exchange-aggregations" class="toc-h2 toc-link" data-title="exchange-aggregations">Exchange Aggregations</a>
+                    <a href="#market-data-aggregations" class="toc-h2 toc-link" data-title="market-data-aggregations">Market Data Aggregations</a>
                   </li>
               </ul>
           </li>
@@ -387,12 +387,12 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>page_size</td>
+<td><code>page_size</code></td>
 <td>No</td>
 <td>Maximum number of records to return in one response</td>
 </tr>
 <tr>
-<td>continuation_token</td>
+<td><code>continuation_token</code></td>
 <td>No</td>
 <td></td>
 </tr>
@@ -581,7 +581,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>exchange_id</td>
+<td><code>exchange_id</code></td>
 <td>Yes</td>
 <td>See <a href="#exchanges">/v1/exchanges</a>.</td>
 </tr>
@@ -635,41 +635,41 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>exchange_id</td>
+<td><code>exchange_id</code></td>
 <td>Yes</td>
 <td>See <a href="#exchanges">/v1/exchanges</a>.</td>
 </tr>
 <tr>
-<td>pair_id</td>
+<td><code>pair_id</code></td>
 <td>Yes</td>
 <td>See <a href="#exchange-pairs">/v1/pairs</a>.</td>
 </tr>
 <tr>
-<td>start_time</td>
+<td><code>start_time</code></td>
 <td>No</td>
 <td>Starting time in ISO 8601 (inclusive).</td>
 </tr>
 <tr>
-<td>end_time</td>
+<td><code>end_time</code></td>
 <td>No</td>
 <td>Ending time in ISO 8601 (inclusive).</td>
 </tr>
 <tr>
-<td>page_size</td>
+<td><code>page_size</code></td>
 <td>No</td>
 <td>See <a href="#pagination">Pagination</a> (default: 100, max: 10000).</td>
 </tr>
 <tr>
-<td>continuation_token</td>
+<td><code>continuation_token</code></td>
 <td>No</td>
 <td>See <a href="#pagination">Pagination</a>.</td>
 </tr>
 </tbody></table>
-<h2 id='exchange-aggregations'>Exchange Aggregations</h2>
+<h2 id='market-data-aggregations'>Market Data Aggregations</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTCUSD/aggregation"
+<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTCUSD/aggregation/ohlcv"
   -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -711,7 +711,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. By default returns the most recent OHLCV values. The <code>interval</code> parameter can be suffixed with <code>m</code>, <code>h</code> or <code>d</code> to specify minutes, hours or days, respectively.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/aggregation{?interval,start_time,end_time,fields,page_size,continuation_token}</code></p>
+<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/aggregation/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
@@ -721,44 +721,56 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>exchange_id</td>
+<td><code>exchange_id</code></td>
 <td>Yes</td>
 <td>See <a href="#exchanges">/v1/exchanges</a>.</td>
 </tr>
 <tr>
-<td>pair_id</td>
+<td><code>pair_id</code></td>
 <td>Yes</td>
 <td>See <a href="#exchange-pairs">/v1/pairs</a>.</td>
 </tr>
 <tr>
-<td>interval</td>
+<td><code>aggregation_type</code></td>
+<td>Yes</td>
+<td>Which aggregation to get (currently supported: <code>ohlcv</code>).</td>
+</tr>
+<tr>
+<td><code>interval</code></td>
 <td>No</td>
 <td>Interval period in seconds (max: 1440).</td>
 </tr>
 <tr>
-<td>fields</td>
-<td>No</td>
-<td>Fields to include (default: open,high,low,close,count)</td>
-</tr>
-<tr>
-<td>start_time</td>
+<td><code>start_time</code></td>
 <td>No</td>
 <td>Starting time in ISO 8601 (inclusive).</td>
 </tr>
 <tr>
-<td>end_time</td>
+<td><code>end_time</code></td>
 <td>No</td>
 <td>Ending time in ISO 8601 (inclusive).</td>
 </tr>
 <tr>
-<td>page_size</td>
+<td><code>page_size</code></td>
 <td>No</td>
 <td>See <a href="#pagination">Pagination</a> (default: 100, max: 10000).</td>
 </tr>
 <tr>
-<td>continuation_token</td>
+<td><code>continuation_token</code></td>
 <td>No</td>
 <td>See <a href="#pagination">Pagination</a>.</td>
+</tr>
+</tbody></table>
+<h3 id='aggregation-types'>Aggregation types</h3>
+<table><thead>
+<tr>
+<th>Aggregation</th>
+<th>Fields</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ohlcv</code></td>
+<td><code>open</code>,<code>high</code>,<code>low</code>,<code>close</code>,<code>volume</code></td>
 </tr>
 </tbody></table>
 <h3 id='fields'>Fields</h3>
@@ -769,30 +781,29 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>open</td>
+<td><code>open</code></td>
 <td>Opening price of interval.</td>
 </tr>
 <tr>
-<td>high</td>
+<td><code>high</code></td>
 <td>Highest price during interval.</td>
 </tr>
 <tr>
-<td>low</td>
+<td><code>low</code></td>
 <td>Lowest price during interval.</td>
 </tr>
 <tr>
-<td>close</td>
+<td><code>close</code></td>
 <td>Closing price of interval.</td>
 </tr>
 <tr>
-<td>count</td>
-<td>Number of trades in interval.</td>
-</tr>
-<tr>
-<td>vwap</td>
-<td><a href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank">Volume-weighted average price</a>.</td>
+<td><code>volume</code></td>
+<td>Volume traded in interval.</td>
 </tr>
 </tbody></table>
+
+<p>[comment]: &lt;&gt; (count | Number of trades in interval.)
+[comment]: &lt;&gt; (vwap | <a href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank">Volume-weighted average price</a>.)</p>
 <h1 id='errors'>Errors</h1>
 <p>The Kaiko Query API uses the following error codes:</p>
 

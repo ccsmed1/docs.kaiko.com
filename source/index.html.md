@@ -111,8 +111,8 @@ For queries that result in a larger dataset than can be returned in a single res
 
 Parameter | Required | Description
 --------- | -------- | ---------
-page_size | No | Maximum number of records to return in one response
-continuation_token | No |
+`page_size` | No | Maximum number of records to return in one response
+`continuation_token` | No |
 
 # Metadata
 
@@ -307,7 +307,7 @@ This endpoint retrieves a list of asset pairs for a specific exchange.
 
 Parameter | Required | Description
 --------- | -------- | ---------
-exchange_id | Yes | See [/v1/exchanges](#exchanges).
+`exchange_id` | Yes | See [/v1/exchanges](#exchanges).
 
 
 ## Exchange Trades
@@ -362,12 +362,12 @@ This endpoint retrieves trades for an asset pair on a specific exchange. By defa
 
 Parameter | Required | Description
 --------- | -------- | ---------
-exchange_id | Yes | See [/v1/exchanges](#exchanges).
-pair_id | Yes | See [/v1/pairs](#exchange-pairs).
-start_time | No | Starting time in ISO 8601 (inclusive).
-end_time | No | Ending time in ISO 8601 (inclusive).
-page_size | No | See [Pagination](#pagination) (default: 100, max: 10000).
-continuation_token | No | See [Pagination](#pagination).
+`exchange_id` | Yes | See [/v1/exchanges](#exchanges).
+`pair_id` | Yes | See [/v1/pairs](#exchange-pairs).
+`start_time` | No | Starting time in ISO 8601 (inclusive).
+`end_time` | No | Ending time in ISO 8601 (inclusive).
+`page_size` | No | See [Pagination](#pagination) (default: 100, max: 10000).
+`continuation_token` | No | See [Pagination](#pagination).
 
 
 

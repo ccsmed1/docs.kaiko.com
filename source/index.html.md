@@ -133,19 +133,16 @@ curl "https://query-api.kaiko.io/v1/assets"
 	"time": "2017-12-22T03:27:30.965Z",
 	"data": [
 		{
-			"asset_id": "BTC",
-			"name": "Bitcoin",
-			"type": "crypto"
+			"code": "btc",
+			"name": "Bitcoin"
 		},
 		{
-			"asset_id": "BCH",
-			"name": "Bitcoin Cash",
-			"type": "crypto"
+			"code": "bch",
+			"name": "Bitcoin Cash"
 		},
 		{
-			"asset_id": "JPY",
-			"name": "Japanese Yen",
-			"type": "fiat"
+			"code": "jpy",
+			"name": "Japanese Yen"
 		}
 	]
 }
@@ -183,17 +180,17 @@ curl "https://query-api.kaiko.io/v1/pairs"
 	"time": "2017-12-22T03:27:30.965Z",
 	"data": [
 		{
-			"pair_code": "BTC-USD",
-			"base_code": "BTC",
+			"pair_code": "btc-usd",
+			"base_code": "btc",
 			"base_name": "Bitcoin",
-			"quote_code": "USD",
+			"quote_code": "usd",
 			"quote_name": "US Dollar"
 		},
 		{
-			"pair_code": "ETH-USD",
-			"base_code": "ETH",
+			"pair_code": "eth-usd",
+			"base_code": "eth",
 			"base_name": "Ethereum",
-			"quote_code": "USD",
+			"quote_code": "usd",
 			"quote_name": "US Dollar"
 		}
 	]
@@ -233,12 +230,12 @@ curl "https://query-api.kaiko.io/v1/exchanges"
 	"time": "2017-12-22T03:27:30.965Z",
 	"data": [
 		{
-			"exchange_id": "BFNX",
+			"exchange_id": "bfnx",
 			"name": "Bitfinex",
 			"website": "https://www.bitfinex.com"
 		},
 		{
-			"exchange_id": "BFLY",
+			"exchange_id": "bfly",
 			"name": "bitFlyer",
 			"website": "https://www.bitflyer.com/"
 		}
@@ -267,7 +264,7 @@ none	| |
 > Request Example
 
 ```curl
-curl "https://query-api.kaiko.io/v1/exchanges/BFNX"
+curl "https://query-api.kaiko.io/v1/exchanges/bfnx"
   -H "x-api-key: <client-api-key>"
 ```
 
@@ -280,17 +277,17 @@ curl "https://query-api.kaiko.io/v1/exchanges/BFNX"
 	"time": "2017-12-22T03:27:30.965Z",
 	"data": [
 		{
-			"pair_code": "BTC-USD",
-			"base_code": "BTC",
+			"pair_code": "btc-usd",
+			"base_code": "btc",
 			"base_name": "Bitcoin",
-			"quote_code": "USD",
+			"quote_code": "usd",
 			"quote_name": "US Dollar"
 		},
 		{
-			"pair_code": "ETH-USD",
-			"base_code": "ETH",
+			"pair_code": "eth-usd",
+			"base_code": "eth",
 			"base_name": "Ethereum",
-			"quote_code": "USD",
+			"quote_code": "usd",
 			"quote_name": "US Dollar"
 		}
 	]
@@ -315,7 +312,7 @@ Parameter | Required | Description
 > Request Example
 
 ```curl
-curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTC-USD/trades"
+curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
   -H "x-api-key: <client-api-key>"
 ```
 
@@ -329,7 +326,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTC-USD/trades"
 	"query": {
 	},
 	"continuation_token": "ABC123",
-	"next_url": "https://query-api.kaiko.io/v1/exchanges/BFNX/BTC-USD/trades?continuation_token=ABC123",
+	"next_url": "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades?continuation_token=ABC123",
 
 	"data": [
 		{
@@ -374,7 +371,7 @@ Parameter | Required | Description
 > Request Example
 
 ```curl
-curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTC-USD/trades/recent"
+curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades/recent"
   -H "x-api-key: <client-api-key>"
 ```
 
@@ -429,7 +426,7 @@ Parameter | Required | Description
 > Request Example
 
 ```curl
-curl "https://query-api.kaiko.io/v1/exchanges/BFNX/BTCUSD/aggregation/ohlcv"
+curl "https://query-api.kaiko.io/v1/exchanges/bfnx/BTCUSD/aggregation/ohlcv"
   -H "x-api-key: <client-api-key>"
 ```
 

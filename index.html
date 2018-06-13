@@ -509,12 +509,12 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-22T03:27:30.965Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"exchange_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitfinex"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.bitfinex.com"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfly"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"exchange_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfly"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitFlyer"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.bitflyer.com/"</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -571,7 +571,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves a list of asset pairs for a specific exchange.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}</code></p>
+<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}</code></p>
 <h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
@@ -581,7 +581,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td><code>exchange_id</code></td>
+<td><code>exchange_code</code></td>
 <td>Yes</td>
 <td>See <a href="#exchanges">/v1/exchanges</a>.</td>
 </tr>
@@ -625,7 +625,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 1000 first trades in our dataset. Trades are sorted by time, ascendingly.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
+<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
@@ -635,12 +635,12 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td><code>exchange_id</code></td>
+<td><code>exchange_code</code></td>
 <td>Yes</td>
 <td>See <a href="#exchanges">/v1/exchanges</a>.</td>
 </tr>
 <tr>
-<td><code>pair_id</code></td>
+<td><code>pair_code</code></td>
 <td>Yes</td>
 <td>See <a href="#exchange-pairs">/v1/pairs</a>.</td>
 </tr>
@@ -701,7 +701,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 1000 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/trades/latest{?page_size}</code></p>
+<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades/latest{?page_size}</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
@@ -711,12 +711,12 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td><code>exchange_id</code></td>
+<td><code>exchange_code</code></td>
 <td>Yes</td>
 <td>See <a href="#exchanges">/v1/exchanges</a>.</td>
 </tr>
 <tr>
-<td><code>pair_id</code></td>
+<td><code>pair_code</code></td>
 <td>Yes</td>
 <td>See <a href="#exchange-pairs">/v1/pairs</a>.</td>
 </tr>
@@ -787,7 +787,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. Returns the earliest available OHLCV by default. The <code>interval</code> parameter can be suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/aggregation/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}</code></p>
+<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/aggregation/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
@@ -797,12 +797,12 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td><code>exchange_id</code></td>
+<td><code>exchange_code</code></td>
 <td>Yes</td>
 <td>See <a href="#exchanges">/v1/exchanges</a>.</td>
 </tr>
 <tr>
-<td><code>pair_id</code></td>
+<td><code>pair_code</code></td>
 <td>Yes</td>
 <td>See <a href="#exchange-pairs">/v1/pairs</a>.</td>
 </tr>

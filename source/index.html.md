@@ -230,12 +230,12 @@ curl "https://query-api.kaiko.io/v1/exchanges"
 	"time": "2017-12-22T03:27:30.965Z",
 	"data": [
 		{
-			"exchange_id": "bfnx",
+			"exchange_code": "bfnx",
 			"name": "Bitfinex",
 			"website": "https://www.bitfinex.com"
 		},
 		{
-			"exchange_id": "bfly",
+			"exchange_code": "bfly",
 			"name": "bitFlyer",
 			"website": "https://www.bitflyer.com/"
 		}
@@ -298,13 +298,13 @@ This endpoint retrieves a list of asset pairs for a specific exchange.
 
 ### HTTP Request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-`exchange_id` | Yes | See [/v1/exchanges](#exchanges).
+`exchange_code` | Yes | See [/v1/exchanges](#exchanges).
 
 
 ## Exchange Trades
@@ -352,14 +352,14 @@ This endpoint retrieves trades for an asset pair on a specific exchange. By defa
 
 ### HTTP Request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/trades{?start_time,end_time,page_size,continuation_token}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades{?start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-`exchange_id` | Yes | See [/v1/exchanges](#exchanges).
-`pair_id` | Yes | See [/v1/pairs](#exchange-pairs).
+`exchange_code` | Yes | See [/v1/exchanges](#exchanges).
+`pair_code` | Yes | See [/v1/pairs](#exchange-pairs).
 `start_time` | No | Starting time in ISO 8601 (inclusive).
 `end_time` | No | Ending time in ISO 8601 (inclusive).
 `page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
@@ -408,14 +408,14 @@ This endpoint retrieves the most recent trades for an asset pair on a specific e
 
 ### HTTP Request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/trades/latest{?page_size}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades/latest{?page_size}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-`exchange_id` | Yes | See [/v1/exchanges](#exchanges).
-`pair_id` | Yes | See [/v1/pairs](#exchange-pairs).
+`exchange_code` | Yes | See [/v1/exchanges](#exchanges).
+`pair_code` | Yes | See [/v1/pairs](#exchange-pairs).
 `start_time` | No | Starting time in ISO 8601 (inclusive).
 `end_time` | No | Ending time in ISO 8601 (inclusive).
 `page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
@@ -474,14 +474,14 @@ This endpoint retrieves trade data aggregated history for an asset pair on a spe
 
 ### HTTP Request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_id}/{pair_id}/aggregation/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/aggregation/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-`exchange_id` | Yes | See [/v1/exchanges](#exchanges).
-`pair_id` | Yes | See [/v1/pairs](#exchange-pairs).
+`exchange_code` | Yes | See [/v1/exchanges](#exchanges).
+`pair_code` | Yes | See [/v1/pairs](#exchange-pairs).
 `aggregation_type` | Yes | Which [aggregation type](#aggregation-types) to get (currently supported: `ohlcv`).
 `interval` | No | [Interval](#intervals) period in seconds (max: 1440).
 `start_time` | No | Starting time in ISO 8601 (inclusive).

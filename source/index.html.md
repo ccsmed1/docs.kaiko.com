@@ -46,7 +46,9 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 
 ## Timestamps
 
-All timestamps are in UTC and returned in the following ISO 8601 datetime format:
+## Input
+
+All time parameters are in UTC and returned in the following ISO 8601 datetime format:
 
 `YYYY-MM-DD`**T**`hh:mm:ss.sss`**Z**
 
@@ -56,7 +58,8 @@ For example:
 
 The "T" separates the date from the time. The “Z” at the end indicates that this is a UTC time.
 
-Timestamp arguments must also be in this format.
+## Output
+All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps </a>(the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resulution ISO 8601 datetime strings in the same format as input.
 
 
 ## Market Open and Close
@@ -72,19 +75,21 @@ For exchange data, the opening price is calculated as the first trade at or afte
 ```json
 {
 	"result": "success",
-	"time": "2017-12-22T03:27:30.965Z",
+	"time": "2018-06-14T17:19:40.303Z",
+	"timestamp": 1528996780303,
 	"query": {...},
 	"data": [...]
 }
 
 ```
 
-All API responses are in JSON format. A `result` field, with a value of `success` or `error` is returned with each request. Upon an `error` a `message` field will provide an error message.
+All API responses are in JSON format. A `result` field, with a value of `success` or `error` is returned with each request. In the event of an error, a `message` field will provide an error message.
 
 Key | Data type | Description
 --------- | -------- | ---------
 `result`	| `string` | `success` if query successful, `error` otherwise.
 `time`	| `string` | The current time at our endpoint.
+`timestamp`	| `long` | The current time at our endpoint.
 `message`	| `string` | Error message, if query was not successful.
 `query`	| `{}` | All handled query parameters echoed back.
 `data`	| <code>[] &#124; {}</code> | Response result data.
@@ -96,10 +101,11 @@ Key | Data type | Description
 ```json
 {
 	"result": "success",
-	"time": "2017-12-22T03:27:30.965Z",
+	"time": "2018-06-14T17:19:40.303Z",
+	"timestamp": 1528996780303,
 	"query": {...},
-	"continuation_token": "b25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
-	"next_url": "https://query-api.kaiko.io/bf/BTCUSD/trades/?continuation_token=b25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
+	"continuation_token": "ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
+	"next_url": "https://query-api.kaiko.io/bfnx/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
 	"data": [...]
 }
 
@@ -130,7 +136,8 @@ curl "https://query-api.kaiko.io/v1/assets"
 ```json
 {
 	"result": "success",
-	"time": "2017-12-22T03:27:30.965Z",
+	"time": "2018-06-14T17:26:08.901Z",
+	"timestamp": 1528997168901,
 	"data": [
 		{
 			"code": "btc",
@@ -176,24 +183,25 @@ curl "https://query-api.kaiko.io/v1/pairs"
 
 ```json
 {
-	"result": "success",
-	"time": "2017-12-22T03:27:30.965Z",
-	"data": [
-		{
-			"pair_code": "btc-usd",
-			"base_code": "btc",
-			"base_name": "Bitcoin",
-			"quote_code": "usd",
-			"quote_name": "US Dollar"
-		},
-		{
-			"pair_code": "eth-usd",
-			"base_code": "eth",
-			"base_name": "Ethereum",
-			"quote_code": "usd",
-			"quote_name": "US Dollar"
-		}
-	]
+  "result": "success",
+  "time": "2018-06-14T17:27:31.621Z",
+  "timestamp": 1528997251621,
+  "data": [
+	{
+	  "code": "ada-btc",
+	  "base_code": "ada",
+	  "base_name": "Cardano",
+	  "quote_code": "btc",
+	  "quote_name": "Bitcoin"
+	},
+	{
+	  "code": "ada-eth",
+	  "base_code": "ada",
+	  "base_name": "Cardano",
+	  "quote_code": "eth",
+	  "quote_name": "Ethereum"
+	}
+  ]
 }
 ```
 
@@ -225,21 +233,33 @@ curl "https://query-api.kaiko.io/v1/exchanges"
 > Response Example
 
 ```json
+
 {
-	"result": "success",
-	"time": "2017-12-22T03:27:30.965Z",
-	"data": [
+  "result": "success",
+  "time": "2018-06-14T17:28:42.915Z",
+  "timestamp": 1528997322915,
+  "data": [
+	{
+	  "code": "bfly",
+	  "name": "bitFlyer",
+	  "website": "https://bitflyer.jp",
+	  "pairs": [
 		{
-			"exchange_code": "bfnx",
-			"name": "Bitfinex",
-			"website": "https://www.bitfinex.com"
+		  "code": "btc-usd",
+		  "base_code": "btc",
+		  "base_name": "Bitcoin",
+		  "quote_code": "usd",
+		  "quote_name": "US Dollar",
+		  "start_time": "2018-04-18T04:50:15.000Z",
+		  "start_timestamp": 1524027015000,
+		  "end_time": null,
+		  "end_timestamp": null,
+		  "count": 75463
 		},
-		{
-			"exchange_code": "bfly",
-			"name": "bitFlyer",
-			"website": "https://www.bitflyer.com/"
-		}
-	]
+		// ...
+	  ]
+	}
+  ]
 }
 ```
 
@@ -273,24 +293,39 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx"
 
 ```json
 {
-	"result": "success",
-	"time": "2017-12-22T03:27:30.965Z",
-	"data": [
-		{
-			"pair_code": "btc-usd",
-			"base_code": "btc",
-			"base_name": "Bitcoin",
-			"quote_code": "usd",
-			"quote_name": "US Dollar"
-		},
-		{
-			"pair_code": "eth-usd",
-			"base_code": "eth",
-			"base_name": "Ethereum",
-			"quote_code": "usd",
-			"quote_name": "US Dollar"
-		}
-	]
+  "result": "success",
+  "time": "2018-06-14T17:31:07.519Z",
+  "timestamp": 1528997467519,
+  "data": [
+	{
+	  "code": "btc-usd",
+	  "base_code": "btc",
+	  "base_name": "Bitcoin",
+	  "quote_code": "usd",
+	  "quote_name": "US Dollar",
+	  "start_time": "2013-04-01T00:07:49.000Z",
+	  "start_timestamp": 1364774869000,
+	  "end_time": null,
+	  "end_timestamp": null,
+	  "count": 48783086
+	},
+	{
+	  "code": "eth-usd",
+	  "base_code": "eth",
+	  "base_name": "Ethereum",
+	  "quote_code": "usd",
+	  "quote_name": "US Dollar",
+	  "start_time": "2016-03-09T16:04:35.000Z",
+	  "start_timestamp": 1457539475000,
+	  "end_time": null,
+	  "end_timestamp": null,
+	  "count": 22507604
+	},
+	// ....
+  ],
+  "query": {
+	  "code": "bfnx"
+  }
 }
 ```
 
@@ -304,7 +339,7 @@ This endpoint retrieves a list of asset pairs for a specific exchange.
 
 Parameter | Required | Description
 --------- | -------- | ---------
-`exchange_code` | Yes | See [/v1/exchanges](#exchanges).
+`code` | Yes | See [/v1/exchanges](#exchanges).
 
 
 ## Exchange Trades
@@ -321,30 +356,37 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
 
 ```json
 {
-	"result": "success",
-	"time": "2018-01-07T14:27:38.171Z",
-	"query": {
+  "result": "success",
+  "time": "2018-06-14T17:37:22.002Z",
+  "timestamp": 1528997842002,
+  "data": [
+	{
+	  "modified_timestamp": 1524602571000,
+	  "timestamp": 1417412036761,
+	  "tid": "1",
+	  "price": "300.0",
+	  "amount": "0.01",
+	  "sell": true
 	},
-	"continuation_token": "ABC123",
-	"next_url": "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades?continuation_token=ABC123",
-
-	"data": [
-		{
-			"price": 16565.79,
-			"amount": 0.05140238,
-			"time": "2018-01-07T14:27:32.329Z"
-		},
-		{
-			"price": 16565.79,
-			"amount": 0.03612889,
-			"time": "2018-01-07T14:27:23.138Z"
-		},
-		{
-			"price": 16565.78,
-			"amount": 0.1352,
-			"time": "2018-01-07T14:27:14.149Z"
-		}
-	]
+	{
+	  "modified_timestamp": 1524602571000,
+	  "timestamp": 1417412423076,
+	  "tid": "2",
+	  "price": "300.0",
+	  "amount": "0.01",
+	  "sell": false
+	},
+	// ...
+  ],
+  "query": {
+	"continuation_token": null,
+	"start_time": null,
+	"end_time": null,
+	"page_size": 1000,
+	"request_time": "2018-06-14T17:37:21.935Z"
+  },
+  "continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
+  "next_url": "http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"
 }
 ```
 
@@ -371,7 +413,7 @@ Parameter | Required | Description
 > Request Example
 
 ```curl
-curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades/recent"
+curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/trades/recent"
   -H "x-api-key: <client-api-key>"
 ```
 
@@ -380,27 +422,31 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades/recent"
 
 ```json
 {
-	"result": "success",
-	"time": "2018-01-07T14:27:38.171Z",
-	"query": {
+  "result": "success",
+  "time": "2018-06-14T17:44:37.446Z",
+  "timestamp": 1528998277446,
+  "data": [
+	{
+	  "modified_timestamp": 1528998138222,
+	  "timestamp": 1528998137627,
+	  "tid": "44840133",
+	  "price": "6592.22",
+	  "amount": "0.08741431",
+	  "sell": true
 	},
-	"data": [
-		{
-			"price": 16565.78,
-			"amount": 0.1352,
-			"time": "2018-01-07T14:27:14.149Z"
-		},
-		{
-			"price": 16565.79,
-			"amount": 0.03612889,
-			"time": "2018-01-07T14:27:23.138Z"
-		},
-		{
-			"price": 16565.79,
-			"amount": 0.05140238,
-			"time": "2018-01-07T14:27:32.329Z"
-		}
-	]
+	{
+	  "modified_timestamp": 1528998138222,
+	  "timestamp": 1528998137627,
+	  "tid": "44840134",
+	  "price": "6592.22",
+	  "amount": "0.01057674",
+	  "sell": true
+	},
+	// ...
+  ],
+  "query": {
+	"limit": 1000
+  }
 }
 ```
 
@@ -408,7 +454,7 @@ This endpoint retrieves the most recent trades for an asset pair on a specific e
 
 ### HTTP Request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades/latest{?page_size}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades/recent{?page_size}`
 
 ### Parameters
 
@@ -426,7 +472,7 @@ Parameter | Required | Description
 > Request Example
 
 ```curl
-curl "https://query-api.kaiko.io/v1/exchanges/bfnx/BTCUSD/aggregation/ohlcv"
+curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/aggregations/ohlcv"
   -H "x-api-key: <client-api-key>"
 ```
 
@@ -435,37 +481,37 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx/BTCUSD/aggregation/ohlcv"
 
 ```json
 {
-	"result": "success",
-	"time": "2018-01-07T14:29:07.592Z",
-	"data": [
-		{
-			"time": "2018-01-07T14:28:00.000Z",
-			"open": 16565.79,
-			"high": 16565.79,
-			"low": 16565.78,
-			"close": 16565.78,
-			"volume": 3.87739761,
-			"count": 15
-		},
-		{
-			"time": "2018-01-07T14:27:00.000Z",
-			"open": 16565.79,
-			"high": 16565.79,
-			"low": 16565.78,
-			"close": 16565.78,
-			"volume": 0.92360209,
-			"count": 9
-		},
-		{
-			"time": "2018-01-07T14:26:00.000Z",
-			"open": 16565.79,
-			"high": 16565.79,
-			"low": 16565.78,
-			"close": 16565.78,
-			"volume": 0.44495095,
-			"count": 7
-		}
-	]
+  "result": "success",
+  "time": "2018-06-14T17:55:49.033Z",
+  "timestamp": 1528998949033,
+  "data": [
+    {
+      "modified_timestamp": 1528990180000,
+      "timestamp": 1417392000000,
+      "open": "300.0",
+      "high": "370.0",
+      "low": "300.0",
+      "close": "370.0",
+      "volume": "0.05655554"
+    },
+    {
+      "modified_timestamp": 1528990180000,
+      "timestamp": 1417478400000,
+      "open": "377.0",
+      "high": "378.0",
+      "low": "377.0",
+      "close": "378.0",
+      "volume": "15.0136"
+    }
+  ],
+  "query": {
+    "continuation_token": null,
+    "start_time": null,
+    "end_time": null,
+    "page_size": 2,
+    "interval": "1d",
+    "request_time": "2018-06-14T17:55:48.908Z"
+  }
 }
 ```
 
@@ -474,7 +520,7 @@ This endpoint retrieves trade data aggregated history for an asset pair on a spe
 
 ### HTTP Request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/aggregation/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/aggregations/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
@@ -504,9 +550,6 @@ Field | Description
 `low` | Lowest price during interval.
 `close` | Closing price of interval.
 `volume` | Volume traded in interval.
-
-[comment]: <> (count | Number of trades in interval.)
-[comment]: <> (vwap | <a href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank">Volume-weighted average price</a>.)
 
 ### Intervals
 

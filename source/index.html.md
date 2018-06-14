@@ -2,14 +2,14 @@
 title: Kaiko Query API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - curl
+	- curl
 
 toc_footers:
-  - <a href='https://www.kaiko.com/'>Kaiko</a>
-  - <a href='https://www.kaiko.com/pages/contact'>Contact us</a>
+	- <a href='https://www.kaiko.com/'>Kaiko</a>
+	- <a href='https://www.kaiko.com/pages/contact'>Contact us</a>
 
 includes:
-  - errors
+	- errors
 
 search: true
 ---
@@ -28,7 +28,7 @@ Kaiko provides historical institutional quality market data for the leading digi
 
 ```curl
 curl "https://query-api.kaiko.io/v1"
-  -H "x-api-key: <client-api-key>"
+	-H "x-api-key: <client-api-key>"
 ```
 
 The base URL for the API is: 
@@ -104,9 +104,9 @@ Key | Data type | Description
 	"time": "2018-06-14T17:19:40.303Z",
 	"timestamp": 1528996780303,
 	"query": {...},
+	"data": [...],
 	"continuation_token": "ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
-	"next_url": "https://query-api.kaiko.io/bfnx/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
-	"data": [...]
+	"next_url": "https://query-api.kaiko.io/bfnx/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"
 }
 
 ```
@@ -128,7 +128,7 @@ Parameter | Required | Description
 
 ```curl
 curl "https://query-api.kaiko.io/v1/assets"
-  -H "x-api-key: <client-api-key>"
+	-H "x-api-key: <client-api-key>"
 ```
 
 > Response Example
@@ -175,7 +175,7 @@ none	|
 
 ```curl
 curl "https://query-api.kaiko.io/v1/pairs"
-  -H "x-api-key: <client-api-key>"
+	-H "x-api-key: <client-api-key>"
 ```
 
 
@@ -183,29 +183,29 @@ curl "https://query-api.kaiko.io/v1/pairs"
 
 ```json
 {
-  "result": "success",
-  "time": "2018-06-14T17:27:31.621Z",
-  "timestamp": 1528997251621,
-  "data": [
-	{
-	  "code": "ada-btc",
-	  "base_code": "ada",
-	  "base_name": "Cardano",
-	  "quote_code": "btc",
-	  "quote_name": "Bitcoin"
-	},
-	{
-	  "code": "ada-eth",
-	  "base_code": "ada",
-	  "base_name": "Cardano",
-	  "quote_code": "eth",
-	  "quote_name": "Ethereum"
-	}
-  ]
+	"result": "success",
+	"time": "2018-06-14T17:27:31.621Z",
+	"timestamp": 1528997251621,
+	"data": [
+		{
+			"code": "ada-btc",
+			"base_code": "ada",
+			"base_name": "Cardano",
+			"quote_code": "btc",
+			"quote_name": "Bitcoin"
+		},
+		{
+			"code": "ada-eth",
+			"base_code": "ada",
+			"base_name": "Cardano",
+			"quote_code": "eth",
+			"quote_name": "Ethereum"
+		}
+	]
 }
 ```
 
-This endpoint retrieves a list of supported asset pairs, including start and end times for available trade data for each pair.
+This endpoint retrieves a list of supported asset pairs.
 
 
 ### HTTP Request
@@ -227,7 +227,7 @@ none	| |
 
 ```curl
 curl "https://query-api.kaiko.io/v1/exchanges"
-  -H "x-api-key: <client-api-key>"
+	-H "x-api-key: <client-api-key>"
 ```
 
 > Response Example
@@ -235,35 +235,35 @@ curl "https://query-api.kaiko.io/v1/exchanges"
 ```json
 
 {
-  "result": "success",
-  "time": "2018-06-14T17:28:42.915Z",
-  "timestamp": 1528997322915,
-  "data": [
-	{
-	  "code": "bfly",
-	  "name": "bitFlyer",
-	  "website": "https://bitflyer.jp",
-	  "pairs": [
+	"result": "success",
+	"time": "2018-06-14T17:28:42.915Z",
+	"timestamp": 1528997322915,
+	"data": [
 		{
-		  "code": "btc-usd",
-		  "base_code": "btc",
-		  "base_name": "Bitcoin",
-		  "quote_code": "usd",
-		  "quote_name": "US Dollar",
-		  "start_time": "2018-04-18T04:50:15.000Z",
-		  "start_timestamp": 1524027015000,
-		  "end_time": null,
-		  "end_timestamp": null,
-		  "count": 75463
-		},
-		// ...
-	  ]
-	}
-  ]
+			"code": "bfly",
+			"name": "bitFlyer",
+			"website": "https://bitflyer.jp",
+			"pairs": [
+				{
+					"code": "btc-usd",
+					"base_code": "btc",
+					"base_name": "Bitcoin",
+					"quote_code": "usd",
+					"quote_name": "US Dollar",
+					"start_time": "2018-04-18T04:50:15.000Z",
+					"start_timestamp": 1524027015000,
+					"end_time": null,
+					"end_timestamp": null,
+					"trade_count": 75463
+				},
+				// ...
+			]
+		}
+	]
 }
 ```
 
-This endpoint retrieves a list of supported exchanges.
+This endpoint retrieves a list of supported exchanges including (pairs)[#exchange-pairs].
 
 
 ### HTTP Request
@@ -277,15 +277,13 @@ Parameter | Required | Description
 none	| |
 
 
-
-
-## Exchange Pairs
+## Exchange pairs
 
 > Request Example
 
 ```curl
 curl "https://query-api.kaiko.io/v1/exchanges/bfnx"
-  -H "x-api-key: <client-api-key>"
+	-H "x-api-key: <client-api-key>"
 ```
 
 
@@ -293,43 +291,43 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx"
 
 ```json
 {
-  "result": "success",
-  "time": "2018-06-14T17:31:07.519Z",
-  "timestamp": 1528997467519,
-  "data": [
+	"result": "success",
+	"time": "2018-06-14T17:31:07.519Z",
+	"timestamp": 1528997467519,
+	"data": [
 	{
-	  "code": "btc-usd",
-	  "base_code": "btc",
-	  "base_name": "Bitcoin",
-	  "quote_code": "usd",
-	  "quote_name": "US Dollar",
-	  "start_time": "2013-04-01T00:07:49.000Z",
-	  "start_timestamp": 1364774869000,
-	  "end_time": null,
-	  "end_timestamp": null,
-	  "count": 48783086
+		"code": "btc-usd",
+		"base_code": "btc",
+		"base_name": "Bitcoin",
+		"quote_code": "usd",
+		"quote_name": "US Dollar",
+		"start_time": "2013-04-01T00:07:49.000Z",
+		"start_timestamp": 1364774869000,
+		"end_time": null,
+		"end_timestamp": null,
+		"trade_count": 48783086
 	},
 	{
-	  "code": "eth-usd",
-	  "base_code": "eth",
-	  "base_name": "Ethereum",
-	  "quote_code": "usd",
-	  "quote_name": "US Dollar",
-	  "start_time": "2016-03-09T16:04:35.000Z",
-	  "start_timestamp": 1457539475000,
-	  "end_time": null,
-	  "end_timestamp": null,
-	  "count": 22507604
+		"code": "eth-usd",
+		"base_code": "eth",
+		"base_name": "Ethereum",
+		"quote_code": "usd",
+		"quote_name": "US Dollar",
+		"start_time": "2016-03-09T16:04:35.000Z",
+		"start_timestamp": 1457539475000,
+		"end_time": null,
+		"end_timestamp": null,
+		"trade_count": 22507604
 	},
 	// ....
-  ],
-  "query": {
-	  "code": "bfnx"
-  }
+	],
+	"query": {
+		"exchange": "bfnx"
+	}
 }
 ```
 
-This endpoint retrieves a list of asset pairs for a specific exchange.
+This endpoint retrieves a list of asset pairs for a specific exchange. Times refer to start and end of trade coverage. `trade_count` is the number of trades available. Due to real-time constraints, the actual number of trades available through this API is very likely higher for any actively traded pairs (where `end_time` and `end_timestamp` is null).
 
 ### HTTP Request
 
@@ -348,7 +346,7 @@ Parameter | Required | Description
 
 ```curl
 curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
-  -H "x-api-key: <client-api-key>"
+	-H "x-api-key: <client-api-key>"
 ```
 
 
@@ -356,37 +354,39 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
 
 ```json
 {
-  "result": "success",
-  "time": "2018-06-14T17:37:22.002Z",
-  "timestamp": 1528997842002,
-  "data": [
-	{
-	  "modified_timestamp": 1524602571000,
-	  "timestamp": 1417412036761,
-	  "tid": "1",
-	  "price": "300.0",
-	  "amount": "0.01",
-	  "sell": true
+	"result": "success",
+	"time": "2018-06-14T17:37:22.002Z",
+	"timestamp": 1528997842002,
+	"data": [
+		{
+			"modified_timestamp": 1524602571000,
+			"timestamp": 1417412036761,
+			"tid": "1",
+			"price": "300.0",
+			"amount": "0.01",
+			"sell": true
+		},
+		{
+			"modified_timestamp": 1524602571000,
+			"timestamp": 1417412423076,
+			"tid": "2",
+			"price": "300.0",
+			"amount": "0.01",
+			"sell": false
+		},
+		// ...
+	],
+	"query": {
+		"exchange": "bfnx",
+		"pair": "btc-usd",
+		"continuation_token": null,
+		"start_time": null,
+		"end_time": null,
+		"page_size": 1000,
+		"request_time": "2018-06-14T17:37:21.935Z"
 	},
-	{
-	  "modified_timestamp": 1524602571000,
-	  "timestamp": 1417412423076,
-	  "tid": "2",
-	  "price": "300.0",
-	  "amount": "0.01",
-	  "sell": false
-	},
-	// ...
-  ],
-  "query": {
-	"continuation_token": null,
-	"start_time": null,
-	"end_time": null,
-	"page_size": 1000,
-	"request_time": "2018-06-14T17:37:21.935Z"
-  },
-  "continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
-  "next_url": "http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"
+	"continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
+	"next_url": "http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"
 }
 ```
 
@@ -414,7 +414,7 @@ Parameter | Required | Description
 
 ```curl
 curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/trades/recent"
-  -H "x-api-key: <client-api-key>"
+	-H "x-api-key: <client-api-key>"
 ```
 
 
@@ -422,31 +422,33 @@ curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/trades/recent"
 
 ```json
 {
-  "result": "success",
-  "time": "2018-06-14T17:44:37.446Z",
-  "timestamp": 1528998277446,
-  "data": [
-	{
-	  "modified_timestamp": 1528998138222,
-	  "timestamp": 1528998137627,
-	  "tid": "44840133",
-	  "price": "6592.22",
-	  "amount": "0.08741431",
-	  "sell": true
-	},
-	{
-	  "modified_timestamp": 1528998138222,
-	  "timestamp": 1528998137627,
-	  "tid": "44840134",
-	  "price": "6592.22",
-	  "amount": "0.01057674",
-	  "sell": true
-	},
-	// ...
-  ],
-  "query": {
-	"limit": 1000
-  }
+	"result": "success",
+	"time": "2018-06-14T17:44:37.446Z",
+	"timestamp": 1528998277446,
+	"data": [
+		{
+			"modified_timestamp": 1528998138222,
+			"timestamp": 1528998137627,
+			"tid": "44840133",
+			"price": "6592.22",
+			"amount": "0.08741431",
+			"sell": true
+		},
+		{
+			"modified_timestamp": 1528998138222,
+			"timestamp": 1528998137627,
+			"tid": "44840134",
+			"price": "6592.22",
+			"amount": "0.01057674",
+			"sell": true
+		},
+		// ...
+	],
+	"query": {
+		"limit": 1000,
+		"exchange": "bfnx",
+		"pair": "btc-usd"
+	}
 }
 ```
 
@@ -473,7 +475,7 @@ Parameter | Required | Description
 
 ```curl
 curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/aggregations/ohlcv"
-  -H "x-api-key: <client-api-key>"
+	-H "x-api-key: <client-api-key>"
 ```
 
 
@@ -481,37 +483,39 @@ curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/aggregations/ohlcv"
 
 ```json
 {
-  "result": "success",
-  "time": "2018-06-14T17:55:49.033Z",
-  "timestamp": 1528998949033,
-  "data": [
-    {
-      "modified_timestamp": 1528990180000,
-      "timestamp": 1417392000000,
-      "open": "300.0",
-      "high": "370.0",
-      "low": "300.0",
-      "close": "370.0",
-      "volume": "0.05655554"
-    },
-    {
-      "modified_timestamp": 1528990180000,
-      "timestamp": 1417478400000,
-      "open": "377.0",
-      "high": "378.0",
-      "low": "377.0",
-      "close": "378.0",
-      "volume": "15.0136"
-    }
-  ],
-  "query": {
-    "continuation_token": null,
-    "start_time": null,
-    "end_time": null,
-    "page_size": 2,
-    "interval": "1d",
-    "request_time": "2018-06-14T17:55:48.908Z"
-  }
+	"result": "success",
+	"time": "2018-06-14T17:55:49.033Z",
+	"timestamp": 1528998949033,
+	"data": [
+		{
+			"modified_timestamp": 1528990180000,
+			"timestamp": 1417392000000,
+			"open": "300.0",
+			"high": "370.0",
+			"low": "300.0",
+			"close": "370.0",
+			"volume": "0.05655554"
+		},
+		{
+			"modified_timestamp": 1528990180000,
+			"timestamp": 1417478400000,
+			"open": "377.0",
+			"high": "378.0",
+			"low": "377.0",
+			"close": "378.0",
+			"volume": "15.0136"
+		}
+	],
+	"query": {
+		"continuation_token": null,
+		"start_time": null,
+		"end_time": null,
+		"page_size": 2,
+		"exchange": "gdax",
+		"pair": "btc-usd",
+		"interval": "1d",
+		"request_time": "2018-06-14T17:55:48.908Z"
+	}
 }
 ```
 

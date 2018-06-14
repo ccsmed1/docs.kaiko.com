@@ -635,7 +635,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
             </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524602571000</span><span class="p">,</span><span class="w">
@@ -643,7 +643,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
             </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -660,7 +660,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 1000 first trades in our dataset. Trades are sorted by time, ascendingly.</p>
+<p>This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 1000 first trades in our dataset. Trades are sorted by time, ascendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-6'>Parameters</h3>
@@ -723,7 +723,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
             </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44840133"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6592.22"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.08741431"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998138222</span><span class="p">,</span><span class="w">
@@ -731,7 +731,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
             </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44840134"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6592.22"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01057674"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -742,7 +742,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 1000 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly.</p>
+<p>This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 1000 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades/recent{?page_size}</code></p>
 <h3 id='parameters-7'>Parameters</h3>

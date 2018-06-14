@@ -205,7 +205,7 @@ curl "https://query-api.kaiko.io/v1/pairs"
 }
 ```
 
-This endpoint retrieves a list of supported asset pairs.
+This endpoint retrieves a list of supported asset pairs, including start and end times for available trade data for each pair.
 
 
 ### HTTP Request

@@ -331,7 +331,7 @@ This endpoint retrieves a list of asset pairs for a specific exchange. Times ref
 
 ### HTTP request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange}`
 
 ### Parameters
 
@@ -394,14 +394,14 @@ This endpoint retrieves trades for an asset pair on a specific exchange. By defa
 
 ### HTTP request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades{?start_time,end_time,page_size,continuation_token}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange}/{pair}/trades{?start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-`exchange_code` | Yes | See [/v1/exchanges](#exchanges).
-`pair_code` | Yes | See [/v1/pairs](#exchange-pairs).
+`exchange` | Yes | Exchange `code`. See [/v1/exchanges](#exchanges).
+`pair` | Yes | Pair `code`. See [/v1/pairs](#exchange-pairs).
 `start_time` | No | Starting time in ISO 8601 (inclusive).
 `end_time` | No | Ending time in ISO 8601 (inclusive).
 `page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
@@ -456,14 +456,14 @@ This endpoint retrieves the most recent trades for an asset pair on a specific e
 
 ### HTTP request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades/recent{?page_size}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange}/{pair}/trades/recent{?page_size}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-`exchange_code` | Yes | See [/v1/exchanges](#exchanges).
-`pair_code` | Yes | See [/v1/pairs](#exchange-pairs).
+`exchange` | Yes | Exchange `code`. See [/v1/exchanges](#exchanges).
+`pair` | Yes | Pair `code`. See [/v1/pairs](#exchange-pairs).
 `start_time` | No | Starting time in ISO 8601 (inclusive).
 `end_time` | No | Ending time in ISO 8601 (inclusive).
 `page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
@@ -524,14 +524,14 @@ This endpoint retrieves trade data aggregated history for an asset pair on a spe
 
 ### HTTP request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/aggregations/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange}/{pair}/aggregations/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-`exchange_code` | Yes | See [/v1/exchanges](#exchanges).
-`pair_code` | Yes | See [/v1/pairs](#exchange-pairs).
+`exchange` | Yes | Exchange `code`. See [/v1/exchanges](#exchanges).
+`pair` | Yes | Pair `code`. See [/v1/pairs](#exchange-pairs).
 `aggregation_type` | Yes | Which [aggregation type](#aggregation-types) to get (currently supported: `ohlcv`).
 `interval` | No | [Interval](#intervals) period in seconds (max: 1440).
 `start_time` | No | Starting time in ISO 8601 (inclusive).

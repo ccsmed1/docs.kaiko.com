@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Kaiko Query API Reference</title>
+    <title>API Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -198,10 +198,10 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+      <script src="javascripts/all_nosearch.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;curl&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,13 +210,6 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="curl">curl</a>
-        </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="introduction">Introduction</a>
@@ -262,7 +255,7 @@
                     <a href="#exchanges" class="toc-h2 toc-link" data-title="exchanges">Exchanges</a>
                   </li>
                   <li>
-                    <a href="#exchange-pairs" class="toc-h2 toc-link" data-title="exchange-pairs">Exchange Pairs</a>
+                    <a href="#exchange-pairs" class="toc-h2 toc-link" data-title="exchange-pairs">Exchange pairs</a>
                   </li>
                   <li>
                     <a href="#exchange-trades" class="toc-h2 toc-link" data-title="exchange-trades">Exchange Trades</a>
@@ -275,14 +268,7 @@
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
-          </li>
       </div>
-        <ul class="toc-footer">
-            <li><a href='https://www.kaiko.com/'>Kaiko</a></li>
-            <li><a href='https://www.kaiko.com/pages/contact'>Contact us</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -296,7 +282,7 @@
 <p>Request Syntax</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1"
-  -H "x-api-key: &lt;client-api-key&gt;"
+    -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <p>The base URL for the API is: </p>
 
@@ -387,9 +373,9 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:19:40.303Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528996780303</span><span class="p">,</span><span class="w">
     </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
     </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://query-api.kaiko.io/bfnx/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
+    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://query-api.kaiko.io/bfnx/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -418,7 +404,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <p>Request Example</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/assets"
-  -H "x-api-key: &lt;client-api-key&gt;"
+    -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
@@ -465,34 +451,34 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <p>Request Example</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/pairs"
-  -H "x-api-key: &lt;client-api-key&gt;"
+    -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:27:31.621Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997251621</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada-btc"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardano"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada-eth"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardano"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:27:31.621Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997251621</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada-btc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardano"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada-eth"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardano"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a list of supported asset pairs, including start and end times for available trade data for each pair.</p>
+<p>This endpoint retrieves a list of supported asset pairs.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://query-api.kaiko.io/v1/pairs</code></p>
 <h3 id='parameters-3'>Parameters</h3>
@@ -514,41 +500,41 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <p>Request Example</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges"
-  -H "x-api-key: &lt;client-api-key&gt;"
+    -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:28:42.915Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997322915</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfly"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitFlyer"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bitflyer.jp"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"pairs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:28:42.915Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997322915</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-18T04:50:15.000Z"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524027015000</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">75463</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfly"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitFlyer"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bitflyer.jp"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pairs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-18T04:50:15.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524027015000</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">75463</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a list of supported exchanges.</p>
+<p>This endpoint retrieves a list of supported exchanges including (pairs)[#exchange-pairs].</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://query-api.kaiko.io/v1/exchanges</code></p>
 <h3 id='parameters-4'>Parameters</h3>
@@ -565,53 +551,53 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='exchange-pairs'>Exchange Pairs</h2>
+<h2 id='exchange-pairs'>Exchange pairs</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/bfnx"
-  -H "x-api-key: &lt;client-api-key&gt;"
+    -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:31:07.519Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997467519</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:31:07.519Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997467519</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-04-01T00:07:49.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1364774869000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">48783086</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-04-01T00:07:49.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1364774869000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">48783086</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth-usd"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T16:04:35.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1457539475000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">22507604</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth-usd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T16:04:35.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1457539475000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">22507604</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="err">....</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a list of asset pairs for a specific exchange.</p>
+<p>This endpoint retrieves a list of asset pairs for a specific exchange. Times refer to start and end of trade coverage. <code>trade_count</code> is the number of trades available. Due to real-time constraints, the actual number of trades available through this API is very likely higher for any actively traded pairs (where <code>end_time</code> and <code>end_timestamp</code> is null).</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}</code></p>
 <h3 id='parameters-5'>Parameters</h3>
@@ -633,43 +619,45 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <p>Request Example</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
-  -H "x-api-key: &lt;client-api-key&gt;"
+    -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:37:22.002Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997842002</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524602571000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417412036761</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:37:22.002Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997842002</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524602571000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417412036761</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524602571000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417412423076</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:37:21.935Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524602571000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417412423076</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:37:21.935Z"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
+    </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 1000 first trades in our dataset. Trades are sorted by time, ascendingly.</p>
@@ -719,37 +707,39 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <p>Request Example</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/trades/recent"
-  -H "x-api-key: &lt;client-api-key&gt;"
+    -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:44:37.446Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998277446</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998138222</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998137627</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44840133"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6592.22"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.08741431"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998138222</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998137627</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44840134"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6592.22"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01057674"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:44:37.446Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998277446</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998138222</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998137627</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44840133"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6592.22"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.08741431"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998138222</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998137627</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44840134"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6592.22"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01057674"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 1000 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly.</p>
@@ -799,43 +789,45 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <p>Request Example</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/aggregations/ohlcv"
-  -H "x-api-key: &lt;client-api-key&gt;"
+    -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:55:49.033Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998949033</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528990180000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417392000000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"370.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"370.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05655554"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528990180000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417478400000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"377.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"378.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"377.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"378.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.0136"</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:55:49.033Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998949033</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528990180000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417392000000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"370.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"370.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05655554"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528990180000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417478400000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"377.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"378.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"377.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"378.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.0136"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdax"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1d"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:55:48.908Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1d"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:55:48.908Z"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. Returns the earliest available OHLCV by default. The <code>interval</code> parameter can be suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
@@ -932,58 +924,9 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tbody></table>
 <h3 id='intervals'>Intervals</h3>
 <p>The following intervals are currently supported: <code>1m</code>, <code>2m</code>, <code>3m</code>, <code>5m</code>, <code>10m</code>, <code>15m</code>, <code>30m</code>, <code>1h</code>, <code>2h</code>, <code>4h</code>, <code>1d</code>.</p>
-<h1 id='errors'>Errors</h1>
-<p>The Kaiko Query API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- You are not authenticated properly. See <a href="#authentication">Authentication</a>.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- You don&#39;t have access to the requested resource</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- <a href='https://www.kaiko.com/pages/contact'>Contact us</a></td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance.</td>
-</tr>
-</tbody></table>
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="curl">curl</a>
-          </div>
       </div>
     </div>
   </body>

@@ -157,7 +157,7 @@ curl "https://query-api.kaiko.io/v1/assets"
 
 This endpoint retrieves a list of supported assets.
 
-### HTTP Request
+### HTTP request
 
 `GET https://query-api.kaiko.io/v1/assets`
 
@@ -169,7 +169,7 @@ none	|
 
 
 
-## Asset Pairs
+## Asset pairs
 
 > Request Example
 
@@ -208,7 +208,7 @@ curl "https://query-api.kaiko.io/v1/pairs"
 This endpoint retrieves a list of supported asset pairs.
 
 
-### HTTP Request
+### HTTP request
 
 `GET https://query-api.kaiko.io/v1/pairs`
 
@@ -266,7 +266,7 @@ curl "https://query-api.kaiko.io/v1/exchanges"
 This endpoint retrieves a list of supported exchanges including (pairs)[#exchange-pairs].
 
 
-### HTTP Request
+### HTTP request
 
 `GET https://query-api.kaiko.io/v1/exchanges`
 
@@ -329,7 +329,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx"
 
 This endpoint retrieves a list of asset pairs for a specific exchange. Times refer to start and end of trade coverage. `trade_count` is the number of trades available. Due to real-time constraints, the actual number of trades available through this API is very likely higher for any actively traded pairs (where `end_time` and `end_timestamp` is null).
 
-### HTTP Request
+### HTTP request
 
 `GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}`
 
@@ -340,7 +340,7 @@ Parameter | Required | Description
 `code` | Yes | See [/v1/exchanges](#exchanges).
 
 
-## Exchange Trades
+## Exchange trades
 
 > Request Example
 
@@ -392,7 +392,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
 
 This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 1000 first trades in our dataset. Trades are sorted by time, ascendingly. Note that `taker_side_sell` can be null in the cases where this information was not available at collection.
 
-### HTTP Request
+### HTTP request
 
 `GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades{?start_time,end_time,page_size,continuation_token}`
 
@@ -454,7 +454,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/trades/recent"
 
 This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 1000 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that `taker_side_sell` can be null in the cases where this information was not available at collection.
 
-### HTTP Request
+### HTTP request
 
 `GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/trades/recent{?page_size}`
 
@@ -469,7 +469,7 @@ Parameter | Required | Description
 `page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
 `continuation_token` | No | See [Pagination](#pagination).
 
-## Market Data Aggregations
+## Market data aggregations
 
 > Request Example
 
@@ -522,7 +522,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/aggregations/ohlcv"
 This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. Returns the earliest available OHLCV by default. The `interval` parameter can be suffixed with `s`, `m`, `h` or `d` to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.
 
 
-### HTTP Request
+### HTTP request
 
 `GET https://query-api.kaiko.io/v1/exchanges/{exchange_code}/{pair_code}/aggregations/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}`
 

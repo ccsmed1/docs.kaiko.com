@@ -218,10 +218,13 @@
                     <a href="#authentication" class="toc-h2 toc-link" data-title="authentication">Authentication</a>
                   </li>
                   <li>
+                    <a href="#rate-limiting" class="toc-h2 toc-link" data-title="rate-limiting">Rate limiting</a>
+                  </li>
+                  <li>
                     <a href="#timestamps" class="toc-h2 toc-link" data-title="timestamps">Timestamps</a>
                   </li>
                   <li>
-                    <a href="#market-open-and-close" class="toc-h2 toc-link" data-title="market-open-and-close">Market Open and Close</a>
+                    <a href="#market-open-and-close" class="toc-h2 toc-link" data-title="market-open-and-close">Market open and close</a>
                   </li>
                   <li>
                     <a href="#envelope" class="toc-h2 toc-link" data-title="envelope">Envelope</a>
@@ -289,6 +292,8 @@
 <aside class="notice">
 You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </aside>
+<h2 id='rate-limiting'>Rate limiting</h2>
+<p>Query limits are based on your API key. Currently, each API key is allowed a maximum of 1000 requests per minute and 10000 requests per hour.</p>
 <h2 id='timestamps'>Timestamps</h2><h3 id='input'>Input</h3>
 <p>All time parameters are in UTC and returned in the following ISO 8601 datetime format:</p>
 
@@ -301,7 +306,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <p>The &quot;T&quot; separates the date from the time. The “Z” at the end indicates that this is a UTC time.</p>
 <h3 id='output'>Output</h3>
 <p>All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps </a>(the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resulution ISO 8601 datetime strings in the same format as input.</p>
-<h2 id='market-open-and-close'>Market Open and Close</h2>
+<h2 id='market-open-and-close'>Market open and close</h2>
 <p>Digital asset exchanges operate approximately 24x7x365. </p>
 
 <p>For exchange data, the opening price is calculated as the first trade at or after 00:00:00 UTC. The closing price is calculated as the last trade prior to 00:00:00 UTC.</p>

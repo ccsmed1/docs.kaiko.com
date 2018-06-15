@@ -14,6 +14,6 @@ Error Code | Meaning
 404 | Not Found
 405 | Method Not Allowed
 406 | Not Acceptable
-429 | Too Many Requests -- <a href='https://www.kaiko.com/pages/contact'>Contact us</a>
+429 | Too Many Requests -- [Rate limit](#rate-limiting] exceeded. <a href='https://www.kaiko.com/pages/contact'>Contact us</a> if you think you have a need for more.
 500 | Internal Server Error -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- We're temporarily offline for maintenance.

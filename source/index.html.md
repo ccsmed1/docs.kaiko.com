@@ -43,6 +43,10 @@ Clients must include an API key in the header of every request they make to the 
 You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </aside>
 
+## Rate limiting
+
+Query limits are based on your API key. Currently, each API key is allowed a maximum of 1000 requests per minute and 10000 requests per hour.
+
 
 ## Timestamps
 
@@ -62,7 +66,7 @@ The "T" separates the date from the time. The “Z” at the end indicates that 
 All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps </a>(the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resulution ISO 8601 datetime strings in the same format as input.
 
 
-## Market Open and Close
+## Market open and close
 
 Digital asset exchanges operate approximately 24x7x365. 
 

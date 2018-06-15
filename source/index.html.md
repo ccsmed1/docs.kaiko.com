@@ -361,7 +361,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
 		{
 			"modified_timestamp": 1524602571000,
 			"timestamp": 1417412036761,
-			"tid": "1",
+			"trade_id": "1",
 			"price": "300.0",
 			"amount": "0.01",
 			"taker_side_sell": true
@@ -369,7 +369,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
 		{
 			"modified_timestamp": 1524602571000,
 			"timestamp": 1417412423076,
-			"tid": "2",
+			"trade_id": "2",
 			"price": "300.0",
 			"amount": "0.01",
 			"taker_side_sell": false
@@ -429,7 +429,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/trades/recent"
 		{
 			"modified_timestamp": 1528998138222,
 			"timestamp": 1528998137627,
-			"tid": "44840133",
+			"trade_id": "44840133",
 			"price": "6592.22",
 			"amount": "0.08741431",
 			"taker_side_sell": true
@@ -437,7 +437,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/trades/recent"
 		{
 			"modified_timestamp": 1528998138222,
 			"timestamp": 1528998137627,
-			"tid": "44840134",
+			"trade_id": "44840134",
 			"price": "6592.22",
 			"amount": "0.01057674",
 			"taker_side_sell": true

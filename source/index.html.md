@@ -46,7 +46,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 
 ## Timestamps
 
-## Input
+### Input
 
 All time parameters are in UTC and returned in the following ISO 8601 datetime format:
 
@@ -58,7 +58,7 @@ For example:
 
 The "T" separates the date from the time. The “Z” at the end indicates that this is a UTC time.
 
-## Output
+### Output
 All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps </a>(the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resulution ISO 8601 datetime strings in the same format as input.
 
 

@@ -470,7 +470,7 @@ Parameter | Required | Description
 `pair` | Yes | Pair `code`. See [/v1/pairs](#exchange-pairs).
 `limit` | No | Maximum number of results (min: 1, default: 100, max: 10000)
 
-## Market data aggregations
+## Market data aggregations (OHLCV)
 
 > Request Example
 
@@ -520,7 +520,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/aggregations/ohlcv"
 }
 ```
 
-This endpoint retrieves trade data aggregated history for an asset pair on a specific exchange. Returns the earliest available OHLCV by default. The `interval` parameter can be suffixed with `s`, `m`, `h` or `d` to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.
+This endpoint retrieves aggregated history for an asset pair on an exchange. Returns the earliest available OHLCV (candles) by default. The `interval` parameter can be suffixed with `s`, `m`, `h` or `d` to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.
 
 
 ### HTTP request

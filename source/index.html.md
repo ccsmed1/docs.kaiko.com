@@ -408,7 +408,7 @@ Parameter | Required | Description
 `pair` | Yes | Pair `code`. See [/v1/pairs](#exchange-pairs).
 `start_time` | No | Starting time in ISO 8601 (inclusive).
 `end_time` | No | Ending time in ISO 8601 (inclusive).
-`page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
+`page_size` | No | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).
 `continuation_token` | No | See [Pagination](#pagination).
 
 
@@ -460,7 +460,7 @@ This endpoint retrieves the most recent trades for an asset pair on a specific e
 
 ### HTTP request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange}/{pair}/trades/recent{?page_size}`
+`GET https://query-api.kaiko.io/v1/exchanges/{exchange}/{pair}/trades/recent{?limit}`
 
 ### Parameters
 
@@ -468,10 +468,7 @@ Parameter | Required | Description
 --------- | -------- | ---------
 `exchange` | Yes | Exchange `code`. See [/v1/exchanges](#exchanges).
 `pair` | Yes | Pair `code`. See [/v1/pairs](#exchange-pairs).
-`start_time` | No | Starting time in ISO 8601 (inclusive).
-`end_time` | No | Ending time in ISO 8601 (inclusive).
-`page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
-`continuation_token` | No | See [Pagination](#pagination).
+`limit` | No | Maximum number of results (min: 1, default: 100, max: 10000)
 
 ## Market data aggregations
 
@@ -540,7 +537,7 @@ Parameter | Required | Description
 `interval` | No | [Interval](#intervals) period in seconds (max: 1440).
 `start_time` | No | Starting time in ISO 8601 (inclusive).
 `end_time` | No | Ending time in ISO 8601 (inclusive).
-`page_size` | No | See [Pagination](#pagination) (min: 100, default: 1000, max: 10000).
+`page_size` | No | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).
 `continuation_token` | No | See [Pagination](#pagination).
 
 ### Aggregation types

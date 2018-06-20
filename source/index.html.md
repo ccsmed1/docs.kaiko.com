@@ -470,7 +470,7 @@ Parameter | Required | Description
 `pair` | Yes | Pair `code`. See [/v1/pairs](#exchange-pairs).
 `limit` | No | Maximum number of results (min: 1, default: 100, max: 10000)
 
-## Market data aggregations (OHLCV)
+## Aggregations (OHLCV)
 
 > Request Example
 

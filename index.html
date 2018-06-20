@@ -814,7 +814,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves aggregated history for an asset pair on an exchange. Returns the earliest available OHLCV (candles) by default. The <code>interval</code> parameter can be suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
+<p>This endpoint retrieves aggregated history for an asset pair on an exchange. Returns the earliest available OHLCV (candles) by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
 <h3 id='http-request-7'>HTTP request</h3>
 <p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange}/{pair}/aggregations/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-8'>Parameters</h3>
@@ -843,7 +843,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>interval</code></td>
 <td>No</td>
-<td><a href="#intervals">Interval</a> period.</td>
+<td><a href="#intervals">Interval</a> period. Default <code>1d</code>.</td>
 </tr>
 <tr>
 <td><code>start_time</code></td>
@@ -907,7 +907,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </tbody></table>
 <h3 id='intervals'>Intervals</h3>
-<p>The following intervals are currently supported: <code>1m</code>, <code>2m</code>, <code>3m</code>, <code>5m</code>, <code>10m</code>, <code>15m</code>, <code>30m</code>, <code>1h</code>, <code>2h</code>, <code>4h</code>, <code>1d</code>. <code>interval</code> can alternatively be supplied in milliseconds without unit (e.g. <code>interval=86400000</code> == <code>interval=1d</code>).</p>
+<p>The following intervals are currently supported: <code>1m</code>, <code>2m</code>, <code>3m</code>, <code>5m</code>, <code>10m</code>, <code>15m</code>, <code>30m</code>, <code>1h</code>, <code>2h</code>, <code>4h</code>, <code>1d</code>.</p>
 
       </div>
       <div class="dark-box">

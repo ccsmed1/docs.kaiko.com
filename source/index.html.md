@@ -223,7 +223,7 @@ Parameter | Required | Description
 none	| |
 
 
-# Exchange Data
+# Exchange data
 
 ## Exchanges
 
@@ -534,7 +534,7 @@ Parameter | Required | Description
 `exchange` | Yes | Exchange `code`. See [/v1/exchanges](#exchanges).
 `pair` | Yes | Pair `code`. See [/v1/pairs](#exchange-pairs).
 `aggregation_type` | Yes | Which [aggregation type](#aggregation-types) to get (currently supported: `ohlcv`).
-`interval` | No | [Interval](#intervals) period in seconds (max: 1440).
+`interval` | No | [Interval](#intervals) period.
 `start_time` | No | Starting time in ISO 8601 (inclusive).
 `end_time` | No | Ending time in ISO 8601 (inclusive).
 `page_size` | No | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).
@@ -558,4 +558,4 @@ Field | Description
 
 ### Intervals
 
-The following intervals are currently supported: `1m`, `2m`, `3m`, `5m`, `10m`, `15m`, `30m`, `1h`, `2h`, `4h`, `1d`.
+The following intervals are currently supported: `1m`, `2m`, `3m`, `5m`, `10m`, `15m`, `30m`, `1h`, `2h`, `4h`, `1d`. `interval` can alternatively be supplied in milliseconds without unit (e.g. `interval=86400000` == `interval=1d`).

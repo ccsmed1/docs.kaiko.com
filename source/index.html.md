@@ -381,12 +381,9 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
 		// ...
 	],
 	"query": {
+		"page_size": 100,
 		"exchange": "bfnx",
 		"pair": "btc-usd",
-		"continuation_token": null,
-		"start_time": null,
-		"end_time": null,
-		"page_size": 1000,
 		"request_time": "2018-06-14T17:37:21.935Z"
 	},
 	"continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
@@ -394,7 +391,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
 }
 ```
 
-This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 1000 first trades in our dataset. Trades are sorted by time, ascendingly. Note that `taker_side_sell` can be null in the cases where this information was not available at collection.
+This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 100 first trades in our dataset. Trades are sorted by time, ascendingly. Note that `taker_side_sell` can be null in the cases where this information was not available at collection.
 
 ### HTTP request
 
@@ -449,14 +446,16 @@ curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/trades/recent"
 		// ...
 	],
 	"query": {
-		"limit": 1000,
+		"limit": 100,
 		"exchange": "bfnx",
 		"pair": "btc-usd"
-	}
+	},
+	"continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
+	"next_url": "http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"
 }
 ```
 
-This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 1000 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that `taker_side_sell` can be null in the cases where this information was not available at collection.
+This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 100 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that `taker_side_sell` can be null in the cases where this information was not available at collection.
 
 ### HTTP request
 
@@ -508,7 +507,6 @@ curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/aggregations/ohlcv"
 		}
 	],
 	"query": {
-		"continuation_token": null,
 		"start_time": null,
 		"end_time": null,
 		"page_size": 2,

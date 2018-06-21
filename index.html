@@ -592,13 +592,13 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="err">//</span><span class="w"> </span><span class="err">....</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of asset pairs for a specific exchange. Times refer to start and end of trade coverage. <code>trade_count</code> is the number of trades available. Due to real-time constraints, the actual number of trades available through this API is very likely higher for any actively traded pairs (where <code>end_time</code> and <code>end_timestamp</code> is null).</p>
 <h3 id='http-request-4'>HTTP request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange}</code></p>
+<p><code>GET https://query-api.kaiko.io/v1/exchanges/{code}</code></p>
 <h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>

@@ -326,7 +326,7 @@ curl "https://query-api.kaiko.io/v1/exchanges/bfnx"
 	// ....
 	],
 	"query": {
-		"exchange": "bfnx"
+		"code": "bfnx"
 	}
 }
 ```
@@ -335,7 +335,7 @@ This endpoint retrieves a list of asset pairs for a specific exchange. Times ref
 
 ### HTTP request
 
-`GET https://query-api.kaiko.io/v1/exchanges/{exchange}`
+`GET https://query-api.kaiko.io/v1/exchanges/{code}`
 
 ### Parameters
 

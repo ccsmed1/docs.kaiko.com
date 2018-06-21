@@ -735,9 +735,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
         </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
         </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 100 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
@@ -799,17 +797,18 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
             </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"377.0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"378.0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.0136"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
         </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdax"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1d"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:55:48.908Z"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves aggregated history for an asset pair on an exchange. Returns the earliest available OHLCV (candles) by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>

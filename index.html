@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Documentation</title>
+    <title>Kaiko API Platform Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -198,7 +198,7 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all_nosearch.js"></script>
+      <script src="javascripts/all.js"></script>
   </head>
 
   <body class="index" data-languages="[]">
@@ -210,6 +210,10 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="introduction">Introduction</a>
@@ -222,6 +226,14 @@
                   </li>
                   <li>
                     <a href="#timestamps" class="toc-h2 toc-link" data-title="timestamps">Timestamps</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#input" class="toc-h3 toc-link" data-title="Introduction">Input</a>
+                          </li>
+                          <li>
+                            <a href="#output" class="toc-h3 toc-link" data-title="Introduction">Output</a>
+                          </li>
+                      </ul>
                   </li>
                   <li>
                     <a href="#market-open-and-close" class="toc-h2 toc-link" data-title="market-open-and-close">Market open and close</a>
@@ -231,37 +243,104 @@
                   </li>
                   <li>
                     <a href="#pagination" class="toc-h2 toc-link" data-title="pagination">Pagination</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#parameters" class="toc-h3 toc-link" data-title="Introduction">Parameters</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#errors" class="toc-h2 toc-link" data-title="errors">Errors</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#http-error-codes" class="toc-h3 toc-link" data-title="Introduction">HTTP error codes</a>
+                          </li>
+                      </ul>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#metadata" class="toc-h1 toc-link" data-title="metadata">Metadata</a>
+            <a href="#reference-data-endpoints" class="toc-h1 toc-link" data-title="reference-data-endpoints">Reference Data Endpoints</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#assets" class="toc-h2 toc-link" data-title="assets">Assets</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#http-request" class="toc-h3 toc-link" data-title="Reference Data Endpoints">HTTP request</a>
+                          </li>
+                          <li>
+                            <a href="#parameters-2" class="toc-h3 toc-link" data-title="Reference Data Endpoints">Parameters</a>
+                          </li>
+                      </ul>
                   </li>
                   <li>
-                    <a href="#asset-pairs" class="toc-h2 toc-link" data-title="asset-pairs">Asset pairs</a>
+                    <a href="#exchanges" class="toc-h2 toc-link" data-title="exchanges">Exchanges</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#http-request-2" class="toc-h3 toc-link" data-title="Reference Data Endpoints">HTTP request</a>
+                          </li>
+                          <li>
+                            <a href="#parameters-3" class="toc-h3 toc-link" data-title="Reference Data Endpoints">Parameters</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#instruments" class="toc-h2 toc-link" data-title="instruments">Instruments</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#http-request-3" class="toc-h3 toc-link" data-title="Reference Data Endpoints">HTTP request</a>
+                          </li>
+                          <li>
+                            <a href="#parameters-4" class="toc-h3 toc-link" data-title="Reference Data Endpoints">Parameters</a>
+                          </li>
+                      </ul>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#exchange-data" class="toc-h1 toc-link" data-title="exchange-data">Exchange data</a>
+            <a href="#market-data-endpoints" class="toc-h1 toc-link" data-title="market-data-endpoints">Market Data Endpoints</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#exchanges" class="toc-h2 toc-link" data-title="exchanges">Exchanges</a>
+                    <a href="#exchange-trades" class="toc-h2 toc-link" data-title="exchange-trades">Exchange Trades</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#http-request-4" class="toc-h3 toc-link" data-title="Market Data Endpoints">HTTP request</a>
+                          </li>
+                          <li>
+                            <a href="#parameters-5" class="toc-h3 toc-link" data-title="Market Data Endpoints">Parameters</a>
+                          </li>
+                      </ul>
                   </li>
                   <li>
-                    <a href="#exchange-pairs" class="toc-h2 toc-link" data-title="exchange-pairs">Exchange pairs</a>
-                  </li>
-                  <li>
-                    <a href="#exchange-trades" class="toc-h2 toc-link" data-title="exchange-trades">Exchange trades</a>
-                  </li>
-                  <li>
-                    <a href="#recent-trades" class="toc-h2 toc-link" data-title="recent-trades">Recent trades</a>
+                    <a href="#recent-trades" class="toc-h2 toc-link" data-title="recent-trades">Recent Trades</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#http-request-5" class="toc-h3 toc-link" data-title="Market Data Endpoints">HTTP request</a>
+                          </li>
+                          <li>
+                            <a href="#parameters-6" class="toc-h3 toc-link" data-title="Market Data Endpoints">Parameters</a>
+                          </li>
+                      </ul>
                   </li>
                   <li>
                     <a href="#aggregations-ohlcv" class="toc-h2 toc-link" data-title="aggregations-ohlcv">Aggregations (OHLCV)</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#http-request-6" class="toc-h3 toc-link" data-title="Market Data Endpoints">HTTP request</a>
+                          </li>
+                          <li>
+                            <a href="#parameters-7" class="toc-h3 toc-link" data-title="Market Data Endpoints">Parameters</a>
+                          </li>
+                          <li>
+                            <a href="#aggregation-types" class="toc-h3 toc-link" data-title="Market Data Endpoints">Aggregation types</a>
+                          </li>
+                          <li>
+                            <a href="#fields" class="toc-h3 toc-link" data-title="Market Data Endpoints">Fields</a>
+                          </li>
+                          <li>
+                            <a href="#intervals" class="toc-h3 toc-link" data-title="Market Data Endpoints">Intervals</a>
+                          </li>
+                      </ul>
                   </li>
               </ul>
           </li>
@@ -271,23 +350,17 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kaiko Query API.</p>
-
-<p>Kaiko provides historical institutional quality market data for the leading digital assets. Our system retrieves and validates millions of trades each day from the world&#39;s leading cryptocurrency exchanges to deliver robust and reliable market data to financial firms globally.</p>
+<p>Kaiko provides live and historical institutional quality market data for the digital assets. Our service retrieves and validates millions of trades each day from the world&#39;s leading cryptocurrency exchanges to deliver robust and reliable market data to financial institutions globally.</p>
 <h2 id='authentication'>Authentication</h2>
 <blockquote>
 <p>Request Syntax</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1"
+<pre class="highlight plaintext"><code>curl "https://&lt;api_hostname&gt;/&lt;endpoint&gt;"
     -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
-<p>The base URL for the API is: </p>
+<p>Each API lives under its own hostname, clients must include an API key in the header of every request they make. The format is as follows:</p>
 
-<p><code>https://query-api.kaiko.io/v1</code></p>
-
-<p>Clients must include an API key in the header of every request they make to the API. The format is as follows:</p>
-
-<p><code>x-api-key: &lt;client-api-key&gt;</code></p>
+<p><code>X-Api-Key: &lt;client-api-key&gt;</code></p>
 
 <aside class="notice">
 You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
@@ -303,11 +376,11 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 
 <p><code>2017-12-17T13:35:24.351Z</code></p>
 
-<p>The &quot;T&quot; separates the date from the time. The “Z” at the end indicates that this is a UTC time.</p>
+<p>The &quot;T&quot; separates the date from the time. The &quot;Z&quot; at the end indicates that this is a UTC time.</p>
 <h3 id='output'>Output</h3>
 <p>All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps </a>(the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resulution ISO 8601 datetime strings in the same format as input.</p>
 <h2 id='market-open-and-close'>Market open and close</h2>
-<p>Digital asset exchanges operate approximately 24x7x365. </p>
+<p>Digital asset exchanges operate approximately 24x7x365.</p>
 
 <p>For exchange data, the opening price is calculated as the first trade at or after 00:00:00 UTC. The closing price is calculated as the last trade prior to 00:00:00 UTC.</p>
 <h2 id='envelope'>Envelope</h2>
@@ -333,6 +406,21 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
+<td><code>data</code></td>
+<td><code>[] &#124; {}</code></td>
+<td>Response result data.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Error message, if query was not successful.</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td><code>{}</code></td>
+<td>All handled query parameters echoed back.</td>
+</tr>
+<tr>
 <td><code>result</code></td>
 <td><code>string</code></td>
 <td><code>success</code> if query successful, <code>error</code> otherwise.</td>
@@ -347,21 +435,6 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td><code>long</code></td>
 <td>The current time at our endpoint.</td>
 </tr>
-<tr>
-<td><code>message</code></td>
-<td><code>string</code></td>
-<td>Error message, if query was not successful.</td>
-</tr>
-<tr>
-<td><code>query</code></td>
-<td><code>{}</code></td>
-<td>All handled query parameters echoed back.</td>
-</tr>
-<tr>
-<td><code>data</code></td>
-<td><code>[] &#124; {}</code></td>
-<td>Response result data.</td>
-</tr>
 </tbody></table>
 <h2 id='pagination'>Pagination</h2>
 <blockquote>
@@ -374,7 +447,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
     </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://query-api.kaiko.io/bfnx/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="w">
+    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/bfnx/spot/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -388,21 +461,71 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td><code>page_size</code></td>
-<td>No</td>
-<td>Maximum number of records to return in one response</td>
-</tr>
-<tr>
 <td><code>continuation_token</code></td>
 <td>No</td>
 <td></td>
 </tr>
+<tr>
+<td><code>page_size</code></td>
+<td>No</td>
+<td>Maximum  number of records to return in one response</td>
+</tr>
 </tbody></table>
-<h1 id='metadata'>Metadata</h1><h2 id='assets'>Assets</h2>
+<h2 id='errors'>Errors</h2>
+<p>All API responses are in JSON format. A <code>result</code> field, with a value of <code>success</code> or <code>error</code> is returned with each request. In the event of an error, a <code>message</code> field will provide an error message.</p>
+<h3 id='http-error-codes'>HTTP error codes</h3>
+<p>The Kaiko platform API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- You are not authenticated properly. See <a href="#authentication">Authentication</a>.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- You don&#39;t have access to the requested resource</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- <a href="#rate-limiting">Rate limit</a> exceeded. <a href='https://www.kaiko.com/pages/contact'>Contact us</a> if you think you have a need for more.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance.</td>
+</tr>
+</tbody></table>
+<h1 id='reference-data-endpoints'>Reference Data Endpoints</h1>
+<p>The base URL for the Reference Data Endpoints is: <code>https://reference-api.kaiko.io/</code></p>
+<h2 id='assets'>Assets</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/assets"
+<pre class="highlight plaintext"><code>curl "https://reference-api.kaiko.io/v1/assets"
     -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -415,90 +538,32 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"asset_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cryptocurrency"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bch"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin Cash"</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin Cash"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"asset_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cryptocurrency"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jpy"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Japanese Yen"</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Japanese Yen"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"asset_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiat"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of supported assets.</p>
 <h3 id='http-request'>HTTP request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/assets</code></p>
+<p><code>GET https://reference-api.kaiko.io/v1/assets</code></p>
 <h3 id='parameters-2'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>none</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='asset-pairs'>Asset pairs</h2>
+<p>No parameters supported.</p>
+<h2 id='exchanges'>Exchanges</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/pairs"
-    -H "x-api-key: &lt;client-api-key&gt;"
-</code></pre>
-<blockquote>
-<p>Response Example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:27:31.621Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997251621</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada-btc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardano"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada-eth"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardano"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a list of supported asset pairs.</p>
-<h3 id='http-request-2'>HTTP request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/pairs</code></p>
-<h3 id='parameters-3'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>none</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h1 id='exchange-data'>Exchange data</h1><h2 id='exchanges'>Exchanges</h2>
-<blockquote>
-<p>Request Example</p>
-</blockquote>
-<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges"
+<pre class="highlight plaintext"><code>curl "https://reference-api.kaiko.io/v1/exchanges"
     -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -513,111 +578,91 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfly"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitFlyer"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bitflyer.jp"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"pairs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-18T04:50:15.000Z"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524027015000</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">75463</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-            </span><span class="p">]</span><span class="w">
+            </span><span class="s2">"kaiko_legacy_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bl"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"api_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitflyer"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitfinex"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"kaiko_legacy_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bf"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"api_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitfinex"</span><span class="w">
         </span><span class="p">}</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a list of supported exchanges including (pairs)[#exchange-pairs].</p>
-<h3 id='http-request-3'>HTTP request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges</code></p>
-<h3 id='parameters-4'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>none</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='exchange-pairs'>Exchange pairs</h2>
+<p>This endpoint retrieves a list of supported exchanges.</p>
+<h3 id='http-request-2'>HTTP request</h3>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/exchanges</code></p>
+<h3 id='parameters-3'>Parameters</h3>
+<p>No parameters supported.</p>
+<h2 id='instruments'>Instruments</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/bfnx"
+<pre class="highlight plaintext"><code>curl "https://reference-api.kaiko.io/v1/instruments"
     -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:31:07.519Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997467519</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-04-01T00:07:49.000Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1364774869000</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">48783086</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth-usd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"base_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"quote_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T16:04:35.000Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1457539475000</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">22507604</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">....</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="err">result</span><span class="s2">": "</span><span class="err">success</span><span class="s2">",
+    "</span><span class="err">time</span><span class="s2">": "</span><span class="mi">2018-06-14</span><span class="err">T</span><span class="mi">17</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mf">42.915</span><span class="err">Z</span><span class="s2">",
+    "</span><span class="err">timestamp</span><span class="s2">": 1528997322915,
+    "</span><span class="err">data</span><span class="s2">": [
+        {
+            "</span><span class="err">exchange_slug</span><span class="s2">": "</span><span class="err">bb</span><span class="s2">",
+            "</span><span class="err">exchange_code</span><span class="s2">": "</span><span class="err">btcb</span><span class="s2">",
+            "</span><span class="err">exchange_pair_code</span><span class="s2">": "</span><span class="err">BTC/JPY</span><span class="s2">",
+            "</span><span class="err">base_asset</span><span class="s2">": "</span><span class="err">btc</span><span class="s2">",
+            "</span><span class="err">quote_asset</span><span class="s2">": "</span><span class="err">jpy</span><span class="s2">",
+            "</span><span class="err">kaiko_legacy_symbol</span><span class="s2">": null,
+            "</span><span class="err">instrument_class</span><span class="s2">": "</span><span class="err">spot</span><span class="s2">",
+            "</span><span class="err">trade_start_time</span><span class="s2">": null,
+            "</span><span class="err">trade_start_timestamp</span><span class="s2">": 0,
+            "</span><span class="err">trade_end_time</span><span class="s2">": null,
+            "</span><span class="err">trade_end_timestamp</span><span class="s2">": 0,
+            "</span><span class="err">trade_count</span><span class="s2">": 0,
+            "</span><span class="err">trade_compressed_size</span><span class="s2">": 0
+        },
+        {
+            "</span><span class="err">exchange_slug</span><span class="s2">": "</span><span class="err">bc</span><span class="s2">",
+            "</span><span class="err">exchange_code</span><span class="s2">": "</span><span class="err">btcc</span><span class="s2">",
+            "</span><span class="err">exchange_pair_code</span><span class="s2">": "</span><span class="err">btccny</span><span class="s2">",
+            "</span><span class="err">base_asset</span><span class="s2">": "</span><span class="err">btc</span><span class="s2">",
+            "</span><span class="err">quote_asset</span><span class="s2">": "</span><span class="err">cny</span><span class="s2">",
+            "</span><span class="err">kaiko_legacy_symbol</span><span class="s2">": "</span><span class="err">btccny</span><span class="s2">",
+            "</span><span class="err">instrument_class</span><span class="s2">": "</span><span class="err">spot</span><span class="s2">",
+            "</span><span class="err">trade_start_time</span><span class="s2">": null,
+            "</span><span class="err">trade_start_timestamp</span><span class="s2">": 0,
+            "</span><span class="err">trade_end_time</span><span class="s2">": null,
+            "</span><span class="err">trade_end_timestamp</span><span class="s2">": 0,
+            "</span><span class="err">trade_count</span><span class="s2">": 0,
+            "</span><span class="err">trade_compressed_size</span><span class="s2">": 0
+        }
+        // ...
+    ]
+}
 </span></code></pre>
-<p>This endpoint retrieves a list of asset pairs for a specific exchange. Times refer to start and end of trade coverage. <code>trade_count</code> is the number of trades available. Due to real-time constraints, the actual number of trades available through this API is very likely higher for any actively traded pairs (where <code>end_time</code> and <code>end_timestamp</code> is null).</p>
-<h3 id='http-request-4'>HTTP request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges/{code}</code></p>
-<h3 id='parameters-5'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>code</code></td>
-<td>Yes</td>
-<td>See <a href="#exchanges">/v1/exchanges</a>.</td>
-</tr>
-</tbody></table>
-<h2 id='exchange-trades'>Exchange trades</h2>
+<p>This endpoint retrieves a list of supported exchanges.</p>
+<h3 id='http-request-3'>HTTP request</h3>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/exchanges</code></p>
+<h3 id='parameters-4'>Parameters</h3>
+<p>No parameters supported.</p>
+<h1 id='market-data-endpoints'>Market Data Endpoints</h1>
+<p>The base URL for the Market Data Endpoints is regionalized, currently we offer EU and US:</p>
+
+<ul>
+<li><code>https://us-beta.market-api.kaiko.io/</code></li>
+<li><code>https://eu-beta.market-api.kaiko.io/</code></li>
+</ul>
+<h2 id='exchange-trades'>Exchange Trades</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/bfnx/btc-usd/trades"
+<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades"
     -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -629,7 +674,6 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997842002</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524602571000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417412036761</span><span class="p">,</span><span class="w">
             </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
@@ -637,7 +681,6 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
             </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524602571000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417412423076</span><span class="p">,</span><span class="w">
             </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
@@ -649,17 +692,17 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
         </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:37:21.935Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
+    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/spot/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 100 first trades in our dataset. Trades are sorted by time, ascendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
-<h3 id='http-request-5'>HTTP request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange}/{pair}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
-<h3 id='parameters-6'>Parameters</h3>
+<p>This endpoint retrieves trades for an asset instrument on a specific exchange. By default returns the 100 first trades in our dataset. Trades are sorted by time, ascendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
+<h3 id='http-request-4'>HTTP request</h3>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
+<h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -668,24 +711,29 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td><code>exchange</code></td>
-<td>Yes</td>
-<td>Exchange <code>code</code>. See <a href="#exchanges">/v1/exchanges</a>.</td>
-</tr>
-<tr>
-<td><code>pair</code></td>
-<td>Yes</td>
-<td>Pair <code>code</code>. See <a href="#exchange-pairs">/v1/pairs</a>.</td>
-</tr>
-<tr>
-<td><code>start_time</code></td>
+<td><code>continuation_token</code></td>
 <td>No</td>
-<td>Starting time in ISO 8601 (inclusive).</td>
+<td>See <a href="#pagination">Pagination</a>.</td>
 </tr>
 <tr>
 <td><code>end_time</code></td>
 <td>No</td>
-<td>Ending time in ISO 8601 (inclusive).</td>
+<td>Ending time in ISO 8601 (exclusive).</td>
+</tr>
+<tr>
+<td><code>exchange</code></td>
+<td>Yes</td>
+<td>Exchange <code>code</code>. See <a href="#exchanges">Exchanges Reference Data Endpoint</a>.</td>
+</tr>
+<tr>
+<td><code>instrument_class</code></td>
+<td>Yes</td>
+<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
+</tr>
+<tr>
+<td><code>instrument</code></td>
+<td>Yes</td>
+<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
 </tr>
 <tr>
 <td><code>page_size</code></td>
@@ -693,16 +741,21 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>See <a href="#pagination">Pagination</a> (min: 100, default: 100, max: 10000).</td>
 </tr>
 <tr>
-<td><code>continuation_token</code></td>
+<td><code>start_time</code></td>
 <td>No</td>
-<td>See <a href="#pagination">Pagination</a>.</td>
+<td>Starting time in ISO 8601 (inclusive).</td>
+</tr>
+<tr>
+<td><code>trades_version</code></td>
+<td>Yes</td>
+<td>Trade data version.</td>
 </tr>
 </tbody></table>
-<h2 id='recent-trades'>Recent trades</h2>
+<h2 id='recent-trades'>Recent Trades</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/trades/recent"
+<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/gdax/spot/btc-usd/trades/recent"
     -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -714,7 +767,6 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998277446</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998138222</span><span class="p">,</span><span class="w">
             </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998137627</span><span class="p">,</span><span class="w">
             </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44840133"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6592.22"</span><span class="p">,</span><span class="w">
@@ -722,7 +774,6 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
             </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998138222</span><span class="p">,</span><span class="w">
             </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998137627</span><span class="p">,</span><span class="w">
             </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44840134"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6592.22"</span><span class="p">,</span><span class="w">
@@ -734,14 +785,14 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
         </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="w">
+        </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves the most recent trades for an asset pair on a specific exchange. By default returns the 100 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
-<h3 id='http-request-6'>HTTP request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange}/{pair}/trades/recent{?limit}</code></p>
-<h3 id='parameters-7'>Parameters</h3>
+<p>This endpoint retrieves the most recent trades for an asset instrument on a specific exchange. By default returns the 100 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
+<h3 id='http-request-5'>HTTP request</h3>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades/recent{?limit}</code></p>
+<h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -752,24 +803,34 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>exchange</code></td>
 <td>Yes</td>
-<td>Exchange <code>code</code>. See <a href="#exchanges">/v1/exchanges</a>.</td>
+<td>Exchange <code>code</code>. See <a href="#exchanges">Exchanges Reference Data Endpoint</a>.</td>
 </tr>
 <tr>
-<td><code>pair</code></td>
+<td><code>instrument_class</code></td>
 <td>Yes</td>
-<td>Pair <code>code</code>. See <a href="#exchange-pairs">/v1/pairs</a>.</td>
+<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
+</tr>
+<tr>
+<td><code>instrument</code></td>
+<td>Yes</td>
+<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
 </tr>
 <tr>
 <td><code>limit</code></td>
 <td>No</td>
-<td>Maximum number of results (min: 1, default: 100, max: 10000)</td>
+<td>Maximum number of results (min: 1, default: 100, max: 10000).</td>
+</tr>
+<tr>
+<td><code>trades_version</code></td>
+<td>Yes</td>
+<td>Trade data version.</td>
 </tr>
 </tbody></table>
 <h2 id='aggregations-ohlcv'>Aggregations (OHLCV)</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://query-api.kaiko.io/v1/exchanges/gdax/btc-usd/aggregations/ohlcv"
+<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/gdax/spot/btc-usd/aggregations/ohlcv"
     -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -781,7 +842,6 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998949033</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528990180000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417392000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"370.0"</span><span class="p">,</span><span class="w">
@@ -790,7 +850,6 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
             </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05655554"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528990180000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417478400000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"377.0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"378.0"</span><span class="p">,</span><span class="w">
@@ -803,18 +862,18 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
         </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdax"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1d"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:55:48.908Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
+    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/spot/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves aggregated history for an asset pair on an exchange. Returns the earliest available OHLCV (candles) by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
-<h3 id='http-request-7'>HTTP request</h3>
-<p><code>GET https://query-api.kaiko.io/v1/exchanges/{exchange}/{pair}/aggregations/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}</code></p>
-<h3 id='parameters-8'>Parameters</h3>
+<p>This endpoint retrieves aggregated history for an asset instrument on an exchange. Returns the earliest available OHLCV (candles) by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
+<h3 id='http-request-6'>HTTP request</h3>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}</code></p>
+<h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -823,19 +882,34 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td><code>exchange</code></td>
-<td>Yes</td>
-<td>Exchange <code>code</code>. See <a href="#exchanges">/v1/exchanges</a>.</td>
-</tr>
-<tr>
-<td><code>pair</code></td>
-<td>Yes</td>
-<td>Pair <code>code</code>. See <a href="#exchange-pairs">/v1/pairs</a>.</td>
-</tr>
-<tr>
 <td><code>aggregation_type</code></td>
 <td>Yes</td>
 <td>Which <a href="#aggregation-types">aggregation type</a> to get (currently supported: <code>ohlcv</code>).</td>
+</tr>
+<tr>
+<td><code>continuation_token</code></td>
+<td>No</td>
+<td>See <a href="#pagination">Pagination</a>.</td>
+</tr>
+<tr>
+<td><code>end_time</code></td>
+<td>No</td>
+<td>Ending time in ISO 8601 (exclusive).</td>
+</tr>
+<tr>
+<td><code>exchange</code></td>
+<td>Yes</td>
+<td>Exchange <code>code</code>.</td>
+</tr>
+<tr>
+<td><code>instrument_class</code></td>
+<td>Yes</td>
+<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
+</tr>
+<tr>
+<td><code>instrument</code></td>
+<td>Yes</td>
+<td>Instrument</td>
 </tr>
 <tr>
 <td><code>interval</code></td>
@@ -843,24 +917,19 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td><a href="#intervals">Interval</a> period. Default <code>1d</code>.</td>
 </tr>
 <tr>
-<td><code>start_time</code></td>
-<td>No</td>
-<td>Starting time in ISO 8601 (inclusive).</td>
-</tr>
-<tr>
-<td><code>end_time</code></td>
-<td>No</td>
-<td>Ending time in ISO 8601 (inclusive).</td>
-</tr>
-<tr>
 <td><code>page_size</code></td>
 <td>No</td>
 <td>See <a href="#pagination">Pagination</a> (min: 100, default: 100, max: 10000).</td>
 </tr>
 <tr>
-<td><code>continuation_token</code></td>
+<td><code>start_time</code></td>
 <td>No</td>
-<td>See <a href="#pagination">Pagination</a>.</td>
+<td>Starting time in ISO 8601 (inclusive).</td>
+</tr>
+<tr>
+<td><code>trades_version</code></td>
+<td>Yes</td>
+<td>Trade data version.</td>
 </tr>
 </tbody></table>
 <h3 id='aggregation-types'>Aggregation types</h3>
@@ -883,8 +952,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td><code>open</code></td>
-<td>Opening price of interval.</td>
+<td><code>close</code></td>
+<td>Closing price of interval.</td>
 </tr>
 <tr>
 <td><code>high</code></td>
@@ -895,8 +964,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Lowest price during interval.</td>
 </tr>
 <tr>
-<td><code>close</code></td>
-<td>Closing price of interval.</td>
+<td><code>open</code></td>
+<td>Opening price of interval.</td>
 </tr>
 <tr>
 <td><code>volume</code></td>

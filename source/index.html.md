@@ -356,13 +356,15 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot
         // ...
     ],
     "query": {
+        "trades_version": 1,
         "page_size": 100,
         "exchange": "bfnx",
+        "instrument_class": "spot",
         "instrument": "btc-usd",
         "request_time": "2018-06-14T17:37:21.935Z"
     },
-    "continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
-    "next_url": "http://localhost:9292/v1/exchanges/gdax/spot/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"
+    "continuation_token": "9TlmYybkMWHnGLeD5csn9bShMGrNWXLiwGw3HiFbozEB6DHGa3532SeG4wjfTqFYVX8TVLbz87Kb9zMvGbjwbafRpkWPmnETeVsXCFyiqDrxNvfw4jNnZPhwQiqtbCWbMsT6N7cLXWXVni8faCDFbtgES49PRwr4VCFXA4NgrqMT6HUnCSEb4U",
+  "next_url": "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=9TlmYybkMWHnGLeD5csn9bShMGrNWXLiwGw3HiFbozEB6DHGa3532SeG4wjfTqFYVX8TVLbz87Kb9zMvGbjwbafRpkWPmnETeVsXCFyiqDrxNvfw4jNnZPhwQiqtbCWbMsT6N7cLXWXVni8faCDFbtgES49PRwr4VCFXA4NgrqMT6HUnCSEb
 }
 ```
 
@@ -374,16 +376,18 @@ This endpoint retrieves trades for an asset instrument on a specific exchange. B
 
 ### Parameters
 
-| Parameter            | Required | Description                                                                 |
-| ---                  | ---      | ---                                                                         |
-| `continuation_token` | No       | See [Pagination](#pagination).                                              |
-| `end_time`           | No       | Ending time in ISO 8601 (exclusive).                                        |
-| `exchange`           | Yes      | Exchange `code`. See [Exchanges Reference Data Endpoint](#exchanges).       |
-| `instrument_class`   | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments). |
-| `instrument`         | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments). |
-| `page_size`          | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).         |
-| `start_time`         | No       | Starting time in ISO 8601 (inclusive).                                      |
-| `trades_version`     | Yes      | Trade data version.                                                         |
+| Parameter                | Required | Description                                                                 |
+| ---                      | ---      | ---                                                                         |
+| `continuation_token`     | No       | See [Pagination](#pagination).                                              |
+| `end_time`<sup>1</sup>   | No       | Ending time in ISO 8601 (exclusive).                                        |
+| `exchange`               | Yes      | Exchange `code`. See [Exchanges Reference Data Endpoint](#exchanges).       |
+| `instrument_class`       | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments). |
+| `instrument`             | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments). |
+| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).         |
+| `start_time`<sup>1</sup> | No       | Starting time in ISO 8601 (inclusive).                                      |
+| `trades_version`         | Yes      | Trade data version.                                                         |
+
+*<sup>1</sup>: When paginating, these parameters are only included in the first request. For subsequent requests, they are encoded in the continuation token.*
 
 
 ## Recent Trades
@@ -400,31 +404,32 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/gdax/spot
 
 ```json
 {
-    "result": "success",
-    "time": "2018-06-14T17:44:37.446Z",
-    "timestamp": 1528998277446,
+    "query": {
+        "trades_version": 1,
+        "exchange": "cbse",
+        "instrument_class": "spot",
+        "instrument": "btc-usd"
+    },
+    "time": "2018-10-16T16:53:14.861Z",
+    "timestamp": 1539708794861,
     "data": [
         {
-            "timestamp": 1528998137627,
-            "trade_id": "44840133",
-            "price": "6592.22",
-            "amount": "0.08741431",
-            "taker_side_sell": true
+            "timestamp": 1539708783156,
+            "trade_id": "52529942",
+            "price": "6410.09000000",
+            "amount": "0.00745249",
+            "taker_side_sell": false
         },
         {
-            "timestamp": 1528998137627,
-            "trade_id": "44840134",
-            "price": "6592.22",
-            "amount": "0.01057674",
+            "timestamp": 1539708781993,
+            "trade_id": "52529941",
+            "price": "6410.08000000",
+            "amount": "0.00650000",
             "taker_side_sell": true
-        },
+        }
         // ...
     ],
-    "query": {
-        "limit": 100,
-        "exchange": "bfnx",
-        "instrument": "btc-usd"
-    }
+    "result": "success"
 }
 ```
 
@@ -444,7 +449,7 @@ This endpoint retrieves the most recent trades for an asset instrument on a spec
 | `limit`            | No       | Maximum number of results (min: 1, default: 100, max: 10000).               |
 | `trades_version`   | Yes      | Trade data version.                                                         |
 
-## Aggregations (OHLCV)
+## Aggregations (OHLCV / VWAP)
 
 > Request Example
 
@@ -457,41 +462,44 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/gdax/spot
 
 ```json
 {
-    "result": "success",
-    "time": "2018-06-14T17:55:49.033Z",
-    "timestamp": 1528998949033,
+    "query": {
+        "trades_version": 1,
+        "page_size": 100,
+        "exchange": "cbse",
+        "instrument_class": "spot",
+        "instrument": "btc-usd",
+        "interval": "1d",
+        "aggregation": "ohlcv",
+        "request_time": "2018-10-16T16:59:40.825Z"
+    },
+    "time": "2018-10-16T16:59:40.926Z",
+    "timestamp": 1539709180926,
     "data": [
         {
-            "timestamp": 1417392000000,
-            "open": "300.0",
-            "high": "370.0",
-            "low": "300.0",
-            "close": "370.0",
-            "volume": "0.05655554"
+          "timestamp": 1417392000000,
+          "open": "300.0",
+          "high": "370.0",
+          "low": "300.0",
+          "close": "370.0",
+          "volume": "0.05655554"
         },
         {
-            "timestamp": 1417478400000,
-            "open": "377.0",
-            "high": "378.0",
-            "low": "377.0",
-            "close": "378.0",
-            "volume": "15.0136"
+          "timestamp": 1417478400000,
+          "open": "377.0",
+          "high": "378.0",
+          "low": "377.0",
+          "close": "378.0",
+          "volume": "15.0136"
         },
         // ...
     ],
-    "query": {
-        "page_size": 100,
-        "exchange": "gdax",
-        "instrument": "btc-usd",
-        "interval": "1d",
-        "request_time": "2018-06-14T17:55:48.908Z"
-    },
-    "continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
-    "next_url": "http://localhost:9292/v1/exchanges/gdax/spot/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"
+    "result": "success",
+    "continuation_token": "55QOlJ5fxEj2jkDj8BspExEwGYvRvVSdoqJ7n4XhFrhbbGNrFiEj76ia1aCTw9VT24Fw5txvzt7d4fCfgfZCAFtL8sZ9RP8gmJHyAJxvJauqzLm45tJ7rrcWRe9xTivEQWDTxGVYcZELSCnbhaBRJLGfSLrFdrm9DK2hjPe1WLH3oWmAnbuk95gV8D9xZpYkSKenGTHJb5ZT",
+    "next_url": "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/ohlcv?continuation_token=55QOlJ5fxEj2jkDj8BspExEwGYvRvVSdoqJ7n4XhFrhbbGNrFiEj76ia1aCTw9VT24Fw5txvzt7d4fCfgfZCAFtL8sZ9RP8gmJHyAJxvJauqzLm45tJ7rrcWRe9xTivEQWDTxGVYcZELSCnbhaBRJLGfSLrFdrm9DK2hjPe1WLH3oWmAnbuk95gV8D9xZpYkSKenGTHJb5ZT"
 }
 ```
 
-This endpoint retrieves aggregated history for an asset instrument on an exchange. Returns the earliest available OHLCV (candles) by default. The `interval` parameter is suffixed with `s`, `m`, `h` or `d` to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.
+This endpoint retrieves aggregated history for an asset instrument on an exchange. Returns the earliest available result by default. The `interval` parameter is suffixed with `s`, `m`, `h` or `d` to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.
 
 ### HTTP request
 
@@ -499,24 +507,27 @@ This endpoint retrieves aggregated history for an asset instrument on an exchang
 
 ### Parameters
 
-| Parameter            | Required | Description                                                                                        |
-| ---                  | ---      | ---                                                                                                |
-| `aggregation_type`   | Yes      | Which [aggregation type](#aggregation-types) to get (currently supported: `ohlcv`).                |
-| `continuation_token` | No       | See [Pagination](#pagination).                                                                     |
-| `end_time`           | No       | Ending time in ISO 8601 (exclusive). First call only, then included in the `continuation_token`.   |
-| `exchange`           | Yes      | Exchange `code`.                                                                                   |
-| `instrument_class`   | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).                        |
-| `instrument`         | Yes      | Instrument                                                                                         |
-| `interval`           | No       | [Interval](#intervals) period. Default `1d`.                                                       |
-| `page_size`          | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).                                |
-| `start_time`         | No       | Starting time in ISO 8601 (inclusive). First call only, then included in the `continuation_token`. |
-| `trades_version`     | Yes      | Trade data version.                                                                                |
+| Parameter                | Required | Description                                                                                |
+| ---                      | ---      | ---                                                                                        |
+| `aggregation_type`       | Yes      | Which [aggregation type](#aggregation-types) to get (currently supported: `ohlcv`,`vwap`). |
+| `continuation_token`     | No       | See [Pagination](#pagination).                                                             |
+| `end_time`<sup>1</sup>   | No       | Ending time in ISO 8601 (exclusive).                                                       |
+| `exchange`               | Yes      | Exchange `code`.                                                                           |
+| `instrument_class`       | Yes      | Instrument class. See [Instruments Reference Data Endpoint](#instruments).                 |
+| `instrument`             | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).                |
+| `interval`               | No       | [Interval](#intervals) period. Default `1d`.                                               |
+| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).                        |
+| `start_time`<sup>1</sup> | No       | Starting time in ISO 8601 (inclusive).                                                     |
+| `trades_version`         | Yes      | Trade data version.                                                                        |
+
+*<sup>1</sup>: When paginating, these parameters are only included in the first request. For subsequent requests, they are encoded in the continuation token.*
 
 ### Aggregation types
 
 | Aggregation | Fields                               |
 | ---         | ---                                  |
 | `ohlcv`     | `open`,`high`,`low`,`close`,`volume` |
+| `vwap`      | `price`                              |
 
 ### Fields
 
@@ -527,6 +538,7 @@ This endpoint retrieves aggregated history for an asset instrument on an exchang
 | `low`    | Lowest price during interval.  |
 | `open`   | Opening price of interval.     |
 | `volume` | Volume traded in interval.     |
+| `price`  | [Volume-weighted average price](https://www.investopedia.com/terms/v/vwap.asp). |
 
 ### Intervals
 

@@ -274,7 +274,7 @@ All API responses are in JSON format. A `result` field, with a value of `success
 
 ```
 
-For queries that result in a larger dataset than can be returned in a single response, a `continuation_token` field is included. Calling the same endpoint again with the `continuation_token` query parameter added will return the next result page. For convenience, a `next_url` field is also included, containing a URL that can be called directly to get the next page. Paginated endpoints also takes a `page_size` parameter that specifies the maximum number of items that should be included in each response.
+For queries that result in a larger dataset than can be returned in a single response, a `continuation_token` field is included. Calling the same endpoint again with the `continuation_token` query parameter added will return the next result page. For convenience, a `next_url` field is also included, containing a URL that can be called directly to get the next page. Paginated endpoints also takes a `page_size` parameter that specifies the maximum number of items that should be included in each response. Only the first call should include `page_size`, all subsequent calls should only use `continuation_token`.
 
 #### Parameters
 
@@ -482,18 +482,18 @@ This endpoint retrieves aggregated history for an asset instrument on an exchang
 
 ### Parameters
 
-| Parameter            | Required | Description                                                                         |
-| ---                  | ---      | ---                                                                                 |
-| `aggregation_type`   | Yes      | Which [aggregation type](#aggregation-types) to get (currently supported: `ohlcv`). |
-| `continuation_token` | No       | See [Pagination](#pagination).                                                      |
-| `end_time`           | No       | Ending time in ISO 8601 (exclusive).                                                |
-| `exchange`           | Yes      | Exchange `code`.                                                                    |
-| `instrument_class`   | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).         |
-| `instrument`         | Yes      | Instrument                                                                          |
-| `interval`           | No       | [Interval](#intervals) period. Default `1d`.                                        |
-| `page_size`          | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).                 |
-| `start_time`         | No       | Starting time in ISO 8601 (inclusive).                                              |
-| `trades_version`     | Yes      | Trade data version.                                                                 |
+| Parameter            | Required | Description                                                                                        |
+| ---                  | ---      | ---                                                                                                |
+| `aggregation_type`   | Yes      | Which [aggregation type](#aggregation-types) to get (currently supported: `ohlcv`).                |
+| `continuation_token` | No       | See [Pagination](#pagination).                                                                     |
+| `end_time`           | No       | Ending time in ISO 8601 (exclusive). First call only, then included in the `continuation_token`.   |
+| `exchange`           | Yes      | Exchange `code`.                                                                                   |
+| `instrument_class`   | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).                        |
+| `instrument`         | Yes      | Instrument                                                                                         |
+| `interval`           | No       | [Interval](#intervals) period. Default `1d`.                                                       |
+| `page_size`          | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).                                |
+| `start_time`         | No       | Starting time in ISO 8601 (inclusive). First call only, then included in the `continuation_token`. |
+| `trades_version`     | Yes      | Trade data version.                                                                                |
 
 ### Aggregation types
 

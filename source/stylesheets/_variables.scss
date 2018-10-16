@@ -19,22 +19,28 @@ under the License.
 // CUSTOMIZE SLATE
 ////////////////////////////////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
+$kaiko-blue: #273582;
+$kaiko-orange: #f09e28;
+$kaiko-gray: #5f5f60;
+$kaiko-black: #1b1f23;
+$kaiko-white: #ffffff;
+$kaiko-blackblue: #212a53;
 
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #0f3973 !default;
-$examples-bg: #0f3973 !default;
-$code-bg: #02324a !default;
-$code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: #02324a !default;
-$nav-active-bg: #004e96 !default;
-$nav-active-parent-bg: #02324a !default; // parent links of the current section
+$nav-bg: $kaiko-blue !default;
+$examples-bg: $kaiko-black !default;
+$code-bg: $kaiko-blackblue !default;
+$code-annotation-bg: $kaiko-blue !default;
+$nav-subitem-bg: $kaiko-blackblue !default;
+$nav-active-bg: $kaiko-blue !default;
+$nav-active-parent-bg: $kaiko-blackblue !default; // parent links of the current section
 $lang-select-border: #000 !default;
 $lang-select-bg: #02324a !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #F3F7F9 !default;
+$main-bg: $kaiko-white !default;
 $aside-notice-bg: #8fbcd4 !default;
 $aside-warning-bg: #c97a7e !default;
 $aside-success-bg: #6ac174 !default;
@@ -43,9 +49,9 @@ $search-notice-bg: #c97a7e !default;
 // TEXT COLORS
 ////////////////////
 $main-text: #333 !default; // main content text color
-$nav-text: #ef9d30 !default;
-$nav-active-text: #ef9d30 !default;
-$nav-active-parent-text: #ef9d30 !default; // parent links of the current section
+$nav-text: $kaiko-white !default;
+$nav-active-text: $kaiko-white !default;
+$nav-active-parent-text: $kaiko-white !default; // parent links of the current section
 $lang-select-text: #ef9d30 !default; // color of unselected language tab text
 $lang-select-active-text: #ef9d30 !default; // color of selected language tab text
 $lang-select-pressed-text: #ef9d30 !default; // color of language tab text when mouse is pressed

@@ -12,26 +12,10 @@ search: true
 
 Kaiko provides live and historical institutional quality market data for the digital assets. Our service retrieves and validates millions of trades each day from the world's leading cryptocurrency exchanges to deliver robust and reliable market data to financial institutions globally.
 
-## Authentication
+Kaiko currently provides two HTTP APIs:
 
-> Request Syntax
-
-```curl
-curl "https://<api_hostname>/<endpoint>"
-	-H "x-api-key: <client-api-key>"
-```
-
-Each API lives under its own hostname, clients must include an API key in the header of every request they make. The format is as follows:
-
-`X-Api-Key: <client-api-key>`
-
-<aside class="notice">
-You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
-</aside>
-
-## Rate limiting
-
-Query limits are based on your API key. Currently, each API key is allowed a maximum of 1000 requests per minute and 10000 requests per hour.
+* [Reference Data](#reference-data-api) (Public)
+* [Market Data](#market-data-api) (Authenticated)
 
 ## Timestamps
 
@@ -45,93 +29,23 @@ For example:
 
 `2017-12-17T13:35:24.351Z`
 
-The "T" separates the date from the time. The "Z" at the end indicates that this is a UTC time.
+The "T" separates the date from the time. The "Z" at the end indicates UTC time.
 
 ### Output
 
-All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps </a>(the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resulution ISO 8601 datetime strings in the same format as input.
+All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps </a>(the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resolution ISO 8601 datetime strings in the same format as input for convenience.
 
 ## Market open and close
 
 Digital asset exchanges operate approximately 24x7x365.
 
-For exchange data, the opening price is calculated as the first trade at or after 00:00:00 UTC. The closing price is calculated as the last trade prior to 00:00:00 UTC.
+For daily aggregated data, the opening price is calculated as the first trade at or after 00:00:00 UTC. The closing price is calculated as the last trade prior to 00:00:00 UTC.
 
-## Envelope
+# Reference Data API
 
-> Response Example
+## Endpoints
 
-```json
-{
-	"result": "success",
-	"time": "2018-06-14T17:19:40.303Z",
-	"timestamp": 1528996780303,
-	"query": {...},
-	"data": [...]
-}
-
-```
-
-All API responses are in JSON format. A `result` field, with a value of `success` or `error` is returned with each request. In the event of an error, a `message` field will provide an error message.
-
-| Key         | Data type                 | Description                                       |
-| ---         | ---                       | ---                                               |
-| `data`      | <code>[] &#124; {}</code> | Response result data.                             |
-| `message`   | `string`                  | Error message, if query was not successful.       |
-| `query`     | `{}`                      | All handled query parameters echoed back.         |
-| `result`    | `string`                  | `success` if query successful, `error` otherwise. |
-| `time`      | `string`                  | The current time at our endpoint.                 |
-| `timestamp` | `long`                    | The current time at our endpoint.                 |
-
-## Pagination
-
-> Pagination Example
-
-```json
-{
-	"result": "success",
-	"time": "2018-06-14T17:19:40.303Z",
-	"timestamp": 1528996780303,
-	"query": {...},
-	"data": [...],
-	"continuation_token": "ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
-	"next_url": "https://<region>.market-api.kaiko.io/bfnx/spot/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"
-}
-
-```
-
-For queries that result in a larger dataset than can be returned in a single response, a `continuation_token` field is included. Calling the same endpoint again with the `continuation_token` query parameter added will return the next result page. For convenience, a `next_url` field is also included, containing a URL that can be called directly to get the next page. Paginated endpoints also takes a `page_size` parameter that specifies the maximum number of items that should be included in each response.
-
-### Parameters
-
-| Parameter            | Required | Description                                          |
-| ---                  | ---      | ---                                                  |
-| `continuation_token` | No       |                                                      |
-| `page_size`          | No       | Maximum  number of records to return in one response |
-
-## Errors
-
-All API responses are in JSON format. A `result` field, with a value of `success` or `error` is returned with each request. In the event of an error, a `message` field will provide an error message.
-
-### HTTP error codes
-
-The Kaiko platform API uses the following error codes:
-
-| Error Code | Meaning                                                                                                                                                         |
-| ---------- | -------                                                                                                                                                         |
-| 400        | Bad Request                                                                                                                                                     |
-| 401        | Unauthorized -- You are not authenticated properly. See [Authentication](#authentication).                                                                      |
-| 403        | Forbidden -- You don't have access to the requested resource                                                                                                    |
-| 404        | Not Found                                                                                                                                                       |
-| 405        | Method Not Allowed                                                                                                                                              |
-| 406        | Not Acceptable                                                                                                                                                  |
-| 429        | Too Many Requests -- [Rate limit](#rate-limiting) exceeded. <a href='https://www.kaiko.com/pages/contact'>Contact us</a> if you think you have a need for more. |
-| 500        | Internal Server Error -- We had a problem with our server. Try again later.                                                                                     |
-| 503        | Service Unavailable -- We're temporarily offline for maintenance.                                                                                               |
-
-# Reference Data Endpoints
-
-The base URL for the Reference Data Endpoints is: `https://reference-api.kaiko.io/`
+The base URL for the Reference Data Endpoints is: `https://reference-api.kaiko.io/`. Authentication is not required.
 
 ## Assets
 
@@ -139,7 +53,6 @@ The base URL for the Reference Data Endpoints is: `https://reference-api.kaiko.i
 
 ```curl
 curl "https://reference-api.kaiko.io/v1/assets"
-	-H "x-api-key: <client-api-key>"
 ```
 
 > Response Example
@@ -185,7 +98,6 @@ No parameters supported.
 
 ```curl
 curl "https://reference-api.kaiko.io/v1/exchanges"
-	-H "x-api-key: <client-api-key>"
 ```
 
 > Response Example
@@ -230,7 +142,6 @@ No parameters supported.
 
 ```curl
 curl "https://reference-api.kaiko.io/v1/instruments"
-	-H "x-api-key: <client-api-key>"
 ```
 
 > Response Example
@@ -238,7 +149,7 @@ curl "https://reference-api.kaiko.io/v1/instruments"
 ```json
 
 {
-	result": "success",
+	"result": "success",
 	"time": "2018-06-14T17:28:42.915Z",
 	"timestamp": 1528997322915,
 	"data": [
@@ -288,12 +199,110 @@ This endpoint retrieves a list of supported exchanges.
 No parameters supported.
 
 
-# Market Data Endpoints
+# Market Data API
 
-The base URL for the Market Data Endpoints is regionalized, currently we offer EU and US:
+## Endpoints
+
+The base URL for the Market Data Endpoints is regionalized. We are currently offering endpoints in the US and in Europe:
 
 * `https://us-beta.market-api.kaiko.io/`
 * `https://eu-beta.market-api.kaiko.io/`
+
+## Usage
+
+### Authentication
+
+> Request Syntax
+
+```curl
+curl "https://<api_hostname>/<endpoint>"
+	-H "x-api-key: <client-api-key>"
+```
+
+Each API lives under its own hostname. Clients must include an API key in the header of every request they make. The format is as follows:
+
+`X-Api-Key: <client-api-key>`
+
+<aside class="notice">
+You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
+</aside>
+
+### Rate limiting
+
+Query limits are based on your API key. Currently, each API key is allowed a maximum of 1000 requests per minute and 10000 requests per hour.
+
+### Envelope
+
+> Response Example
+
+```json
+{
+	"result": "success",
+	"time": "2018-06-14T17:19:40.303Z",
+	"timestamp": 1528996780303,
+	"query": {...},
+	"data": [...]
+}
+
+```
+
+All API responses are in JSON format. A `result` field, with a value of `success` or `error` is returned with each request. In the event of an error, a `message` field will provide an error message.
+
+| Key         | Data type                 | Description                                       |
+| ---         | ---                       | ---                                               |
+| `data`      | <code>[] &#124; {}</code> | Response result data.                             |
+| `message`   | `string`                  | Error message, if query was not successful.       |
+| `query`     | `{}`                      | All handled query parameters echoed back.         |
+| `result`    | `string`                  | `success` if query successful, `error` otherwise. |
+| `time`      | `string`                  | The current time at our endpoint.                 |
+| `timestamp` | `long`                    | The current time at our endpoint.                 |
+
+### Pagination
+
+> Pagination Example
+
+```json
+{
+	"result": "success",
+	"time": "2018-06-14T17:19:40.303Z",
+	"timestamp": 1528996780303,
+	"query": {...},
+	"data": [...],
+	"continuation_token": "ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
+	"next_url": "https://<region>.market-api.kaiko.io/bfnx/spot/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"
+}
+
+```
+
+For queries that result in a larger dataset than can be returned in a single response, a `continuation_token` field is included. Calling the same endpoint again with the `continuation_token` query parameter added will return the next result page. For convenience, a `next_url` field is also included, containing a URL that can be called directly to get the next page. Paginated endpoints also takes a `page_size` parameter that specifies the maximum number of items that should be included in each response.
+
+#### Parameters
+
+| Parameter            | Required | Description                                          |
+| ---                  | ---      | ---                                                  |
+| `continuation_token` | No       |                                                      |
+| `page_size`          | No       | Maximum  number of records to return in one response |
+
+### Errors
+
+All API responses are in JSON format. A `result` field, with a value of `success` or `error` is returned with each request. In the event of an error, a `message` field will provide an error message.
+
+#### HTTP error codes
+
+The Kaiko platform API uses the following error codes:
+
+| Error Code | Meaning                                                                                                                                                         |
+| ---------- | -------                                                                                                                                                         |
+| 400        | Bad Request                                                                                                                                                     |
+| 401        | Unauthorized -- You are not authenticated properly. See [Authentication](#authentication).                                                                      |
+| 403        | Forbidden -- You don't have access to the requested resource                                                                                                    |
+| 404        | Not Found                                                                                                                                                       |
+| 405        | Method Not Allowed                                                                                                                                              |
+| 406        | Not Acceptable                                                                                                                                                  |
+| 429        | Too Many Requests -- [Rate limit](#rate-limiting) exceeded. <a href='https://www.kaiko.com/pages/contact'>Contact us</a> if you think you have a need for more. |
+| 500        | Internal Server Error -- We had a problem with our server. Try again later.                                                                                     |
+| 503        | Service Unavailable -- We're temporarily offline for maintenance.                                                                                               |
+
 
 ## Exchange Trades
 

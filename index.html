@@ -296,6 +296,9 @@
                             <a href="#rate-limiting" class="toc-h3 toc-link" data-title="Usage">Rate limiting</a>
                           </li>
                           <li>
+                            <a href="#data-versioning" class="toc-h3 toc-link" data-title="Usage">Data versioning</a>
+                          </li>
+                          <li>
                             <a href="#envelope" class="toc-h3 toc-link" data-title="Usage">Envelope</a>
                           </li>
                           <li>
@@ -376,10 +379,10 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <p>
-  <span style="color: black; font-size: 30px">Kaiko API documentation</span>
-</p>
-<h1 id='introduction'>Introduction</h1>
+        <div class="content-header-wrapper">
+          <header id="content-header">Kaiko API Platform Reference</span>
+        </div>
+        <h1 id='introduction'>Introduction</h1>
 <p>Kaiko provides live and historical institutional quality market data for the digital assets. Our service retrieves and validates millions of trades each day from the world&#39;s leading cryptocurrency exchanges to deliver robust and reliable market data to financial institutions globally.</p>
 
 <p>Kaiko currently provides two HTTP APIs:</p>
@@ -574,6 +577,14 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </aside>
 <h3 id='rate-limiting'>Rate limiting</h3>
 <p>Query limits are based on your API key. Currently, each API key is allowed a maximum of 1000 requests per minute and 10000 requests per hour.</p>
+<h3 id='data-versioning'>Data versioning</h3>
+<p>Kaiko takes transparency and accountability very seriously. Therefore, our provided datasets are versioned. Dataset versioning is orthogonal to API versioning. Any potential breaking changes in results (e.g. semantical changes or corrections of historically incorrect data) will result in a new dataset version - no corrections or adjustments will be done in the dark. Addition of new data will not result in a new dataset version. Data is versioned on a per-base-data level.</p>
+
+<p>The versioning is selected by selecting a base data set and a version. All current Market Data API endpoints take the <code>commodity</code> and <code>data_version</code> parameters.</p>
+
+<p>By setting this to <code>latest</code>, you will get the most recent version. The returned version is always included in the <code>query</code> field and can be referred to if you would ever need to compare results, should we ever need to adjust historical data. <a href="#pagination">Paginating</a> over a request with version set to <code>latest</code> will preserve the current version across subsequent pagination requests.</p>
+
+<p>We recommend using the most current version explicitly in production integrations as the <code>latest</code> label might move at any time to a breaking change. For the <code>trades</code> commodity the latest version is currently <code>v1</code></p>
 <h3 id='envelope'>Envelope</h3>
 <blockquote>
 <p>Response Example</p>
@@ -638,11 +649,11 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
   </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
   </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/bfnx/spot/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="w">
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/v1/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>For queries that result in a larger dataset than can be returned in a single response, a <code>continuation_token</code> field is included. Calling the same endpoint again with the <code>continuation_token</code> query parameter added will return the next result page. For convenience, a <code>next_url</code> field is also included, containing a URL that can be called directly to get the next page. Paginated endpoints also takes a <code>page_size</code> parameter that specifies the maximum number of items that should be included in each response. Only the first call should include <code>page_size</code>, all subsequent calls should only use <code>continuation_token</code>.</p>
+<p>For queries that result in a larger dataset than can be returned in a single response, a <code>continuation_token</code> field is included. Calling the same endpoint again with the <code>continuation_token</code> query parameter added will return the next result page. For convenience, a <code>next_url</code> field is also included, containing a URL that can be called directly to get the next page. Paginated endpoints also takes a <code>page_size</code> parameter that specifies the maximum number of items that should be included in each response. Only the first call should include <code>page_size</code>, all subsequent calls should only use <code>continuation_token</code>. Paginating over a request with <a href="#data-versioning">version</a> set to <code>latest</code> will preserve the current version across subsequent pagination requests.</p>
 <h4 id='parameters-4'>Parameters</h4>
 <table><thead>
 <tr>
@@ -742,7 +753,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"trades_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"commodity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trades"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
     </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
@@ -755,7 +767,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves trades for an instrument on a specific exchange. By default returns the 100 first trades in our dataset. Trades are sorted by time, ascendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
 <h3 id='http-request-4'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
@@ -800,9 +812,14 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Starting time in ISO 8601 (inclusive).</td>
 </tr>
 <tr>
-<td><code>trades_version</code></td>
+<td><code>commodity</code></td>
 <td>Yes</td>
-<td>Trade data version.</td>
+<td>The data commodity.</td>
+</tr>
+<tr>
+<td><code>data_version</code></td>
+<td>Yes</td>
+<td>The data version. (v1, v2 ... or latest)</td>
 </tr>
 </tbody></table>
 
@@ -819,7 +836,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"trades_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"commodity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trades"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"krkn"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth-eur"</span><span class="p">,</span><span class="w">
@@ -850,7 +868,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves the most recent trades for an instrument on a specific exchange. By default returns the 100 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
 <h3 id='http-request-5'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades/recent{?limit}</code></p>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades/recent{?limit}</code></p>
 <h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
@@ -880,9 +898,14 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Maximum number of results (min: 1, default: 100, max: 10000).</td>
 </tr>
 <tr>
-<td><code>trades_version</code></td>
+<td><code>commodity</code></td>
 <td>Yes</td>
-<td>Trade data version.</td>
+<td>The data commodity.</td>
+</tr>
+<tr>
+<td><code>data_version</code></td>
+<td>Yes</td>
+<td>The data version. (v1, v2 ... or latest)</td>
 </tr>
 </tbody></table>
 <h2 id='ohlcv-candles'>OHLCV (Candles)</h2>
@@ -897,7 +920,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"trades_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"commodity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trades"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
     </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
@@ -935,7 +959,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves aggregated history for an instrument on an exchange. Returns the earliest available intervals by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
 <h3 id='http-request-6'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/ohlcv{?interval,start_time,end_time,page_size,continuation_token}</code></p>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/ohlcv{?interval,start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
@@ -985,9 +1009,14 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Starting time in ISO 8601 (inclusive).</td>
 </tr>
 <tr>
-<td><code>trades_version</code></td>
+<td><code>commodity</code></td>
 <td>Yes</td>
-<td>Trade data version.</td>
+<td>The data commodity.</td>
+</tr>
+<tr>
+<td><code>data_version</code></td>
+<td>Yes</td>
+<td>The data version. (v1, v2 ... or latest)</td>
 </tr>
 </tbody></table>
 
@@ -1034,7 +1063,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"trades_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"commodity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trades"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
     </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cbse"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
@@ -1064,7 +1094,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves aggregated price history for an instrument on an exchange. Returns the earliest available intervals by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
 <h3 id='http-request-7'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/vwap{?interval,start_time,end_time,page_size,continuation_token}</code></p>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/vwap{?interval,start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1114,9 +1144,14 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Starting time in ISO 8601 (inclusive).</td>
 </tr>
 <tr>
-<td><code>trades_version</code></td>
+<td><code>commodity</code></td>
 <td>Yes</td>
-<td>Trade data version.</td>
+<td>The data commodity. (<code>trades</code>)</td>
+</tr>
+<tr>
+<td><code>data_version</code></td>
+<td>Yes</td>
+<td>The data version. (<code>v1</code>, <code>v2</code> ... or <code>latest</code>)</td>
 </tr>
 </tbody></table>
 
@@ -1136,7 +1171,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <h3 id='intervals-2'>Intervals</h3>
 <p>The following intervals are currently supported: <code>1m</code>, <code>2m</code>, <code>3m</code>, <code>5m</code>, <code>10m</code>, <code>15m</code>, <code>30m</code>, <code>1h</code>, <code>2h</code>, <code>3h</code>, <code>4h</code>, <code>1d</code>.</p>
 <h1 id='future-development'>Future development</h1>
-<p>We are continously extending the feature set across all our products. We are very happy to receive your feedback on our services and documentation, If you have a proposal on how we can make your day better. Give us a shout at <a href='https://www.kaiko.com/pages/contact' target='_blank'>Contact us</a></p>
+<p>We are continously extending the feature set across all our products. We are very happy to receive your feedback on our services and documentation. Do you have a proposal on how we can make your day better? <a href='https://www.kaiko.com/pages/contact' target='_blank'>Give us a shout</a>! :)</p>
 
 <div style="margin: 200px">
 </div>

@@ -6,7 +6,21 @@ toc_footers:
   - <a href='https://www.kaiko.com/' target='_blank'>Kaiko</a>
   - <a href='https://www.kaiko.com/pages/contact' target='_blank'>Contact us</a>
 search: true
+
 ---
+
+<p>
+  <div style="background: #273582; padding: 20px; margin: 20px; width: 45%; border-radius: 10px">
+    <p>
+      <center>
+        <span style="color: white; font-size: 30px">Kaiko API documentation</span>
+      </center>
+    </p>
+    <img src="images/data_feed_medium.png"></img>
+    <img src="images/query_api_medium.png"></img>
+    <img src="images/livestream_medium.png"></img>
+  </div>
+</p>
 
 # Introduction
 
@@ -606,3 +620,10 @@ This endpoint retrieves aggregated price history for an instrument on an exchang
 ### Intervals
 
 The following intervals are currently supported: `1m`, `2m`, `3m`, `5m`, `10m`, `15m`, `30m`, `1h`, `2h`, `3h`, `4h`, `1d`.
+
+# Future development
+
+We are continously extending the feature set across all our products. We are very happy to receive your feedback on our services and documentation, If you have a proposal on how we can make your day better. Give us a shout at <a href='https://www.kaiko.com/pages/contact' target='_blank'>Contact us</a>
+
+<div style="margin: 200px">
+</div>

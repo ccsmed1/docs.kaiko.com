@@ -246,6 +246,10 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 
 Query limits are based on your API key. Currently, each API key is allowed a maximum of 1000 requests per minute and 10000 requests per hour.
 
+### Data versioning
+
+Kaiko takes transparency and accountability very seriously. Therefore, our provided datasets are versioned. Dataset versioning is orthogonal to API versioning. Any potential breaking changes in results (e.g. semantical changes or corrections of historically incorrect data) will result in a new dataset version - no corrections or adjustments will be done in the dark. Addition of new data will not result in a new dataset version. Data is versioned on a per-base-data level - all current Market Data API endpoints take the `trades_version` parameter. By setting this to `latest`, you will get the most recent version. The returned version is always included in the `query` field and can be referred to if you would ever need to compare results if we ever need to adjust historical data. [Paginating](#pagination) over a request with version set to `latest` will preserve the current version across subsequent pagination requests.
+
 ### Envelope
 
 > Response Example
@@ -289,7 +293,7 @@ All API responses are in JSON format. A `result` field, with a value of `success
 
 ```
 
-For queries that result in a larger dataset than can be returned in a single response, a `continuation_token` field is included. Calling the same endpoint again with the `continuation_token` query parameter added will return the next result page. For convenience, a `next_url` field is also included, containing a URL that can be called directly to get the next page. Paginated endpoints also takes a `page_size` parameter that specifies the maximum number of items that should be included in each response. Only the first call should include `page_size`, all subsequent calls should only use `continuation_token`.
+For queries that result in a larger dataset than can be returned in a single response, a `continuation_token` field is included. Calling the same endpoint again with the `continuation_token` query parameter added will return the next result page. For convenience, a `next_url` field is also included, containing a URL that can be called directly to get the next page. Paginated endpoints also takes a `page_size` parameter that specifies the maximum number of items that should be included in each response. Only the first call should include `page_size`, all subsequent calls should only use `continuation_token`. Paginating over a request with [version](#data-versioning) set to `latest` will preserve the current version across subsequent pagination requests.
 
 #### Parameters
 

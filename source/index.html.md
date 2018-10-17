@@ -288,7 +288,7 @@ All API responses are in JSON format. A `result` field, with a value of `success
   "query": {...},
   "data": [...],
   "continuation_token": "ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
-  "next_url": "https://<region>.market-api.kaiko.io/bfnx/spot/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"
+  "next_url": "https://<region>.market-api.kaiko.io/v1/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"
 }
 
 ```

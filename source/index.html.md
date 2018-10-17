@@ -59,26 +59,25 @@ curl "https://reference-api.kaiko.io/v1/assets"
 
 ```json
 {
-	"result": "success",
-	"time": "2018-06-14T17:26:08.901Z",
-	"timestamp": 1528997168901,
-	"data": [
-		{
-			"code": "btc",
-			"name": "Bitcoin",
+    "result": "success",
+    "data": [
+        {
+            "code": "btc",
+            "name": "Bitcoin",
             "asset_class": "cryptocurrency"
-		},
-		{
-			"code": "bch",
-			"name": "Bitcoin Cash",
+        },
+        {
+            "code": "bch",
+            "name": "Bitcoin Cash",
             "asset_class": "cryptocurrency"
-		},
-		{
-			"code": "jpy",
-			"name": "Japanese Yen",
+        },
+        {
+            "code": "jpy",
+            "name": "Japanese Yen",
             "asset_class": "fiat"
-		}
-	]
+        },
+        // ...
+    ]
 }
 ```
 
@@ -105,16 +104,14 @@ curl "https://reference-api.kaiko.io/v1/exchanges"
 ```json
 
 {
-	"result": "success",
-	"time": "2018-06-14T17:28:42.915Z",
-	"timestamp": 1528997322915,
-	"data": [
-		{
-			"code": "bfly",
-			"name": "bitFlyer",
+    "result": "success",
+    "data": [
+        {
+            "code": "bfly",
+            "name": "bitFlyer",
             "kaiko_legacy_slug": "bl",
             "api_name": "bitflyer"
-		},
+        },
         {
             "code": "bfnx",
             "name": "Bitfinex",
@@ -122,7 +119,7 @@ curl "https://reference-api.kaiko.io/v1/exchanges"
             "api_name": "bitfinex"
         }
         // ...
-	]
+    ]
 }
 ```
 
@@ -149,46 +146,66 @@ curl "https://reference-api.kaiko.io/v1/instruments"
 ```json
 
 {
-	"result": "success",
-	"time": "2018-06-14T17:28:42.915Z",
-	"timestamp": 1528997322915,
-	"data": [
-		{
-            "exchange_slug": "bb",
-            "exchange_code": "btcb",
-            "exchange_pair_code": "BTC/JPY",
-            "base_asset": "btc",
-            "quote_asset": "jpy",
-            "kaiko_legacy_symbol": null,
-            "instrument_class": "spot",
-            "trade_start_time": null,
-            "trade_start_timestamp": 0,
-            "trade_end_time": null,
-            "trade_end_timestamp": 0,
-            "trade_count": 0,
-            "trade_compressed_size": 0
-        },
+    "result": "success",
+    "data": [
         {
-            "exchange_slug": "bc",
             "exchange_code": "btcc",
-            "exchange_pair_code": "btccny",
+            "code": "btc-cny",
             "base_asset": "btc",
             "quote_asset": "cny",
+            "kaiko_legacy_exchange_slug": "bc",
             "kaiko_legacy_symbol": "btccny",
-            "instrument_class": "spot",
-            "trade_start_time": null,
-            "trade_start_timestamp": 0,
+            "exchange_pair_code": "btccny",
+            "class": "spot",
+            "trade_start_time": "2011-06-13T05:13:24.0000000Z",
+            "trade_start_timestamp": 1307942004000,
+            "trade_end_time": "2017-09-30T03:59:59.0000000Z",
+            "trade_end_timestamp": 1506743999000,
+            "trade_count": 124449872,
+            "trade_compressed_size": 1073273654
+        },
+        {
+            "exchange_code": "btcc",
+            "code": "btc-usd",
+            "base_asset": "btc",
+            "quote_asset": "usd",
+            "kaiko_legacy_exchange_slug": "bc",
+            "kaiko_legacy_symbol": "btcusd",
+            "exchange_pair_code": "btcusd",
+            "class": "spot",
+            "trade_start_time": "2018-01-14T04:50:48.0000000Z",
+            "trade_start_timestamp": 1515905448542,
             "trade_end_time": null,
-            "trade_end_timestamp": 0,
+            "trade_end_timestamp": null,
+            "trade_count": 15320,
+            "trade_compressed_size": 183147
+        },
+        {
+            "exchange_code": "wexn",
+            "code": "btget-btc",
+            "base_asset": "btget",
+            "quote_asset": "btc",
+            "kaiko_legacy_exchange_slug": "be",
+            "kaiko_legacy_symbol": "btgetbtc",
+            "exchange_pair_code": "btgetbtc",
+            "class": "spot",
+            "trade_start_time": null,
+            "trade_start_timestamp": null,
+            "trade_end_time": null,
+            "trade_end_timestamp": null,
             "trade_count": 0,
             "trade_compressed_size": 0
         }
         // ...
-	]
+    ]
 }
 ```
 
-This endpoint retrieves a list of supported exchanges.
+This endpoint retrieves a list of supported instruments. There are 3 possible cases regarding the trading period:
+
+* It has started but not ended yet (start time fields will be set, but end time fields will be `null`)
+* It is done (both start and end time fields are set)
+* It has not started yet (both start and end time fields are `null`)
 
 ### HTTP request
 

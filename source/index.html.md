@@ -248,7 +248,14 @@ Query limits are based on your API key. Currently, each API key is allowed a max
 
 ### Data versioning
 
-Kaiko takes transparency and accountability very seriously. Therefore, our provided datasets are versioned. Dataset versioning is orthogonal to API versioning. Any potential breaking changes in results (e.g. semantical changes or corrections of historically incorrect data) will result in a new dataset version - no corrections or adjustments will be done in the dark. Addition of new data will not result in a new dataset version. Data is versioned on a per-base-data level - all current Market Data API endpoints take the `trades_version` parameter. By setting this to `latest`, you will get the most recent version. The returned version is always included in the `query` field and can be referred to if you would ever need to compare results if we ever need to adjust historical data. [Paginating](#pagination) over a request with version set to `latest` will preserve the current version across subsequent pagination requests.
+Kaiko takes transparency and accountability very seriously. Therefore, our provided datasets are versioned. Dataset versioning is orthogonal to API versioning. Any potential breaking changes in results (e.g. semantical changes or corrections of historically incorrect data) will result in a new dataset version - no corrections or adjustments will be done in the dark. Addition of new data will not result in a new dataset version. Data is versioned on a per-base-data level.
+
+The versioning is selected by selecting a base data set and a version. All current Market Data API endpoints take the `commodity` and `data_version` parameters.
+
+By setting this to `latest`, you will get the most recent version. The returned version is always included in the `query` field and can be referred to if you would ever need to compare results if we ever need to adjust historical data. [Paginating](#pagination) over a request with version set to `latest` will preserve the current version across subsequent pagination requests.
+
+We recommend using the most current version explicitly in production integrations as the `latest` label might move at any time to a breaking change. For the `trades` commodity the latest version is currently `v1`
+
 
 ### Envelope
 
@@ -356,7 +363,8 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot
     /* ... */
   ],
   "query": {
-    "trades_version": 1,
+    "commodity": "trades",
+    "data_version": "v1",
     "page_size": 100,
     "exchange": "bfnx",
     "instrument_class": "spot",
@@ -372,7 +380,7 @@ This endpoint retrieves trades for an instrument on a specific exchange. By defa
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades{?start_time,end_time,page_size,continuation_token}`
+`GET https://<region>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades{?start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
@@ -385,7 +393,9 @@ This endpoint retrieves trades for an instrument on a specific exchange. By defa
 | `instrument`             | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).  |
 | `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).          |
 | `start_time`<sup>1</sup> | No       | Starting time in ISO 8601 (inclusive).                                       |
-| `trades_version`         | Yes      | Trade data version.                                                          |
+| `commodity`              | Yes      | The data commodity.                                                          |
+| `data_version`           | Yes      | The data version. (v1, v2 ... or latest)                                     |
+
 
 *<sup>1</sup>: When paginating, these parameters should only be included in the first request. For subsequent requests, they are encoded in the continuation token.*
 
@@ -403,7 +413,8 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/krkn/spot
 ```json
 {
   "query": {
-    "trades_version": 1,
+    "commodity": "trades",
+    "data_version": "v1",
     "exchange": "krkn",
     "instrument_class": "spot",
     "instrument": "eth-eur",
@@ -437,7 +448,7 @@ This endpoint retrieves the most recent trades for an instrument on a specific e
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades/recent{?limit}`
+`GET https://<region>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades/recent{?limit}`
 
 ### Parameters
 
@@ -447,7 +458,9 @@ This endpoint retrieves the most recent trades for an instrument on a specific e
 | `instrument_class` | Yes      | Instrument `class`. See [Instruments Reference Data Endpoint](#instruments). |
 | `instrument`       | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).  |
 | `limit`            | No       | Maximum number of results (min: 1, default: 100, max: 10000).                |
-| `trades_version`   | Yes      | Trade data version.                                                          |
+| `commodity`        | Yes      | The data commodity.                                                          |
+| `data_version`     | Yes      | The data version. (v1, v2 ... or latest)                                     |
+
 
 ## OHLCV (Candles)
 
@@ -463,7 +476,8 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot
 ```json
 {
   "query": {
-    "trades_version": 1,
+    "commodity": "trades",
+    "data_version": "v1",
     "page_size": 100,
     "exchange": "bfnx",
     "instrument_class": "spot",
@@ -504,7 +518,7 @@ This endpoint retrieves aggregated history for an instrument on an exchange. Ret
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/ohlcv{?interval,start_time,end_time,page_size,continuation_token}`
+`GET https://<region>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/ohlcv{?interval,start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
@@ -518,7 +532,8 @@ This endpoint retrieves aggregated history for an instrument on an exchange. Ret
 | `interval`               | No       | [Interval](#intervals) period. Default `1d`.                                  |
 | `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).           |
 | `start_time`<sup>1</sup> | No       | Starting time in ISO 8601 (inclusive).                                        |
-| `trades_version`         | Yes      | Trade data version.                                                           |
+| `commodity`              | Yes      | The data commodity.                                                           |
+| `data_version`           | Yes      | The data version. (v1, v2 ... or latest)                                      |
 
 *<sup>1</sup>: When paginating, these parameters should only be included in the first request. For subsequent requests, they are encoded in the continuation token.*
 
@@ -550,7 +565,8 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot
 ```json
 {
   "query": {
-    "trades_version": 1,
+    "commodity": "trades",
+    "data_version": "v1",
     "page_size": 100,
     "exchange": "cbse",
     "instrument_class": "spot",
@@ -583,7 +599,7 @@ This endpoint retrieves aggregated price history for an instrument on an exchang
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/vwap{?interval,start_time,end_time,page_size,continuation_token}`
+`GET https://<region>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/vwap{?interval,start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
@@ -597,7 +613,8 @@ This endpoint retrieves aggregated price history for an instrument on an exchang
 | `interval`               | No       | [Interval](#intervals) period. Default `1d`.                                               |
 | `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).                        |
 | `start_time`<sup>1</sup> | No       | Starting time in ISO 8601 (inclusive).                                                     |
-| `trades_version`         | Yes      | Trade data version.                                                                        |
+| `commodity`              | Yes      | The data commodity. (`trades`)                                                             |
+| `data_version`           | Yes      | The data version. (`v1`, `v2` ... or `latest`)                                             |
 
 *<sup>1</sup>: When paginating, these parameters should only be included in the first request. For subsequent requests, they are encoded in the continuation token.*
 

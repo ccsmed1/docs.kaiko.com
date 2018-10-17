@@ -252,7 +252,7 @@ Kaiko takes transparency and accountability very seriously. Therefore, our provi
 
 The versioning is selected by selecting a base data set and a version. All current Market Data API endpoints take the `commodity` and `data_version` parameters.
 
-By setting this to `latest`, you will get the most recent version. The returned version is always included in the `query` field and can be referred to if you would ever need to compare results if we ever need to adjust historical data. [Paginating](#pagination) over a request with version set to `latest` will preserve the current version across subsequent pagination requests.
+By setting this to `latest`, you will get the most recent version. The returned version is always included in the `query` field and can be referred to if you would ever need to compare results, should we ever need to adjust historical data. [Paginating](#pagination) over a request with version set to `latest` will preserve the current version across subsequent pagination requests.
 
 We recommend using the most current version explicitly in production integrations as the `latest` label might move at any time to a breaking change. For the `trades` commodity the latest version is currently `v1`
 

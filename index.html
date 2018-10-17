@@ -6,7 +6,12 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Kaiko API Platform Reference</title>
-
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -302,13 +307,13 @@
                       </ul>
                   </li>
                   <li>
-                    <a href="#exchange-trades" class="toc-h2 toc-link" data-title="Exchange Trades">Exchange Trades</a>
+                    <a href="#historical-trades" class="toc-h2 toc-link" data-title="Historical Trades">Historical Trades</a>
                       <ul class="toc-list-h3">
                           <li>
-                            <a href="#http-request-4" class="toc-h3 toc-link" data-title="Exchange Trades">HTTP request</a>
+                            <a href="#http-request-4" class="toc-h3 toc-link" data-title="Historical Trades">HTTP request</a>
                           </li>
                           <li>
-                            <a href="#parameters-5" class="toc-h3 toc-link" data-title="Exchange Trades">Parameters</a>
+                            <a href="#parameters-5" class="toc-h3 toc-link" data-title="Historical Trades">Parameters</a>
                           </li>
                       </ul>
                   </li>
@@ -324,28 +329,46 @@
                       </ul>
                   </li>
                   <li>
-                    <a href="#aggregations-ohlcv" class="toc-h2 toc-link" data-title="Aggregations (OHLCV)">Aggregations (OHLCV)</a>
+                    <a href="#ohlcv-candles" class="toc-h2 toc-link" data-title="OHLCV (Candles)">OHLCV (Candles)</a>
                       <ul class="toc-list-h3">
                           <li>
-                            <a href="#http-request-6" class="toc-h3 toc-link" data-title="Aggregations (OHLCV)">HTTP request</a>
+                            <a href="#http-request-6" class="toc-h3 toc-link" data-title="OHLCV (Candles)">HTTP request</a>
                           </li>
                           <li>
-                            <a href="#parameters-7" class="toc-h3 toc-link" data-title="Aggregations (OHLCV)">Parameters</a>
+                            <a href="#parameters-7" class="toc-h3 toc-link" data-title="OHLCV (Candles)">Parameters</a>
                           </li>
                           <li>
-                            <a href="#aggregation-types" class="toc-h3 toc-link" data-title="Aggregations (OHLCV)">Aggregation types</a>
+                            <a href="#fields" class="toc-h3 toc-link" data-title="OHLCV (Candles)">Fields</a>
                           </li>
                           <li>
-                            <a href="#fields" class="toc-h3 toc-link" data-title="Aggregations (OHLCV)">Fields</a>
+                            <a href="#intervals" class="toc-h3 toc-link" data-title="OHLCV (Candles)">Intervals</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#vwap-prices" class="toc-h2 toc-link" data-title="VWAP (Prices)">VWAP (Prices)</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#http-request-7" class="toc-h3 toc-link" data-title="VWAP (Prices)">HTTP request</a>
                           </li>
                           <li>
-                            <a href="#intervals" class="toc-h3 toc-link" data-title="Aggregations (OHLCV)">Intervals</a>
+                            <a href="#parameters-8" class="toc-h3 toc-link" data-title="VWAP (Prices)">Parameters</a>
+                          </li>
+                          <li>
+                            <a href="#fields-2" class="toc-h3 toc-link" data-title="VWAP (Prices)">Fields</a>
+                          </li>
+                          <li>
+                            <a href="#intervals-2" class="toc-h3 toc-link" data-title="VWAP (Prices)">Intervals</a>
                           </li>
                       </ul>
                   </li>
               </ul>
           </li>
       </ul>
+        <ul class="toc-footer">
+            <li><a href='https://www.kaiko.com/' target='_blank'>Kaiko</a></li>
+            <li><a href='https://www.kaiko.com/pages/contact' target='_blank'>Contact us</a></li>
+        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -370,7 +393,7 @@
 
 <p>The &quot;T&quot; separates the date from the time. The &quot;Z&quot; at the end indicates UTC time.</p>
 <h3 id='output'>Output</h3>
-<p>All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps </a>(the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resolution ISO 8601 datetime strings in the same format as input for convenience.</p>
+<p>All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps</a> (the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resolution ISO 8601 datetime strings in the same format as input for convenience.</p>
 <h2 id='market-open-and-close'>Market open and close</h2>
 <p>Digital asset exchanges operate approximately 24x7x365.</p>
 
@@ -387,26 +410,25 @@
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:26:08.901Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997168901</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"asset_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cryptocurrency"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bch"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin Cash"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"asset_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cryptocurrency"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jpy"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Japanese Yen"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"asset_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiat"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cryptocurrency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bch"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin Cash"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cryptocurrency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jpy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Japanese Yen"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiat"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of supported assets.</p>
@@ -425,24 +447,22 @@
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:28:42.915Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997322915</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfly"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitFlyer"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"kaiko_legacy_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bl"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"api_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitflyer"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitfinex"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"kaiko_legacy_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bf"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"api_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitfinex"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfly"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitFlyer"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kaiko_legacy_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bl"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"api_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitflyer"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitfinex"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kaiko_legacy_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"api_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitfinex"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of supported exchanges.</p>
@@ -459,47 +479,68 @@
 <blockquote>
 <p>Response Example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:28:42.915Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997322915</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"exchange_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bb"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"exchange_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcb"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"exchange_pair_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/JPY"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jpy"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"kaiko_legacy_symbol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_compressed_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"exchange_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"exchange_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"exchange_pair_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btccny"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cny"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"kaiko_legacy_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btccny"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_compressed_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"exchange_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-cny"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"base_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quote_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cny"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kaiko_legacy_exchange_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kaiko_legacy_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btccny"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exchange_pair_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btccny"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2011-06-13T05:13:24.0000000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1307942004000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_end_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-30T03:59:59.0000000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1506743999000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">124449872</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_compressed_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1073273654</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"exchange_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"base_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quote_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usd"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kaiko_legacy_exchange_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kaiko_legacy_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exchange_pair_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-14T04:50:48.0000000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1515905448542</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">15320</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_compressed_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">183147</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"exchange_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wexn"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btget-btc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"base_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btget"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quote_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kaiko_legacy_exchange_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kaiko_legacy_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btgetbtc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exchange_pair_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btgetbtc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_start_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_end_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_compressed_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a list of supported exchanges.</p>
+<p>This endpoint retrieves a list of supported instruments. There are three possible cases regarding the trading period:</p>
+
+<ul>
+<li>Trading has started and the instrument is still trading (start time fields will be set, but end time fields will be <code>null</code>)</li>
+<li>Trading has occured but the instrument is no longer traded (both start and end time fields are set)</li>
+<li>Trading has not been started yet (both start and end time fields are <code>null</code>)</li>
+</ul>
 <h3 id='http-request-3'>HTTP request</h3>
 <p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/exchanges</code></p>
 <h3 id='parameters-3'>Parameters</h3>
@@ -515,8 +556,8 @@
 <blockquote>
 <p>Request Syntax</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://&lt;api_hostname&gt;/&lt;endpoint&gt;"
-    -H "x-api-key: &lt;client-api-key&gt;"
+<pre class="highlight plaintext"><code>curl "https://&lt;api_hostname&gt;/&lt;endpoint&gt;" \
+  -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <p>Each API lives under its own hostname. Clients must include an API key in the header of every request they make. The format is as follows:</p>
 
@@ -532,11 +573,11 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:19:40.303Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528996780303</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:19:40.303Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528996780303</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -585,13 +626,13 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <p>Pagination Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:19:40.303Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528996780303</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/bfnx/spot/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:19:40.303Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528996780303</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/bfnx/spot/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -636,7 +677,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- You don&#39;t have access to the requested resource</td>
+<td>Forbidden -- You don&#39;t have access to the requested resource.</td>
 </tr>
 <tr>
 <td>404</td>
@@ -652,59 +693,61 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- <a href="#rate-limiting">Rate limit</a> exceeded. <a href='https://www.kaiko.com/pages/contact'>Contact us</a> if you think you have a need for more.</td>
+<td>Too Many Requests -- <a href="#rate-limiting">Rate limit</a> exceeded. <a href='https://www.kaiko.com/pages/contact' target="_blank">Contact us</a> if you think you have a need for more.</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>Internal Server Error -- We had a problem with our service. Try again later.</td>
 </tr>
 <tr>
 <td>503</td>
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance.</td>
 </tr>
 </tbody></table>
-<h2 id='exchange-trades'>Exchange Trades</h2>
+<h2 id='historical-trades'>Historical Trades</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades"
-    -H "x-api-key: &lt;client-api-key&gt;"
+<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades" \
+  -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:37:22.002Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997842002</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417412036761</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417412423076</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:37:21.935Z"</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:37:22.002Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528997842002</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417412036761</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/spot/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417412423076</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"trades_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:37:21.935Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9TlmYybkMWHnGLeD5csn9bShMGrNWXLiwGw3HiFbozEB6DHGa3532SeG4wjfTqFYVX8TVLbz87Kb9zMvGbjwbafRpkWPmnETeVsXCFyiqDrxNvfw4jNnZPhwQiqtbCWbMsT6N7cLXWXVni8faCDFbtgES49PRwr4VCFXA4NgrqMT6HUnCSEb4U"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=9TlmYybkMWHnGLeD5csn9bShMGrNWXLiwGw3HiFbozEB6DHGa3532SeG4wjfTqFYVX8TVLbz87Kb9zMvGbjwbafRpkWPmnETeVsXCFyiqDrxNvfw4jNnZPhwQiqtbCWbMsT6N7cLXWXVni8faCDFbtgES49PRwr4VCFXA4NgrqMT6HUnCSEb
+}
 </span></code></pre>
-<p>This endpoint retrieves trades for an asset instrument on a specific exchange. By default returns the 100 first trades in our dataset. Trades are sorted by time, ascendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
+<p>This endpoint retrieves trades for an instrument on a specific exchange. By default returns the 100 first trades in our dataset. Trades are sorted by time, ascendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
 <h3 id='http-request-4'>HTTP request</h3>
 <p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-5'>Parameters</h3>
@@ -721,7 +764,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>See <a href="#pagination">Pagination</a>.</td>
 </tr>
 <tr>
-<td><code>end_time</code></td>
+<td><code>end_time</code><sup>1</sup></td>
 <td>No</td>
 <td>Ending time in ISO 8601 (exclusive).</td>
 </tr>
@@ -733,7 +776,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>instrument_class</code></td>
 <td>Yes</td>
-<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
+<td>Instrument <code>class</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
 </tr>
 <tr>
 <td><code>instrument</code></td>
@@ -741,12 +784,12 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
 </tr>
 <tr>
-<td><code>page_size</code></td>
+<td><code>page_size</code><sup>1</sup></td>
 <td>No</td>
 <td>See <a href="#pagination">Pagination</a> (min: 100, default: 100, max: 10000).</td>
 </tr>
 <tr>
-<td><code>start_time</code></td>
+<td><code>start_time</code><sup>1</sup></td>
 <td>No</td>
 <td>Starting time in ISO 8601 (inclusive).</td>
 </tr>
@@ -756,45 +799,50 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Trade data version.</td>
 </tr>
 </tbody></table>
+
+<p><em><sup>1</sup>: When paginating, these parameters should only be included in the first request. For subsequent requests, they are encoded in the continuation token.</em></p>
 <h2 id='recent-trades'>Recent Trades</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/gdax/spot/btc-usd/trades/recent"
-    -H "x-api-key: &lt;client-api-key&gt;"
+<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/krkn/spot/eth-eur/trades/recent" \
+  -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:44:37.446Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998277446</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998137627</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44840133"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6592.22"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.08741431"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998137627</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44840134"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6592.22"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01057674"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"trades_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"krkn"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth-eur"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-17T13:08:31.059Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539781711059</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539781665641</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1a1e635ee192480354126a8f58c64cf63f2ac3a18f12f5988aee87175f627721"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176.37000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.23696093"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539781626679</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4293c3f923fbe8b7b315f9c167f9c5e355cc1d00663a6d5bc9ac0358b086f404"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176.37000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.23354822"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"taker_side_sell"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
-<p>This endpoint retrieves the most recent trades for an asset instrument on a specific exchange. By default returns the 100 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
+<p>This endpoint retrieves the most recent trades for an instrument on a specific exchange. By default returns the 100 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
 <h3 id='http-request-5'>HTTP request</h3>
 <p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades/recent{?limit}</code></p>
 <h3 id='parameters-6'>Parameters</h3>
@@ -813,7 +861,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>instrument_class</code></td>
 <td>Yes</td>
-<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
+<td>Instrument <code>class</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
 </tr>
 <tr>
 <td><code>instrument</code></td>
@@ -831,53 +879,57 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Trade data version.</td>
 </tr>
 </tbody></table>
-<h2 id='aggregations-ohlcv'>Aggregations (OHLCV)</h2>
+<h2 id='ohlcv-candles'>OHLCV (Candles)</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/gdax/spot/btc-usd/aggregations/ohlcv"
-    -H "x-api-key: &lt;client-api-key&gt;"
+<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/ohlcv" \
+  -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:55:49.033Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528998949033</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417392000000</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"370.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"370.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05655554"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417478400000</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"377.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"378.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"377.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"378.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.0136"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdax"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1d"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:55:48.908Z"</span><span class="w">
+  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"trades_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmr-usd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ohlcv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-17T13:11:00.639Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-17T13:11:00.846Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539781860846</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1502236800000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.234"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.28"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48.738"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.933"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1318.12560081"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9292/v1/exchanges/gdax/spot/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1502323200000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.066"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.304"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49.183"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49.183"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9085.47277432"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/ohlcv?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
-<p>This endpoint retrieves aggregated history for an asset instrument on an exchange. Returns the earliest available OHLCV (candles) by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
+<p>This endpoint retrieves aggregated history for an instrument on an exchange. Returns the earliest available intervals by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
 <h3 id='http-request-6'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/{aggregation_type}{?interval,start_time,end_time,page_size,continuation_token}</code></p>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/ohlcv{?interval,start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
@@ -887,19 +939,14 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td><code>aggregation_type</code></td>
-<td>Yes</td>
-<td>Which <a href="#aggregation-types">aggregation type</a> to get (currently supported: <code>ohlcv</code>).</td>
-</tr>
-<tr>
 <td><code>continuation_token</code></td>
 <td>No</td>
 <td>See <a href="#pagination">Pagination</a>.</td>
 </tr>
 <tr>
-<td><code>end_time</code></td>
+<td><code>end_time</code><sup>1</sup></td>
 <td>No</td>
-<td>Ending time in ISO 8601 (exclusive). First call only, then included in the <code>continuation_token</code>.</td>
+<td>Ending time in ISO 8601 (exclusive).</td>
 </tr>
 <tr>
 <td><code>exchange</code></td>
@@ -909,12 +956,12 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>instrument_class</code></td>
 <td>Yes</td>
-<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
+<td>Instrument <code>class</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
 </tr>
 <tr>
 <td><code>instrument</code></td>
 <td>Yes</td>
-<td>Instrument</td>
+<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
 </tr>
 <tr>
 <td><code>interval</code></td>
@@ -922,14 +969,14 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td><a href="#intervals">Interval</a> period. Default <code>1d</code>.</td>
 </tr>
 <tr>
-<td><code>page_size</code></td>
+<td><code>page_size</code><sup>1</sup></td>
 <td>No</td>
 <td>See <a href="#pagination">Pagination</a> (min: 100, default: 100, max: 10000).</td>
 </tr>
 <tr>
-<td><code>start_time</code></td>
+<td><code>start_time</code><sup>1</sup></td>
 <td>No</td>
-<td>Starting time in ISO 8601 (inclusive). First call only, then included in the <code>continuation_token</code>.</td>
+<td>Starting time in ISO 8601 (inclusive).</td>
 </tr>
 <tr>
 <td><code>trades_version</code></td>
@@ -937,18 +984,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Trade data version.</td>
 </tr>
 </tbody></table>
-<h3 id='aggregation-types'>Aggregation types</h3>
-<table><thead>
-<tr>
-<th>Aggregation</th>
-<th>Fields</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>ohlcv</code></td>
-<td><code>open</code>,<code>high</code>,<code>low</code>,<code>close</code>,<code>volume</code></td>
-</tr>
-</tbody></table>
+
+<p><em><sup>1</sup>: When paginating, these parameters should only be included in the first request. For subsequent requests, they are encoded in the continuation token.</em></p>
 <h3 id='fields'>Fields</h3>
 <table><thead>
 <tr>
@@ -957,8 +994,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td><code>close</code></td>
-<td>Closing price of interval.</td>
+<td><code>open</code></td>
+<td>Opening price of interval.</td>
 </tr>
 <tr>
 <td><code>high</code></td>
@@ -969,8 +1006,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Lowest price during interval.</td>
 </tr>
 <tr>
-<td><code>open</code></td>
-<td>Opening price of interval.</td>
+<td><code>close</code></td>
+<td>Closing price of interval.</td>
 </tr>
 <tr>
 <td><code>volume</code></td>
@@ -978,6 +1015,119 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </tbody></table>
 <h3 id='intervals'>Intervals</h3>
+<p>The following intervals are currently supported: <code>1m</code>, <code>2m</code>, <code>3m</code>, <code>5m</code>, <code>10m</code>, <code>15m</code>, <code>30m</code>, <code>1h</code>, <code>2h</code>, <code>3h</code>, <code>4h</code>, <code>1d</code>.</p>
+<h2 id='vwap-prices'>VWAP (Prices)</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap" \
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"trades_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cbse"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vwap"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-17T12:39:58.365Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-17T12:39:58.542Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539779998542</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417392000000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"345.24557275909663315035096473307477923471334550072"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1417478400000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"377.99517104491927319230564288378536793307401289498"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55qoNvASfrVdCIjrF8Ygw6TVJ4yamzUyeL9QXAmvWZZur3iaKoPcVBW1V4unNJi2zMjojbsYr9Pgt9XFCUpnAiuBiECm8X4cedvYc9t2WxHXnHKjgAp2wRAeV8ZPUSj8WNgpWTCBVymGaQZPj3oMDZwVeCPyuTLFdVPfTXVjZA94BtHeBmghoPv92JtWxN3yRvCkrw79hJBu"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap?continuation_token=55qoNvASfrVdCIjrF8Ygw6TVJ4yamzUyeL9QXAmvWZZur3iaKoPcVBW1V4unNJi2zMjojbsYr9Pgt9XFCUpnAiuBiECm8X4cedvYc9t2WxHXnHKjgAp2wRAeV8ZPUSj8WNgpWTCBVymGaQZPj3oMDZwVeCPyuTLFdVPfTXVjZA94BtHeBmghoPv92JtWxN3yRvCkrw79hJBu"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This endpoint retrieves aggregated price history for an instrument on an exchange. Returns the earliest available intervals by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
+<h3 id='http-request-7'>HTTP request</h3>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v{trades_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/vwap{?interval,start_time,end_time,page_size,continuation_token}</code></p>
+<h3 id='parameters-8'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>continuation_token</code></td>
+<td>No</td>
+<td>See <a href="#pagination">Pagination</a>.</td>
+</tr>
+<tr>
+<td><code>end_time</code><sup>1</sup></td>
+<td>No</td>
+<td>Ending time in ISO 8601 (exclusive).</td>
+</tr>
+<tr>
+<td><code>exchange</code></td>
+<td>Yes</td>
+<td>Exchange <code>code</code>.</td>
+</tr>
+<tr>
+<td><code>instrument_class</code></td>
+<td>Yes</td>
+<td>Instrument <code>class</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
+</tr>
+<tr>
+<td><code>instrument</code></td>
+<td>Yes</td>
+<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
+</tr>
+<tr>
+<td><code>interval</code></td>
+<td>No</td>
+<td><a href="#intervals">Interval</a> period. Default <code>1d</code>.</td>
+</tr>
+<tr>
+<td><code>page_size</code><sup>1</sup></td>
+<td>No</td>
+<td>See <a href="#pagination">Pagination</a> (min: 100, default: 100, max: 10000).</td>
+</tr>
+<tr>
+<td><code>start_time</code><sup>1</sup></td>
+<td>No</td>
+<td>Starting time in ISO 8601 (inclusive).</td>
+</tr>
+<tr>
+<td><code>trades_version</code></td>
+<td>Yes</td>
+<td>Trade data version.</td>
+</tr>
+</tbody></table>
+
+<p><em><sup>1</sup>: When paginating, these parameters should only be included in the first request. For subsequent requests, they are encoded in the continuation token.</em></p>
+<h3 id='fields-2'>Fields</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>price</code></td>
+<td><a href="https://www.investopedia.com/terms/v/vwap.asp">Volume-weighted average price</a>.</td>
+</tr>
+</tbody></table>
+<h3 id='intervals-2'>Intervals</h3>
 <p>The following intervals are currently supported: <code>1m</code>, <code>2m</code>, <code>3m</code>, <code>5m</code>, <code>10m</code>, <code>15m</code>, <code>30m</code>, <code>1h</code>, <code>2h</code>, <code>3h</code>, <code>4h</code>, <code>1d</code>.</p>
 
       </div>

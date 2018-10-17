@@ -601,7 +601,7 @@ This endpoint retrieves aggregated price history for an instrument on an exchang
 
 | Field    | Description                                                                     |
 | ---      | ---                                                                             |
-| `price`  | [Volume-weighted average price](https://www.investopedia.com/terms/v/vwap.asp). |
+| `price`  | <a href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank">Volume-weighted average price</a>. |
 
 ### Intervals
 

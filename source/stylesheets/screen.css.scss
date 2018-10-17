@@ -142,7 +142,7 @@ html, body {
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 28px;
+    line-height: 30px;
   }
 
   li {
@@ -162,6 +162,16 @@ html, body {
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
     color: $nav-active-parent-text;
+  }
+
+  .toc-list-h1 {
+    background-color: $nav-subitem-bg;
+    & > li {
+      padding-bottom: 14px;
+      &:first-child {
+        padding-top: 14px;
+      }
+    }
   }
 
   .toc-list-h2 {

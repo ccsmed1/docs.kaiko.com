@@ -154,6 +154,7 @@ html, body {
 
   // This is the currently selected ToC entry
   .toc-link.active {
+    border-left: 4px solid #F09E28;
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }

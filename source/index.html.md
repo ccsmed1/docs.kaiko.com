@@ -59,25 +59,25 @@ curl "https://reference-api.kaiko.io/v1/assets"
 
 ```json
 {
-    "result": "success",
-    "data": [
-        {
-            "code": "btc",
-            "name": "Bitcoin",
-            "asset_class": "cryptocurrency"
-        },
-        {
-            "code": "bch",
-            "name": "Bitcoin Cash",
-            "asset_class": "cryptocurrency"
-        },
-        {
-            "code": "jpy",
-            "name": "Japanese Yen",
-            "asset_class": "fiat"
-        },
-        /* ... */
-    ]
+  "result": "success",
+  "data": [
+    {
+      "code": "btc",
+      "name": "Bitcoin",
+      "asset_class": "cryptocurrency"
+    },
+    {
+      "code": "bch",
+      "name": "Bitcoin Cash",
+      "asset_class": "cryptocurrency"
+    },
+    {
+      "code": "jpy",
+      "name": "Japanese Yen",
+      "asset_class": "fiat"
+    },
+    /* ... */
+  ]
 }
 ```
 
@@ -104,22 +104,22 @@ curl "https://reference-api.kaiko.io/v1/exchanges"
 ```json
 
 {
-    "result": "success",
-    "data": [
-        {
-            "code": "bfly",
-            "name": "bitFlyer",
-            "kaiko_legacy_slug": "bl",
-            "api_name": "bitflyer"
-        },
-        {
-            "code": "bfnx",
-            "name": "Bitfinex",
-            "kaiko_legacy_slug": "bf",
-            "api_name": "bitfinex"
-        }
-        /* ... */
-    ]
+  "result": "success",
+  "data": [
+    {
+      "code": "bfly",
+      "name": "bitFlyer",
+      "kaiko_legacy_slug": "bl",
+      "api_name": "bitflyer"
+    },
+    {
+      "code": "bfnx",
+      "name": "Bitfinex",
+      "kaiko_legacy_slug": "bf",
+      "api_name": "bitfinex"
+    }
+    /* ... */
+  ]
 }
 ```
 
@@ -144,60 +144,59 @@ curl "https://reference-api.kaiko.io/v1/instruments"
 > Response Example
 
 ```json
-
 {
-    "result": "success",
-    "data": [
-        {
-            "exchange_code": "btcc",
-            "code": "btc-cny",
-            "base_asset": "btc",
-            "quote_asset": "cny",
-            "kaiko_legacy_exchange_slug": "bc",
-            "kaiko_legacy_symbol": "btccny",
-            "exchange_pair_code": "btccny",
-            "class": "spot",
-            "trade_start_time": "2011-06-13T05:13:24.0000000Z",
-            "trade_start_timestamp": 1307942004000,
-            "trade_end_time": "2017-09-30T03:59:59.0000000Z",
-            "trade_end_timestamp": 1506743999000,
-            "trade_count": 124449872,
-            "trade_compressed_size": 1073273654
-        },
-        {
-            "exchange_code": "btcc",
-            "code": "btc-usd",
-            "base_asset": "btc",
-            "quote_asset": "usd",
-            "kaiko_legacy_exchange_slug": "bc",
-            "kaiko_legacy_symbol": "btcusd",
-            "exchange_pair_code": "btcusd",
-            "class": "spot",
-            "trade_start_time": "2018-01-14T04:50:48.0000000Z",
-            "trade_start_timestamp": 1515905448542,
-            "trade_end_time": null,
-            "trade_end_timestamp": null,
-            "trade_count": 15320,
-            "trade_compressed_size": 183147
-        },
-        {
-            "exchange_code": "wexn",
-            "code": "btget-btc",
-            "base_asset": "btget",
-            "quote_asset": "btc",
-            "kaiko_legacy_exchange_slug": "be",
-            "kaiko_legacy_symbol": "btgetbtc",
-            "exchange_pair_code": "btgetbtc",
-            "class": "spot",
-            "trade_start_time": null,
-            "trade_start_timestamp": null,
-            "trade_end_time": null,
-            "trade_end_timestamp": null,
-            "trade_count": 0,
-            "trade_compressed_size": 0
-        }
-        /* ... */
-    ]
+  "result": "success",
+  "data": [
+    {
+      "exchange_code": "btcc",
+      "code": "btc-cny",
+      "base_asset": "btc",
+      "quote_asset": "cny",
+      "kaiko_legacy_exchange_slug": "bc",
+      "kaiko_legacy_symbol": "btccny",
+      "exchange_pair_code": "btccny",
+      "class": "spot",
+      "trade_start_time": "2011-06-13T05:13:24.0000000Z",
+      "trade_start_timestamp": 1307942004000,
+      "trade_end_time": "2017-09-30T03:59:59.0000000Z",
+      "trade_end_timestamp": 1506743999000,
+      "trade_count": 124449872,
+      "trade_compressed_size": 1073273654
+    },
+    {
+      "exchange_code": "btcc",
+      "code": "btc-usd",
+      "base_asset": "btc",
+      "quote_asset": "usd",
+      "kaiko_legacy_exchange_slug": "bc",
+      "kaiko_legacy_symbol": "btcusd",
+      "exchange_pair_code": "btcusd",
+      "class": "spot",
+      "trade_start_time": "2018-01-14T04:50:48.0000000Z",
+      "trade_start_timestamp": 1515905448542,
+      "trade_end_time": null,
+      "trade_end_timestamp": null,
+      "trade_count": 15320,
+      "trade_compressed_size": 183147
+    },
+    {
+      "exchange_code": "wexn",
+      "code": "btget-btc",
+      "base_asset": "btget",
+      "quote_asset": "btc",
+      "kaiko_legacy_exchange_slug": "be",
+      "kaiko_legacy_symbol": "btgetbtc",
+      "exchange_pair_code": "btgetbtc",
+      "class": "spot",
+      "trade_start_time": null,
+      "trade_start_timestamp": null,
+      "trade_end_time": null,
+      "trade_end_timestamp": null,
+      "trade_count": 0,
+      "trade_compressed_size": 0
+    }
+    /* ... */
+  ]
 }
 ```
 

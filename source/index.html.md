@@ -644,7 +644,7 @@ The following intervals are currently supported: `1m`, `2m`, `3m`, `5m`, `10m`, 
 
 # Future development
 
-We are continously extending the feature set across all our products. We are very happy to receive your feedback on our services and documentation, If you have a proposal on how we can make your day better. Give us a shout at <a href='https://www.kaiko.com/pages/contact' target='_blank'>Contact us</a>
+We are continously extending the feature set across all our products. We are very happy to receive your feedback on our services and documentation. Do you have a proposal on how we can make your day better? <a href='https://www.kaiko.com/pages/contact' target='_blank'>Give us a shout</a>! :)
 
 <div style="margin: 200px">
 </div>

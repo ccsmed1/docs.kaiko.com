@@ -3,8 +3,8 @@ title: Kaiko API Platform Reference
 language\_tabs:
   - curl
 toc_footers:
-  - <a href='https://www.kaiko.com/'>Kaiko</a>
-  - <a href='https://www.kaiko.com/pages/contact'>Contact us</a>
+  - <a href='https://www.kaiko.com/' target='_blank'>Kaiko</a>
+  - <a href='https://www.kaiko.com/pages/contact' target='_blank'>Contact us</a>
 search: true
 ---
 
@@ -33,7 +33,7 @@ The "T" separates the date from the time. The "Z" at the end indicates UTC time.
 
 ### Output
 
-All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps </a>(the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resolution ISO 8601 datetime strings in the same format as input for convenience.
+All timestamps are returned as <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamps</a> (the number of milliseconds elapsed since 1970-01-01 00:00:00.000 UTC). For metadata fields, times are also returned in millisecond-resolution ISO 8601 datetime strings in the same format as input for convenience.
 
 ## Market open and close
 
@@ -214,7 +214,6 @@ This endpoint retrieves a list of supported instruments. There are three possibl
 
 No parameters supported.
 
-
 # Market Data API
 
 ## Endpoints
@@ -307,18 +306,17 @@ All API responses are in JSON format. A `result` field, with a value of `success
 
 The Kaiko platform API uses the following error codes:
 
-| Error Code | Meaning                                                                                                                                                         |
-| ---------- | -------                                                                                                                                                         |
-| 400        | Bad Request                                                                                                                                                     |
-| 401        | Unauthorized -- You are not authenticated properly. See [Authentication](#authentication).                                                                      |
-| 403        | Forbidden -- You don't have access to the requested resource                                                                                                    |
-| 404        | Not Found                                                                                                                                                       |
-| 405        | Method Not Allowed                                                                                                                                              |
-| 406        | Not Acceptable                                                                                                                                                  |
-| 429        | Too Many Requests -- [Rate limit](#rate-limiting) exceeded. <a href='https://www.kaiko.com/pages/contact'>Contact us</a> if you think you have a need for more. |
-| 500        | Internal Server Error -- We had a problem with our server. Try again later.                                                                                     |
-| 503        | Service Unavailable -- We're temporarily offline for maintenance.                                                                                               |
-
+| Error Code | Meaning                                                                                                                                                                         |
+| ---------- | -------                                                                                                                                                                         |
+| 400        | Bad Request                                                                                                                                                                     |
+| 401        | Unauthorized -- You are not authenticated properly. See [Authentication](#authentication).                                                                                      |
+| 403        | Forbidden -- You don't have access to the requested resource.                                                                                                                   |
+| 404        | Not Found                                                                                                                                                                       |
+| 405        | Method Not Allowed                                                                                                                                                              |
+| 406        | Not Acceptable                                                                                                                                                                  |
+| 429        | Too Many Requests -- [Rate limit](#rate-limiting) exceeded. <a href='https://www.kaiko.com/pages/contact' target="_blank">Contact us</a> if you think you have a need for more. |
+| 500        | Internal Server Error -- We had a problem with our server. Try again later.                                                                                                     |
+| 503        | Service Unavailable -- We're temporarily offline for maintenance.                                                                                                               |
 
 ## Historical Trades
 
@@ -328,7 +326,6 @@ The Kaiko platform API uses the following error codes:
 curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades" \
   -H "x-api-key: <client-api-key>"
 ```
-
 
 > Response Example
 
@@ -388,7 +385,6 @@ This endpoint retrieves trades for an instrument on a specific exchange. By defa
 
 *<sup>1</sup>: When paginating, these parameters should only be included in the first request. For subsequent requests, they are encoded in the continuation token.*
 
-
 ## Recent Trades
 
 > Request Example
@@ -397,7 +393,6 @@ This endpoint retrieves trades for an instrument on a specific exchange. By defa
 curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/krkn/spot/eth-eur/trades/recent" \
   -H "x-api-key: <client-api-key>"
 ```
-
 
 > Response Example
 
@@ -426,8 +421,8 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/krkn/spot
       "price": "176.37000",
       "amount": "0.23354822",
       "taker_side_sell": true
-		},
-		/* ... */
+    },
+    /* ... */
   ],
   "result": "success"
 }
@@ -491,8 +486,8 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot
       "low": "49.183",
       "close": "49.183",
       "volume": "9085.47277432"
-		},
-		/* ... */
+    },
+    /* ... */
   ],
   "result": "success",
   "continuation_token": "55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX",
@@ -578,7 +573,6 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot
   "next_url": "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap?continuation_token=55qoNvASfrVdCIjrF8Ygw6TVJ4yamzUyeL9QXAmvWZZur3iaKoPcVBW1V4unNJi2zMjojbsYr9Pgt9XFCUpnAiuBiECm8X4cedvYc9t2WxHXnHKjgAp2wRAeV8ZPUSj8WNgpWTCBVymGaQZPj3oMDZwVeCPyuTLFdVPfTXVjZA94BtHeBmghoPv92JtWxN3yRvCkrw79hJBu"
 }
 
-
 ```
 
 This endpoint retrieves aggregated price history for an instrument on an exchange. Returns the earliest available intervals by default. The `interval` parameter is suffixed with `s`, `m`, `h` or `d` to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.
@@ -594,7 +588,7 @@ This endpoint retrieves aggregated price history for an instrument on an exchang
 | `continuation_token`     | No       | See [Pagination](#pagination).                                                             |
 | `end_time`<sup>1</sup>   | No       | Ending time in ISO 8601 (exclusive).                                                       |
 | `exchange`               | Yes      | Exchange `code`.                                                                           |
-| `instrument_class`       | Yes      | Instrument `class`. See [Instruments Reference Data Endpoint](#instruments).                 |
+| `instrument_class`       | Yes      | Instrument `class`. See [Instruments Reference Data Endpoint](#instruments).               |
 | `instrument`             | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).                |
 | `interval`               | No       | [Interval](#intervals) period. Default `1d`.                                               |
 | `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).                        |
@@ -605,8 +599,8 @@ This endpoint retrieves aggregated price history for an instrument on an exchang
 
 ### Fields
 
-| Field    | Description                    |
-| ---      | ---                            |
+| Field    | Description                                                                     |
+| ---      | ---                                                                             |
 | `price`  | [Volume-weighted average price](https://www.investopedia.com/terms/v/vwap.asp). |
 
 ### Intervals

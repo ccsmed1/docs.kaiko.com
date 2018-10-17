@@ -315,7 +315,7 @@ The Kaiko platform API uses the following error codes:
 | 405        | Method Not Allowed                                                                                                                                                              |
 | 406        | Not Acceptable                                                                                                                                                                  |
 | 429        | Too Many Requests -- [Rate limit](#rate-limiting) exceeded. <a href='https://www.kaiko.com/pages/contact' target="_blank">Contact us</a> if you think you have a need for more. |
-| 500        | Internal Server Error -- We had a problem with our server. Try again later.                                                                                                     |
+| 500        | Internal Server Error -- We had a problem with our service. Try again later.                                                                                                    |
 | 503        | Service Unavailable -- We're temporarily offline for maintenance.                                                                                                               |
 
 ## Historical Trades

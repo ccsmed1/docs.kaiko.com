@@ -233,7 +233,7 @@ The base URL for the Market Data Endpoints is regionalized. We are currently off
 
 ```curl
 curl "https://<api_hostname>/<endpoint>"
-	-H "x-api-key: <client-api-key>"
+    -H "x-api-key: <client-api-key>"
 ```
 
 Each API lives under its own hostname. Clients must include an API key in the header of every request they make. The format is as follows:
@@ -254,11 +254,11 @@ Query limits are based on your API key. Currently, each API key is allowed a max
 
 ```json
 {
-	"result": "success",
-	"time": "2018-06-14T17:19:40.303Z",
-	"timestamp": 1528996780303,
-	"query": {...},
-	"data": [...]
+    "result": "success",
+    "time": "2018-06-14T17:19:40.303Z",
+    "timestamp": 1528996780303,
+    "query": {...},
+    "data": [...]
 }
 
 ```
@@ -280,13 +280,13 @@ All API responses are in JSON format. A `result` field, with a value of `success
 
 ```json
 {
-	"result": "success",
-	"time": "2018-06-14T17:19:40.303Z",
-	"timestamp": 1528996780303,
-	"query": {...},
-	"data": [...],
-	"continuation_token": "ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
-	"next_url": "https://<region>.market-api.kaiko.io/bfnx/spot/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"
+    "result": "success",
+    "time": "2018-06-14T17:19:40.303Z",
+    "timestamp": 1528996780303,
+    "query": {...},
+    "data": [...],
+    "continuation_token": "ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
+    "next_url": "https://<region>.market-api.kaiko.io/bfnx/spot/btc-usd/trades/?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"
 }
 
 ```
@@ -327,7 +327,7 @@ The Kaiko platform API uses the following error codes:
 
 ```curl
 curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades"
-	-H "x-api-key: <client-api-key>"
+    -H "x-api-key: <client-api-key>"
 ```
 
 
@@ -335,34 +335,34 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot
 
 ```json
 {
-	"result": "success",
-	"time": "2018-06-14T17:37:22.002Z",
-	"timestamp": 1528997842002,
-	"data": [
-		{
-			"timestamp": 1417412036761,
-			"trade_id": "1",
-			"price": "300.0",
-			"amount": "0.01",
-			"taker_side_sell": true
-		},
-		{
-			"timestamp": 1417412423076,
-			"trade_id": "2",
-			"price": "300.0",
-			"amount": "0.01",
-			"taker_side_sell": false
-		},
-		// ...
-	],
-	"query": {
-		"page_size": 100,
-		"exchange": "bfnx",
-		"instrument": "btc-usd",
-		"request_time": "2018-06-14T17:37:21.935Z"
-	},
-	"continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
-	"next_url": "http://localhost:9292/v1/exchanges/gdax/spot/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"
+    "result": "success",
+    "time": "2018-06-14T17:37:22.002Z",
+    "timestamp": 1528997842002,
+    "data": [
+        {
+            "timestamp": 1417412036761,
+            "trade_id": "1",
+            "price": "300.0",
+            "amount": "0.01",
+            "taker_side_sell": true
+        },
+        {
+            "timestamp": 1417412423076,
+            "trade_id": "2",
+            "price": "300.0",
+            "amount": "0.01",
+            "taker_side_sell": false
+        },
+        // ...
+    ],
+    "query": {
+        "page_size": 100,
+        "exchange": "bfnx",
+        "instrument": "btc-usd",
+        "request_time": "2018-06-14T17:37:21.935Z"
+    },
+    "continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
+    "next_url": "http://localhost:9292/v1/exchanges/gdax/spot/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"
 }
 ```
 
@@ -392,7 +392,7 @@ This endpoint retrieves trades for an asset instrument on a specific exchange. B
 
 ```curl
 curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/gdax/spot/btc-usd/trades/recent"
-	-H "x-api-key: <client-api-key>"
+    -H "x-api-key: <client-api-key>"
 ```
 
 
@@ -400,31 +400,31 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/gdax/spot
 
 ```json
 {
-	"result": "success",
-	"time": "2018-06-14T17:44:37.446Z",
-	"timestamp": 1528998277446,
-	"data": [
-		{
-			"timestamp": 1528998137627,
-			"trade_id": "44840133",
-			"price": "6592.22",
-			"amount": "0.08741431",
-			"taker_side_sell": true
-		},
-		{
-			"timestamp": 1528998137627,
-			"trade_id": "44840134",
-			"price": "6592.22",
-			"amount": "0.01057674",
-			"taker_side_sell": true
-		},
-		// ...
-	],
-	"query": {
-		"limit": 100,
-		"exchange": "bfnx",
-		"instrument": "btc-usd"
-	}
+    "result": "success",
+    "time": "2018-06-14T17:44:37.446Z",
+    "timestamp": 1528998277446,
+    "data": [
+        {
+            "timestamp": 1528998137627,
+            "trade_id": "44840133",
+            "price": "6592.22",
+            "amount": "0.08741431",
+            "taker_side_sell": true
+        },
+        {
+            "timestamp": 1528998137627,
+            "trade_id": "44840134",
+            "price": "6592.22",
+            "amount": "0.01057674",
+            "taker_side_sell": true
+        },
+        // ...
+    ],
+    "query": {
+        "limit": 100,
+        "exchange": "bfnx",
+        "instrument": "btc-usd"
+    }
 }
 ```
 
@@ -450,44 +450,44 @@ This endpoint retrieves the most recent trades for an asset instrument on a spec
 
 ```curl
 curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/gdax/spot/btc-usd/aggregations/ohlcv"
-	-H "x-api-key: <client-api-key>"
+    -H "x-api-key: <client-api-key>"
 ```
 
 > Response Example
 
 ```json
 {
-	"result": "success",
-	"time": "2018-06-14T17:55:49.033Z",
-	"timestamp": 1528998949033,
-	"data": [
-		{
-			"timestamp": 1417392000000,
-			"open": "300.0",
-			"high": "370.0",
-			"low": "300.0",
-			"close": "370.0",
-			"volume": "0.05655554"
-		},
-		{
-			"timestamp": 1417478400000,
-			"open": "377.0",
-			"high": "378.0",
-			"low": "377.0",
-			"close": "378.0",
-			"volume": "15.0136"
-		},
-		// ...
-	],
-	"query": {
-		"page_size": 100,
-		"exchange": "gdax",
-		"instrument": "btc-usd",
-		"interval": "1d",
-		"request_time": "2018-06-14T17:55:48.908Z"
-	},
-	"continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
-	"next_url": "http://localhost:9292/v1/exchanges/gdax/spot/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"
+    "result": "success",
+    "time": "2018-06-14T17:55:49.033Z",
+    "timestamp": 1528998949033,
+    "data": [
+        {
+            "timestamp": 1417392000000,
+            "open": "300.0",
+            "high": "370.0",
+            "low": "300.0",
+            "close": "370.0",
+            "volume": "0.05655554"
+        },
+        {
+            "timestamp": 1417478400000,
+            "open": "377.0",
+            "high": "378.0",
+            "low": "377.0",
+            "close": "378.0",
+            "volume": "15.0136"
+        },
+        // ...
+    ],
+    "query": {
+        "page_size": 100,
+        "exchange": "gdax",
+        "instrument": "btc-usd",
+        "interval": "1d",
+        "request_time": "2018-06-14T17:55:48.908Z"
+    },
+    "continuation_token": "55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr",
+    "next_url": "http://localhost:9292/v1/exchanges/gdax/spot/btc-usd/trades?continuation_token=55x1LNBXKETZVDaR43BjMQjkCbandDRx1cKmcqKUgBvoUk7LAPut1HPoK5ATGGx4RhbC1cCcHWqtJtQMFhjXm71oQboUUjZmB3NteZYKVGUf69NsjykHTL4j2W3cpiYEFF91aDTCmbbL1VjkXvf4bn4TmpdSDAVrZDH4pktja3Zxuk4XDdRANCuTU4pvrNew1sUUw29jMSHr"
 }
 ```
 

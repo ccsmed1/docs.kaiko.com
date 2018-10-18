@@ -392,7 +392,7 @@ This endpoint retrieves trades for an instrument on a specific exchange. By defa
 | `exchange`               | Yes      | Exchange `code`. See [Exchanges Reference Data Endpoint](#exchanges).        |
 | `instrument_class`       | Yes      | Instrument `class`. See [Instruments Reference Data Endpoint](#instruments). |
 | `instrument`             | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).  |
-| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).          |
+| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 1, default: 100, max: 100000).           |
 | `start_time`<sup>1</sup> | No       | Starting time in ISO 8601 (inclusive).                                       |
 | `commodity`              | Yes      | The data commodity.                                                          |
 | `data_version`           | Yes      | The data version. (v1, v2 ... or latest)                                     |
@@ -531,7 +531,7 @@ This endpoint retrieves aggregated history for an instrument on an exchange. Ret
 | `instrument_class`       | Yes      | Instrument `class`. See [Instruments Reference Data Endpoint](#instruments).  |
 | `instrument`             | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).   |
 | `interval`               | No       | [Interval](#intervals) period. Default `1d`.                                  |
-| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).           |
+| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 1, default: 100, max: 100000).            |
 | `start_time`<sup>1</sup> | No       | Starting time in ISO 8601 (inclusive).                                        |
 | `commodity`              | Yes      | The data commodity.                                                           |
 | `data_version`           | Yes      | The data version. (v1, v2 ... or latest)                                      |
@@ -612,7 +612,7 @@ This endpoint retrieves aggregated price history for an instrument on an exchang
 | `instrument_class`       | Yes      | Instrument `class`. See [Instruments Reference Data Endpoint](#instruments).               |
 | `instrument`             | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).                |
 | `interval`               | No       | [Interval](#intervals) period. Default `1d`.                                               |
-| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).                        |
+| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 1, default: 100, max: 100000).                         |
 | `start_time`<sup>1</sup> | No       | Starting time in ISO 8601 (inclusive).                                                     |
 | `commodity`              | Yes      | The data commodity. (`trades`)                                                             |
 | `data_version`           | Yes      | The data version. (`v1`, `v2` ... or `latest`)                                             |
@@ -702,7 +702,7 @@ This endpoint retrieves aggregated history for an instrument on an exchange. Ret
 | `instrument_class`       | Yes      | Instrument `class`. See [Instruments Reference Data Endpoint](#instruments).  |
 | `instrument`             | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).   |
 | `interval`               | No       | [Interval](#intervals) period. Default `1d`.                                  |
-| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).           |
+| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 1, default: 100, max: 100000).            |
 | `start_time`<sup>1</sup> | No       | Starting time in ISO 8601 (inclusive).                                        |
 | `commodity`              | Yes      | The data commodity.                                                           |
 | `data_version`           | Yes      | The data version. (v1, v2 ... or latest)                                      |

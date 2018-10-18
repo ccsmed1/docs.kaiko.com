@@ -365,6 +365,23 @@
                           </li>
                       </ul>
                   </li>
+                  <li>
+                    <a href="#count-ohlcv-vwap" class="toc-h2 toc-link" data-title="COUNT OHLCV VWAP">COUNT OHLCV VWAP</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#http-request-8" class="toc-h3 toc-link" data-title="COUNT OHLCV VWAP">HTTP request</a>
+                          </li>
+                          <li>
+                            <a href="#parameters-9" class="toc-h3 toc-link" data-title="COUNT OHLCV VWAP">Parameters</a>
+                          </li>
+                          <li>
+                            <a href="#fields-3" class="toc-h3 toc-link" data-title="COUNT OHLCV VWAP">Fields</a>
+                          </li>
+                          <li>
+                            <a href="#intervals-3" class="toc-h3 toc-link" data-title="COUNT OHLCV VWAP">Intervals</a>
+                          </li>
+                      </ul>
+                  </li>
               </ul>
           </li>
           <li>
@@ -804,7 +821,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>page_size</code><sup>1</sup></td>
 <td>No</td>
-<td>See <a href="#pagination">Pagination</a> (min: 100, default: 100, max: 10000).</td>
+<td>See <a href="#pagination">Pagination</a> (min: 1, default: 100, max: 100000).</td>
 </tr>
 <tr>
 <td><code>start_time</code><sup>1</sup></td>
@@ -1001,7 +1018,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>page_size</code><sup>1</sup></td>
 <td>No</td>
-<td>See <a href="#pagination">Pagination</a> (min: 100, default: 100, max: 10000).</td>
+<td>See <a href="#pagination">Pagination</a> (min: 1, default: 100, max: 100000).</td>
 </tr>
 <tr>
 <td><code>start_time</code><sup>1</sup></td>
@@ -1136,7 +1153,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td><code>page_size</code><sup>1</sup></td>
 <td>No</td>
-<td>See <a href="#pagination">Pagination</a> (min: 100, default: 100, max: 10000).</td>
+<td>See <a href="#pagination">Pagination</a> (min: 1, default: 100, max: 100000).</td>
 </tr>
 <tr>
 <td><code>start_time</code><sup>1</sup></td>
@@ -1169,6 +1186,157 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </tbody></table>
 <h3 id='intervals-2'>Intervals</h3>
+<p>The following intervals are currently supported: <code>1m</code>, <code>2m</code>, <code>3m</code>, <code>5m</code>, <code>10m</code>, <code>15m</code>, <code>30m</code>, <code>1h</code>, <code>2h</code>, <code>3h</code>, <code>4h</code>, <code>1d</code>.</p>
+<h2 id='count-ohlcv-vwap'>COUNT OHLCV VWAP</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/count_ohlcv_vwap" \
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"commodity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trades"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfnx"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"instrument_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"instrument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmr-usd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"count_ohlcv_vwap"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-17T13:11:00.639Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-17T13:11:00.846Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539781860846</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1502236800000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4313113</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.234"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.28"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48.738"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.933"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1318.12560081"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"345.24557275909663315035096473307477923471334550072"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1502323200000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4613353</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.066"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.304"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49.183"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49.183"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9085.47277432"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"377.99517104491927319230564288378536793307401289498"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">/*</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">*/</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/count_ohlcv_vwap?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This endpoint retrieves aggregated history for an instrument on an exchange. Returns the earliest available intervals by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
+<h3 id='http-request-8'>HTTP request</h3>
+<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/count_ohlcv_vwap{?interval,start_time,end_time,page_size,continuation_token}</code></p>
+<h3 id='parameters-9'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>continuation_token</code></td>
+<td>No</td>
+<td>See <a href="#pagination">Pagination</a>.</td>
+</tr>
+<tr>
+<td><code>end_time</code><sup>1</sup></td>
+<td>No</td>
+<td>Ending time in ISO 8601 (exclusive).</td>
+</tr>
+<tr>
+<td><code>exchange</code></td>
+<td>Yes</td>
+<td>Exchange <code>code</code>.</td>
+</tr>
+<tr>
+<td><code>instrument_class</code></td>
+<td>Yes</td>
+<td>Instrument <code>class</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
+</tr>
+<tr>
+<td><code>instrument</code></td>
+<td>Yes</td>
+<td>Instrument <code>code</code>. See <a href="#instruments">Instruments Reference Data Endpoint</a>.</td>
+</tr>
+<tr>
+<td><code>interval</code></td>
+<td>No</td>
+<td><a href="#intervals">Interval</a> period. Default <code>1d</code>.</td>
+</tr>
+<tr>
+<td><code>page_size</code><sup>1</sup></td>
+<td>No</td>
+<td>See <a href="#pagination">Pagination</a> (min: 1, default: 100, max: 100000).</td>
+</tr>
+<tr>
+<td><code>start_time</code><sup>1</sup></td>
+<td>No</td>
+<td>Starting time in ISO 8601 (inclusive).</td>
+</tr>
+<tr>
+<td><code>commodity</code></td>
+<td>Yes</td>
+<td>The data commodity.</td>
+</tr>
+<tr>
+<td><code>data_version</code></td>
+<td>Yes</td>
+<td>The data version. (v1, v2 ... or latest)</td>
+</tr>
+</tbody></table>
+
+<p><em><sup>1</sup>: When paginating, these parameters should only be included in the first request. For subsequent requests, they are encoded in the continuation token.</em></p>
+<h3 id='fields-3'>Fields</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>trade_count</code></td>
+<td>Then number of trades.</td>
+</tr>
+<tr>
+<td><code>open</code></td>
+<td>Opening price of interval.</td>
+</tr>
+<tr>
+<td><code>high</code></td>
+<td>Highest price during interval.</td>
+</tr>
+<tr>
+<td><code>low</code></td>
+<td>Lowest price during interval.</td>
+</tr>
+<tr>
+<td><code>close</code></td>
+<td>Closing price of interval.</td>
+</tr>
+<tr>
+<td><code>volume</code></td>
+<td>Volume traded in interval.</td>
+</tr>
+</tbody></table>
+<h3 id='intervals-3'>Intervals</h3>
 <p>The following intervals are currently supported: <code>1m</code>, <code>2m</code>, <code>3m</code>, <code>5m</code>, <code>10m</code>, <code>15m</code>, <code>30m</code>, <code>1h</code>, <code>2h</code>, <code>3h</code>, <code>4h</code>, <code>1d</code>.</p>
 <h1 id='future-development'>Future development</h1>
 <p>We are continously extending the feature set across all our products. We are very happy to receive your feedback on our services and documentation. Do you have a proposal on how we can make your day better? <a href='https://www.kaiko.com/pages/contact' target='_blank'>Give us a shout</a>! :)</p>

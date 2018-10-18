@@ -629,6 +629,102 @@ This endpoint retrieves aggregated price history for an instrument on an exchang
 
 The following intervals are currently supported: `1m`, `2m`, `3m`, `5m`, `10m`, `15m`, `30m`, `1h`, `2h`, `3h`, `4h`, `1d`.
 
+
+## COUNT OHLCV VWAP
+
+> Request Example
+
+```curl
+curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/count_ohlcv_vwap" \
+  -H "x-api-key: <client-api-key>"
+```
+
+> Response Example
+
+```json
+{
+  "query": {
+    "commodity": "trades",
+    "data_version": "v1",
+    "page_size": 100,
+    "exchange": "bfnx",
+    "instrument_class": "spot",
+    "instrument": "xmr-usd",
+    "interval": "1d",
+    "aggregation": "count_ohlcv_vwap",
+    "request_time": "2018-10-17T13:11:00.639Z"
+  },
+  "time": "2018-10-17T13:11:00.846Z",
+  "timestamp": 1539781860846,
+  "data": [
+    {
+      "timestamp": 1502236800000,
+      "trade_count": 4313113,
+      "open": "50.234",
+      "high": "51.28",
+      "low": "48.738",
+      "close": "50.933",
+      "volume": "1318.12560081",
+      "price": "345.24557275909663315035096473307477923471334550072"
+    },
+    {
+      "timestamp": 1502323200000,
+      "trade_count": 4613353,
+      "open": "51.066",
+      "high": "51.304",
+      "low": "49.183",
+      "close": "49.183",
+      "volume": "9085.47277432",
+      "price": "377.99517104491927319230564288378536793307401289498"
+    },
+    /* ... */
+  ],
+  "result": "success",
+  "continuation_token": "55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX",
+  "next_url": "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/count_ohlcv_vwap?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"
+}
+
+```
+
+This endpoint retrieves aggregated history for an instrument on an exchange. Returns the earliest available intervals by default. The `interval` parameter is suffixed with `s`, `m`, `h` or `d` to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.
+
+### HTTP request
+
+`GET https://<region>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/count_ohlcv_vwap{?interval,start_time,end_time,page_size,continuation_token}`
+
+### Parameters
+
+| Parameter                | Required | Description                                                                   |
+| ---                      | ---      | ---                                                                           |
+| `continuation_token`     | No       | See [Pagination](#pagination).                                                |
+| `end_time`<sup>1</sup>   | No       | Ending time in ISO 8601 (exclusive).                                          |
+| `exchange`               | Yes      | Exchange `code`.                                                              |
+| `instrument_class`       | Yes      | Instrument `class`. See [Instruments Reference Data Endpoint](#instruments).  |
+| `instrument`             | Yes      | Instrument `code`. See [Instruments Reference Data Endpoint](#instruments).   |
+| `interval`               | No       | [Interval](#intervals) period. Default `1d`.                                  |
+| `page_size`<sup>1</sup>  | No       | See [Pagination](#pagination) (min: 100, default: 100, max: 10000).           |
+| `start_time`<sup>1</sup> | No       | Starting time in ISO 8601 (inclusive).                                        |
+| `commodity`              | Yes      | The data commodity.                                                           |
+| `data_version`           | Yes      | The data version. (v1, v2 ... or latest)                                      |
+
+*<sup>1</sup>: When paginating, these parameters should only be included in the first request. For subsequent requests, they are encoded in the continuation token.*
+
+### Fields
+
+| Field          | Description                    |
+| ---            | ---                            |
+| `trade_count`  | Then number of trades.         |
+| `open`         | Opening price of interval.     |
+| `high`         | Highest price during interval. |
+| `low`          | Lowest price during interval.  |
+| `close`        | Closing price of interval.     |
+| `volume`       | Volume traded in interval.     |
+
+### Intervals
+
+The following intervals are currently supported: `1m`, `2m`, `3m`, `5m`, `10m`, `15m`, `30m`, `1h`, `2h`, `3h`, `4h`, `1d`.
+
+
 # Future development
 
 We are continously extending the feature set across all our products. We are very happy to receive your feedback on our services and documentation. Do you have a proposal on how we can make your day better? <a href='https://www.kaiko.com/pages/contact' target='_blank'>Give us a shout</a>! :)

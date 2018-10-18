@@ -643,3 +643,17 @@ html, body {
 .content a:hover, content a:focus {
   color: #e38d03;
 }
+
+
+/* Kaiko custom rules and classes */
+.content-header-wrapper {
+  padding: 40px 0 27px 0;
+  margin-right: 50%;
+  width: auto;
+  header {
+    padding: 20px;
+    color: $kaiko-white;
+    background: $kaiko-blue;
+    font-size: 30px
+  }
+}

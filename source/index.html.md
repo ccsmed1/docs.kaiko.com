@@ -9,19 +9,6 @@ search: true
 
 ---
 
-<p>
-  <div style="background: #273582; padding: 20px; margin: 20px; width: 45%; border-radius: 10px">
-    <p>
-      <center>
-        <span style="color: white; font-size: 30px">Kaiko API documentation</span>
-      </center>
-    </p>
-    <img src="images/data_feed_medium.png"></img>
-    <img src="images/query_api_medium.png"></img>
-    <img src="images/livestream_medium.png"></img>
-  </div>
-</p>
-
 # Introduction
 
 Kaiko provides live and historical institutional quality market data for the digital assets. Our service retrieves and validates millions of trades each day from the world's leading cryptocurrency exchanges to deliver robust and reliable market data to financial institutions globally.

@@ -31,7 +31,8 @@
     var originalTitle = document.title;
 
     var recacheHeights = function() {
-      headerHeights = {};
+      // Fix to not auto-navigate to first header until having actually scrolled that far
+      headerHeights = { '': 0 };
       pageHeight = $(document).height();
       windowHeight = $(window).height();
 

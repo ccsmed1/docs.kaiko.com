@@ -224,6 +224,9 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#making-requests" class="toc-h2 toc-link" data-title="Making Requests">Making Requests</a>
+                  </li>
+                  <li>
                     <a href="#timestamps" class="toc-h2 toc-link" data-title="Timestamps">Timestamps</a>
                       <ul class="toc-list-h3">
                           <li>
@@ -408,7 +411,15 @@
 <li><a href="#reference-data-api">Reference Data</a> (Public)</li>
 <li><a href="#market-data-api">Market Data</a> (Authenticated)</li>
 </ul>
-<h2 id='timestamps'>Timestamps</h2><h3 id='input'>Input</h3>
+<h2 id='making-requests'>Making Requests</h2>
+<p>When interacting with the apis you are expected to pass two headers:</p>
+
+<ul>
+<li><code>Accept: application/json</code> as the apis in their default configuration respond with JSON structured responses as all our responses are in JSON format.</li>
+<li><code>Accept-Encoding: gzip</code> all our endpoints benefit from use of compression.</li>
+</ul>
+<pre class="highlight plaintext"><code>curl --compressed -H 'Accept: application/json' 'https://&lt;api_hostname&gt;/&lt;endpoint&gt;'
+</code></pre><h2 id='timestamps'>Timestamps</h2><h3 id='input'>Input</h3>
 <p>All time parameters are in UTC and returned in the following ISO 8601 datetime format:</p>
 
 <p><code>YYYY-MM-DD</code><strong>T</strong><code>hh:mm:ss.sss</code><strong>Z</strong></p>
@@ -430,7 +441,7 @@
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://reference-api.kaiko.io/v1/assets"
+<pre class="highlight plaintext"><code>curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/v1/assets'
 </code></pre>
 <blockquote>
 <p>Response Example</p>
@@ -466,7 +477,7 @@
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://reference-api.kaiko.io/v1/exchanges"
+<pre class="highlight plaintext"><code>curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/v1/exchanges'
 </code></pre>
 <blockquote>
 <p>Response Example</p>
@@ -493,14 +504,14 @@
 </span></code></pre>
 <p>This endpoint retrieves a list of supported exchanges.</p>
 <h3 id='http-request-2'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/exchanges</code></p>
+<p><code>GET https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/exchanges</code></p>
 <h3 id='parameters-2'>Parameters</h3>
 <p>No parameters supported.</p>
 <h2 id='instruments'>Instruments</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://reference-api.kaiko.io/v1/instruments"
+<pre class="highlight plaintext"><code>curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/v1/instruments'
 </code></pre>
 <blockquote>
 <p>Response Example</p>
@@ -568,7 +579,7 @@
 <li>Trading has not been started yet (both start and end time fields are <code>null</code>)</li>
 </ul>
 <h3 id='http-request-3'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/exchanges</code></p>
+<p><code>GET https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/exchanges</code></p>
 <h3 id='parameters-3'>Parameters</h3>
 <p>No parameters supported.</p>
 <h1 id='market-data-api'>Market Data API</h1><h2 id='endpoints-2'>Endpoints</h2>
@@ -582,8 +593,8 @@
 <blockquote>
 <p>Request Syntax</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://&lt;api_hostname&gt;/&lt;endpoint&gt;" \
-  -H "x-api-key: &lt;client-api-key&gt;"
+<pre class="highlight plaintext"><code>curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: &lt;client-api-key&gt;' \
+  'https://&lt;api_hostname&gt;/&lt;endpoint&gt;'
 </code></pre>
 <p>Each API lives under its own hostname. Clients must include an API key in the header of every request they make. The format is as follows:</p>
 
@@ -666,7 +677,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
   </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
   </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/v1/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="w">
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -742,8 +753,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades" \
-  -H "x-api-key: &lt;client-api-key&gt;"
+<pre class="highlight plaintext"><code>curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: &lt;client-api-key&gt;' \
+  'https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades'
 </code></pre>
 <blockquote>
 <p>Response Example</p>
@@ -779,12 +790,12 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
     </span><span class="s2">"request_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T17:37:21.935Z"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9TlmYybkMWHnGLeD5csn9bShMGrNWXLiwGw3HiFbozEB6DHGa3532SeG4wjfTqFYVX8TVLbz87Kb9zMvGbjwbafRpkWPmnETeVsXCFyiqDrxNvfw4jNnZPhwQiqtbCWbMsT6N7cLXWXVni8faCDFbtgES49PRwr4VCFXA4NgrqMT6HUnCSEb4U"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=9TlmYybkMWHnGLeD5csn9bShMGrNWXLiwGw3HiFbozEB6DHGa3532SeG4wjfTqFYVX8TVLbz87Kb9zMvGbjwbafRpkWPmnETeVsXCFyiqDrxNvfw4jNnZPhwQiqtbCWbMsT6N7cLXWXVni8faCDFbtgES49PRwr4VCFXA4NgrqMT6HUnCSEb
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=9TlmYybkMWHnGLeD5csn9bShMGrNWXLiwGw3HiFbozEB6DHGa3532SeG4wjfTqFYVX8TVLbz87Kb9zMvGbjwbafRpkWPmnETeVsXCFyiqDrxNvfw4jNnZPhwQiqtbCWbMsT6N7cLXWXVni8faCDFbtgES49PRwr4VCFXA4NgrqMT6HUnCSEb
 }
 </span></code></pre>
 <p>This endpoint retrieves trades for an instrument on a specific exchange. By default returns the 100 first trades in our dataset. Trades are sorted by time, ascendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
 <h3 id='http-request-4'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
+<p><code>GET https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades{?start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
@@ -845,8 +856,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/krkn/spot/eth-eur/trades/recent" \
-  -H "x-api-key: &lt;client-api-key&gt;"
+<pre class="highlight plaintext"><code>curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: &lt;client-api-key&gt;' \
+  'https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/krkn/spot/eth-eur/trades/recent'
 </code></pre>
 <blockquote>
 <p>Response Example</p>
@@ -885,7 +896,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves the most recent trades for an instrument on a specific exchange. By default returns the 100 most recent trades. This endpoint does not support pagination. Trades are sorted by time, descendingly. Note that <code>taker_side_sell</code> can be null in the cases where this information was not available at collection.</p>
 <h3 id='http-request-5'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades/recent{?limit}</code></p>
+<p><code>GET https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades/recent{?limit}</code></p>
 <h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
@@ -929,8 +940,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/ohlcv" \
-  -H "x-api-key: &lt;client-api-key&gt;"
+<pre class="highlight plaintext"><code>curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: &lt;client-api-key&gt;' \
+  'https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/ohlcv'
 </code></pre>
 <blockquote>
 <p>Response Example</p>
@@ -970,13 +981,13 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/ohlcv?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"</span><span class="w">
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/ohlcv?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <p>This endpoint retrieves aggregated history for an instrument on an exchange. Returns the earliest available intervals by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
 <h3 id='http-request-6'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/ohlcv{?interval,start_time,end_time,page_size,continuation_token}</code></p>
+<p><code>GET https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/ohlcv{?interval,start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1072,8 +1083,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap" \
-  -H "x-api-key: &lt;client-api-key&gt;"
+<pre class="highlight plaintext"><code>curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: &lt;client-api-key&gt;' \
+  'https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap'
 </code></pre>
 <blockquote>
 <p>Response Example</p>
@@ -1105,13 +1116,13 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55qoNvASfrVdCIjrF8Ygw6TVJ4yamzUyeL9QXAmvWZZur3iaKoPcVBW1V4unNJi2zMjojbsYr9Pgt9XFCUpnAiuBiECm8X4cedvYc9t2WxHXnHKjgAp2wRAeV8ZPUSj8WNgpWTCBVymGaQZPj3oMDZwVeCPyuTLFdVPfTXVjZA94BtHeBmghoPv92JtWxN3yRvCkrw79hJBu"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap?continuation_token=55qoNvASfrVdCIjrF8Ygw6TVJ4yamzUyeL9QXAmvWZZur3iaKoPcVBW1V4unNJi2zMjojbsYr9Pgt9XFCUpnAiuBiECm8X4cedvYc9t2WxHXnHKjgAp2wRAeV8ZPUSj8WNgpWTCBVymGaQZPj3oMDZwVeCPyuTLFdVPfTXVjZA94BtHeBmghoPv92JtWxN3yRvCkrw79hJBu"</span><span class="w">
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap?continuation_token=55qoNvASfrVdCIjrF8Ygw6TVJ4yamzUyeL9QXAmvWZZur3iaKoPcVBW1V4unNJi2zMjojbsYr9Pgt9XFCUpnAiuBiECm8X4cedvYc9t2WxHXnHKjgAp2wRAeV8ZPUSj8WNgpWTCBVymGaQZPj3oMDZwVeCPyuTLFdVPfTXVjZA94BtHeBmghoPv92JtWxN3yRvCkrw79hJBu"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <p>This endpoint retrieves aggregated price history for an instrument on an exchange. Returns the earliest available intervals by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
 <h3 id='http-request-7'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/vwap{?interval,start_time,end_time,page_size,continuation_token}</code></p>
+<p><code>GET https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/vwap{?interval,start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1191,8 +1202,8 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/count_ohlcv_vwap" \
-  -H "x-api-key: &lt;client-api-key&gt;"
+<pre class="highlight plaintext"><code>curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: &lt;client-api-key&gt;' \
+  'https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/count_ohlcv_vwap'
 </code></pre>
 <blockquote>
 <p>Response Example</p>
@@ -1236,13 +1247,13 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"continuation_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;region&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/count_ohlcv_vwap?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"</span><span class="w">
+  </span><span class="s2">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/count_ohlcv_vwap?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <p>This endpoint retrieves aggregated history for an instrument on an exchange. Returns the earliest available intervals by default. The <code>interval</code> parameter is suffixed with <code>s</code>, <code>m</code>, <code>h</code> or <code>d</code> to specify seconds, minutes, hours or days, respectively. Values are sorted by time, ascendingly.</p>
 <h3 id='http-request-8'>HTTP request</h3>
-<p><code>GET https://&lt;region&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/count_ohlcv_vwap{?interval,start_time,end_time,page_size,continuation_token}</code></p>
+<p><code>GET https://&lt;eu-beta|us-beta&gt;.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/count_ohlcv_vwap{?interval,start_time,end_time,page_size,continuation_token}</code></p>
 <h3 id='parameters-9'>Parameters</h3>
 <table><thead>
 <tr>

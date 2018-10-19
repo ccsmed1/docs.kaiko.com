@@ -20,10 +20,10 @@ Kaiko currently provides two HTTP APIs:
 
 ## Making Requests
 
-When interacting with the apis you are expected to pass two headers:
+When interacting with Kaiko HTTP APIs, you are expected to pass two headers:
 
-* `Accept: application/json` as the apis in their default configuration respond with JSON structured responses as all our responses are in JSON format.
-* `Accept-Encoding: gzip` all our endpoints benefit from use of compression.
+* `Accept: application/json`: API responses will be in JSON format.
+* `Accept-Encoding: gzip`: All our endpoints benefit from use of compression.
 
 ```
 curl --compressed -H 'Accept: application/json' 'https://<api_hostname>/<endpoint>'
@@ -41,7 +41,7 @@ For example:
 
 `2017-12-17T13:35:24.351Z`
 
-The "T" separates the date from the time. The "Z" at the end indicates UTC time.
+The "T" separates the date from the time. The trailing "Z" indicates UTC time.
 
 ### Output
 
@@ -57,14 +57,14 @@ For daily aggregated data, the opening price is calculated as the first trade at
 
 ## Endpoints
 
-The base URL for the Reference Data Endpoints is: `https://reference-api.kaiko.io/`. Authentication is not required.
+The base URL for the Reference Data Endpoints is: `https://reference-data-api.kaiko.io/`. Authentication is not required.
 
 ## Assets
 
 > Request Example
 
 ```curl
-curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/v1/assets'
+curl --compressed -H 'Accept: application/json' 'https://reference-data-api.kaiko.io/v1/assets'
 ```
 
 > Response Example
@@ -97,18 +97,26 @@ This endpoint retrieves a list of supported assets.
 
 ### HTTP request
 
-`GET https://reference-api.kaiko.io/v1/assets`
+`GET https://reference-data-api.kaiko.io/v1/assets`
 
 ### Parameters
 
 No parameters supported.
+
+### Fields
+
+| Field         | Description                    |
+| ---           | ---                            |
+| `code`        | Identifier for the asset.      |
+| `name`        |                                |
+| `asset_class` | `fiat`|`cryptocurrency`        |
 
 ## Exchanges
 
 > Request Example
 
 ```curl
-curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/v1/exchanges'
+curl --compressed -H 'Accept: application/json' 'https://reference-data-api.kaiko.io/v1/exchanges'
 ```
 
 > Response Example
@@ -121,14 +129,12 @@ curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/
     {
       "code": "bfly",
       "name": "bitFlyer",
-      "kaiko_legacy_slug": "bl",
-      "api_name": "bitflyer"
+      "kaiko_legacy_slug": "bl"
     },
     {
       "code": "bfnx",
       "name": "Bitfinex",
-      "kaiko_legacy_slug": "bf",
-      "api_name": "bitfinex"
+      "kaiko_legacy_slug": "bf"
     }
     /* ... */
   ]
@@ -139,18 +145,26 @@ This endpoint retrieves a list of supported exchanges.
 
 ### HTTP request
 
-`GET https://<eu-beta|us-beta>.market-api.kaiko.io/v1/exchanges`
+`GET https://reference-data-api.kaiko.io/v1/exchanges`
 
 ### Parameters
 
 No parameters supported.
+
+### Fields
+
+| Field               | Description                                                   |
+| ---                 | ---                                                           |
+| `code`              | Identifier for the exchange.                                  |
+| `name`              |                                                               |
+| `kaiko_legacy_slug` | Identifier used in past deliveries of historical market data. |
 
 ## Instruments
 
 > Request Example
 
 ```curl
-curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/v1/instruments'
+curl --compressed -H 'Accept: application/json' 'https://reference-data-api.kaiko.io/v1/instruments'
 ```
 
 > Response Example
@@ -160,53 +174,53 @@ curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/
   "result": "success",
   "data": [
     {
-      "exchange_code": "btcc",
-      "code": "btc-cny",
-      "base_asset": "btc",
-      "quote_asset": "cny",
-      "kaiko_legacy_exchange_slug": "bc",
-      "kaiko_legacy_symbol": "btccny",
-      "exchange_pair_code": "btccny",
+      "exchange_code": "bfnx",
       "class": "spot",
-      "trade_start_time": "2011-06-13T05:13:24.0000000Z",
-      "trade_start_timestamp": 1307942004000,
-      "trade_end_time": "2017-09-30T03:59:59.0000000Z",
-      "trade_end_timestamp": 1506743999000,
-      "trade_count": 124449872,
-      "trade_compressed_size": 1073273654
-    },
-    {
-      "exchange_code": "btcc",
-      "code": "btc-usd",
-      "base_asset": "btc",
-      "quote_asset": "usd",
-      "kaiko_legacy_exchange_slug": "bc",
-      "kaiko_legacy_symbol": "btcusd",
-      "exchange_pair_code": "btcusd",
-      "class": "spot",
-      "trade_start_time": "2018-01-14T04:50:48.0000000Z",
-      "trade_start_timestamp": 1515905448542,
-      "trade_end_time": null,
-      "trade_end_timestamp": null,
-      "trade_count": 15320,
-      "trade_compressed_size": 183147
-    },
-    {
-      "exchange_code": "wexn",
-      "code": "btget-btc",
-      "base_asset": "btget",
+      "code": "xmr-btc",
+      "base_asset": "xmr",
       "quote_asset": "btc",
-      "kaiko_legacy_exchange_slug": "be",
-      "kaiko_legacy_symbol": "btgetbtc",
-      "exchange_pair_code": "btgetbtc",
-      "class": "spot",
-      "trade_start_time": null,
-      "trade_start_timestamp": null,
+      "kaiko_legacy_exchange_slug": "bf",
+      "kaiko_legacy_symbol": "xmrbtc",
+      "exchange_pair_code": "xmrbtc",
+      "trade_start_time": "2017-08-09T23:36:33.0000000Z",
+      "trade_start_timestamp": 1502321793000,
       "trade_end_time": null,
       "trade_end_timestamp": null,
-      "trade_count": 0,
-      "trade_compressed_size": 0
-    }
+      "trade_count": 1669022,
+      "trade_compressed_size": 22107372
+    },
+    {
+      "exchange_code": "krkn",
+      "class": "spot",
+      "code": "gno-eth",
+      "base_asset": "gno",
+      "quote_asset": "eth",
+      "kaiko_legacy_exchange_slug": "kk",
+      "kaiko_legacy_symbol": "gnoeth",
+      "exchange_pair_code": "GNOETH",
+      "trade_start_time": "2017-08-08T20:10:04.0000000Z",
+      "trade_start_timestamp": 1502223004345,
+      "trade_end_time": null,
+      "trade_end_timestamp": null,
+      "trade_count": 230316,
+      "trade_compressed_size": 11588434
+    },
+    {
+      "exchange_code": "krkn",
+      "class": "spot",
+      "code": "dao-btc",
+      "base_asset": "dao",
+      "quote_asset": "btc",
+      "kaiko_legacy_exchange_slug": "kk",
+      "kaiko_legacy_symbol": "daobtc",
+      "exchange_pair_code": "xdaoxxbt",
+      "trade_start_time": "2016-05-28T10:20:40.0000000Z",
+      "trade_start_timestamp": 1464430840433,
+      "trade_end_time": "2016-12-18T02:47:47.0000000Z",
+      "trade_end_timestamp": 1482029267877,
+      "trade_count": 67925,
+      "trade_compressed_size": 4194980
+    },
     /* ... */
   ]
 }
@@ -214,17 +228,39 @@ curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/
 
 This endpoint retrieves a list of supported instruments. There are three possible cases regarding the trading period:
 
-* Trading has started and the instrument is still trading (start time fields will be set, but end time fields will be `null`)
-* Trading has occured but the instrument is no longer traded (both start and end time fields are set)
-* Trading has not been started yet (both start and end time fields are `null`)
+* Trading has started and new trading activity is still being consumed (start time fields will be set, but end time fields will be `null`)
+* Trading has been recorded but no recent activity has been seen (both start and end time fields are set)
+* No trading has been registered yet (both start and end time fields are `null`)
 
 ### HTTP request
 
-`GET https://<eu-beta|us-beta>.market-api.kaiko.io/v1/exchanges`
+`GET https://reference-data-api.kaiko.io/v1/instruments`
 
 ### Parameters
 
 No parameters supported.
+
+### Fields
+
+| Field               | Description                                                                            |
+| ---                 | ---                                                                                    |
+| `exchange_code` | [Exchange](#exchanges) `code`.                                                             |
+| `class` | `spot`|`future` |
+| `code`<sup>2</sup> | Kaiko identifier for the instrument. Always `base_asset-quote_asset` for `spot` instruments. |
+| `base_asset`<sup>1</sup> | <a href="https://www.investopedia.com/terms/b/basecurrency.asp" target="_blank">Base asset</a>.                                                              |
+| `quote_asset`<sup>1</sup> | <a href="https://www.investopedia.com/terms/q/quotecurrency.asp" target="_blank">Quote asset</a>.                                                              |
+| `kaiko_legacy_exchange_slug` | [Exchange](#exchanges) `kaiko_legacy_slug`. |
+| `kaiko_legacy_symbol` | Identifier used in past deliveries of historical market data and Data Feed. |
+| `exchange_pair_code`<sup>2</sup> | Identifier for the instrument used by the exchange. |
+| `trade_start_time` | [Time](#timestamps) of first available trade in Kaiko's data set. |
+| `trade_start_timestamp` | [Timestamp](#timestamps) of first available trade in Kaiko's data set. |
+| `trade_end_time` | [Time](#timestamps) of last available trade in Kaiko's data set. `null` if trades  |
+| `trade_end_timestamp` | [Timestamp](#timestamps) of first available trade in Kaiko's data set. |
+| `trade_count` | Total number of trades available through Kaiko Market Data API and Data Feed. For active pairs, this is an approximation. |
+| `trade_compressed_size` | Approximate size in bytes of all available trades in Kaiko Data Feed. |
+
+*<sup>1</sup>: Some exchanges may refer to base and quote currencies differently. Kaiko denotes prices in units of quote and volume in units of base, as reported by exchanges. *
+*<sup>2</sup>: Some exchanges reverse the ordering of base/quote in their codes. *
 
 # Market Data API
 

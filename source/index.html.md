@@ -18,6 +18,17 @@ Kaiko currently provides two HTTP APIs:
 * [Reference Data](#reference-data-api) (Public)
 * [Market Data](#market-data-api) (Authenticated)
 
+## Making Requests
+
+When interacting with the api:s you are expected to pass two headers:
+
+* `Accept: application/json` as the apis in their default configuration respond with JSON structured responses as all our responses are in JSON format.
+* `Accept-Encoding: gzip` all our endpoints benefit from use of compression.
+
+```
+curl --compressed -H 'Accept: application/json' 'https://<api_hostname>/<endpoint>'
+```
+
 ## Timestamps
 
 ### Input
@@ -53,7 +64,7 @@ The base URL for the Reference Data Endpoints is: `https://reference-api.kaiko.i
 > Request Example
 
 ```curl
-curl "https://reference-api.kaiko.io/v1/assets"
+curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/v1/assets'
 ```
 
 > Response Example
@@ -97,7 +108,7 @@ No parameters supported.
 > Request Example
 
 ```curl
-curl "https://reference-api.kaiko.io/v1/exchanges"
+curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/v1/exchanges'
 ```
 
 > Response Example
@@ -128,7 +139,7 @@ This endpoint retrieves a list of supported exchanges.
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/exchanges`
+`GET https://<eu-beta|us-beta>.market-api.kaiko.io/v1/exchanges`
 
 ### Parameters
 
@@ -139,7 +150,7 @@ No parameters supported.
 > Request Example
 
 ```curl
-curl "https://reference-api.kaiko.io/v1/instruments"
+curl --compressed -H 'Accept: application/json' 'https://reference-api.kaiko.io/v1/instruments'
 ```
 
 > Response Example
@@ -209,7 +220,7 @@ This endpoint retrieves a list of supported instruments. There are three possibl
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/exchanges`
+`GET https://<eu-beta|us-beta>.market-api.kaiko.io/v1/exchanges`
 
 ### Parameters
 
@@ -231,8 +242,8 @@ The base URL for the Market Data Endpoints is regionalized. We are currently off
 > Request Syntax
 
 ```curl
-curl "https://<api_hostname>/<endpoint>" \
-  -H "x-api-key: <client-api-key>"
+curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: <client-api-key>' \
+  'https://<api_hostname>/<endpoint>'
 ```
 
 Each API lives under its own hostname. Clients must include an API key in the header of every request they make. The format is as follows:
@@ -296,7 +307,7 @@ All API responses are in JSON format. A `result` field, with a value of `success
   "query": {...},
   "data": [...],
   "continuation_token": "ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55",
-  "next_url": "https://<region>.market-api.kaiko.io/v1/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"
+  "next_url": "https://<eu-beta|us-beta>.market-api.kaiko.io/v1/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=ab25lIG1vcmUgYmVlciBpcyBvbmUgbW9yZSBiZWVyIHRvbyBtYW55"
 }
 
 ```
@@ -335,8 +346,8 @@ The Kaiko platform API uses the following error codes:
 > Request Example
 
 ```curl
-curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades" \
-  -H "x-api-key: <client-api-key>"
+curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: <client-api-key>' \
+  'https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades'
 ```
 
 > Response Example
@@ -373,7 +384,7 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot
     "request_time": "2018-06-14T17:37:21.935Z"
   },
   "continuation_token": "9TlmYybkMWHnGLeD5csn9bShMGrNWXLiwGw3HiFbozEB6DHGa3532SeG4wjfTqFYVX8TVLbz87Kb9zMvGbjwbafRpkWPmnETeVsXCFyiqDrxNvfw4jNnZPhwQiqtbCWbMsT6N7cLXWXVni8faCDFbtgES49PRwr4VCFXA4NgrqMT6HUnCSEb4U",
-  "next_url": "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=9TlmYybkMWHnGLeD5csn9bShMGrNWXLiwGw3HiFbozEB6DHGa3532SeG4wjfTqFYVX8TVLbz87Kb9zMvGbjwbafRpkWPmnETeVsXCFyiqDrxNvfw4jNnZPhwQiqtbCWbMsT6N7cLXWXVni8faCDFbtgES49PRwr4VCFXA4NgrqMT6HUnCSEb
+  "next_url": "https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/btc-usd/trades?continuation_token=9TlmYybkMWHnGLeD5csn9bShMGrNWXLiwGw3HiFbozEB6DHGa3532SeG4wjfTqFYVX8TVLbz87Kb9zMvGbjwbafRpkWPmnETeVsXCFyiqDrxNvfw4jNnZPhwQiqtbCWbMsT6N7cLXWXVni8faCDFbtgES49PRwr4VCFXA4NgrqMT6HUnCSEb
 }
 ```
 
@@ -381,7 +392,7 @@ This endpoint retrieves trades for an instrument on a specific exchange. By defa
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades{?start_time,end_time,page_size,continuation_token}`
+`GET https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades{?start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
@@ -405,8 +416,8 @@ This endpoint retrieves trades for an instrument on a specific exchange. By defa
 > Request Example
 
 ```curl
-curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/krkn/spot/eth-eur/trades/recent" \
-  -H "x-api-key: <client-api-key>"
+curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: <client-api-key>' \
+  'https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/trades.v1/exchanges/krkn/spot/eth-eur/trades/recent'
 ```
 
 > Response Example
@@ -449,7 +460,7 @@ This endpoint retrieves the most recent trades for an instrument on a specific e
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades/recent{?limit}`
+`GET https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/trades/recent{?limit}`
 
 ### Parameters
 
@@ -468,8 +479,8 @@ This endpoint retrieves the most recent trades for an instrument on a specific e
 > Request Example
 
 ```curl
-curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/ohlcv" \
-  -H "x-api-key: <client-api-key>"
+curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: <client-api-key>' \
+  'https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/ohlcv'
 ```
 
 > Response Example
@@ -510,7 +521,7 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot
   ],
   "result": "success",
   "continuation_token": "55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX",
-  "next_url": "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/ohlcv?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"
+  "next_url": "https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/ohlcv?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"
 }
 
 ```
@@ -519,7 +530,7 @@ This endpoint retrieves aggregated history for an instrument on an exchange. Ret
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/ohlcv{?interval,start_time,end_time,page_size,continuation_token}`
+`GET https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/ohlcv{?interval,start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
@@ -557,8 +568,8 @@ The following intervals are currently supported: `1m`, `2m`, `3m`, `5m`, `10m`, 
 > Request Example
 
 ```curl
-curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap" \
-  -H "x-api-key: <client-api-key>"
+curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: <client-api-key>' \
+  'https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap'
 ```
 
 > Response Example
@@ -591,7 +602,7 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot
   ],
   "result": "success",
   "continuation_token": "55qoNvASfrVdCIjrF8Ygw6TVJ4yamzUyeL9QXAmvWZZur3iaKoPcVBW1V4unNJi2zMjojbsYr9Pgt9XFCUpnAiuBiECm8X4cedvYc9t2WxHXnHKjgAp2wRAeV8ZPUSj8WNgpWTCBVymGaQZPj3oMDZwVeCPyuTLFdVPfTXVjZA94BtHeBmghoPv92JtWxN3yRvCkrw79hJBu",
-  "next_url": "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap?continuation_token=55qoNvASfrVdCIjrF8Ygw6TVJ4yamzUyeL9QXAmvWZZur3iaKoPcVBW1V4unNJi2zMjojbsYr9Pgt9XFCUpnAiuBiECm8X4cedvYc9t2WxHXnHKjgAp2wRAeV8ZPUSj8WNgpWTCBVymGaQZPj3oMDZwVeCPyuTLFdVPfTXVjZA94BtHeBmghoPv92JtWxN3yRvCkrw79hJBu"
+  "next_url": "https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/vwap?continuation_token=55qoNvASfrVdCIjrF8Ygw6TVJ4yamzUyeL9QXAmvWZZur3iaKoPcVBW1V4unNJi2zMjojbsYr9Pgt9XFCUpnAiuBiECm8X4cedvYc9t2WxHXnHKjgAp2wRAeV8ZPUSj8WNgpWTCBVymGaQZPj3oMDZwVeCPyuTLFdVPfTXVjZA94BtHeBmghoPv92JtWxN3yRvCkrw79hJBu"
 }
 
 ```
@@ -600,7 +611,7 @@ This endpoint retrieves aggregated price history for an instrument on an exchang
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/vwap{?interval,start_time,end_time,page_size,continuation_token}`
+`GET https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/vwap{?interval,start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 
@@ -635,8 +646,8 @@ The following intervals are currently supported: `1m`, `2m`, `3m`, `5m`, `10m`, 
 > Request Example
 
 ```curl
-curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/count_ohlcv_vwap" \
-  -H "x-api-key: <client-api-key>"
+curl --compressed -H 'Accept: application/json' -H 'X-Api-Key: <client-api-key>' \
+  'https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/count_ohlcv_vwap'
 ```
 
 > Response Example
@@ -681,7 +692,7 @@ curl "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot
   ],
   "result": "success",
   "continuation_token": "55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX",
-  "next_url": "https://<region>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/count_ohlcv_vwap?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"
+  "next_url": "https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/trades.v1/exchanges/bfnx/spot/xmr-usd/aggregations/count_ohlcv_vwap?continuation_token=55QOpMjUTsSBQxZgCLKKvfkh8FcejpPWuA8s23ojTM4j32BQrAWtLFFcTzcRquQYfqtXHGL5CDA9FVkoisYPPprZYz5rxPUuKzjwK6h8oNcGJvZjXWJimSZLZhFd7F8sq5cRyrysJ36C9M9z57mhDKfQVSRsZKEbkw3Vmngsb5smqBxfHUzkdkS11WNnqnS4yRcJ5Sq9JMAX"
 }
 
 ```
@@ -690,7 +701,7 @@ This endpoint retrieves aggregated history for an instrument on an exchange. Ret
 
 ### HTTP request
 
-`GET https://<region>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/count_ohlcv_vwap{?interval,start_time,end_time,page_size,continuation_token}`
+`GET https://<eu-beta|us-beta>.market-api.kaiko.io/v1/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations/count_ohlcv_vwap{?interval,start_time,end_time,page_size,continuation_token}`
 
 ### Parameters
 

@@ -20,7 +20,7 @@ Kaiko currently provides two HTTP APIs:
 
 ## Making Requests
 
-When interacting with the api:s you are expected to pass two headers:
+When interacting with the apis you are expected to pass two headers:
 
 * `Accept: application/json` as the apis in their default configuration respond with JSON structured responses as all our responses are in JSON format.
 * `Accept-Encoding: gzip` all our endpoints benefit from use of compression.

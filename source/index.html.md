@@ -113,7 +113,7 @@ No parameters supported.
 | ---           | ---                            |
 | `code`        | Identifier for the asset.      |
 | `name`        |                                |
-| `asset_class` | `fiat`|`cryptocurrency`        |
+| `asset_class` | `fiat`,`cryptocurrency`        |
 
 ## Exchanges
 

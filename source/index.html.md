@@ -115,6 +115,10 @@ No parameters supported.
 | `name`        |                                |
 | `asset_class` | `fiat`|`cryptocurrency`        |
 
+<aside class="notice">
+We use the most recent edition of the ISO 4217, the International Standard for currency codes to represent our fiat asset codes.
+</aside>
+
 ## Exchanges
 
 > Request Example

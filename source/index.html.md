@@ -269,6 +269,57 @@ By setting this to `latest`, you will get the most recent version. The returned 
 We recommend using the most current version explicitly in production integrations as the `latest` label might move at any time to a breaking change. For the `trades` commodity the latest version is currently `v1`
 
 
+> Response Example
+
+```json
+{
+  "timestamp": 1540474596175,
+  "trade_id": "68024786",
+  "price": "6559.84000000",
+  "amount": "0.00646600",
+  "taker_side_sell": true
+}
+```
+
+### Data normalization
+Across all exchanges we cover, the format of reporting varies greatly. One of the advantages of using our Market API, as well as our other services, is having all data in one homogenous format. In order to achieve that, we normalize all data following a fixed set of rules. 
+
+#### Trades
+| Field             | Data type       | Description
+| ---               | ---             | ---
+| `timestamp`       | `int`           | <a href="https://currentmillis.com/" target="_blank">millisecond Unix timestamp</a>
+| `trade_id`        | `string`        | Unique trade ID. When not provided by the exchange, we generated the trade ID by hashing the trade's timestamp, price and quantity together. 
+| `price`           | `float`         | Price at which trade went through.
+| `amount`          | `float`         | Amount of traded asset.
+| `taker_side_sell` | `Boolean`       | Indicating the side on which the trade was executed. `true` means the trade was initiated by a buy order, and it was the taker that was selling. `false`, vice-versa: the trade was initiated by a sell order, and it was the maker that was selling. 
+
+> Response Example: Binance - Trades
+
+```json
+{
+  a: 68024786,
+  p: "6559.84000000",
+  q: "0.00646600",
+  f: 76263502,
+  l: 76263502,
+  T: 1540474596175,
+  m: true,
+  M: true
+}
+```
+
+#### Binance Trades
+
+| Field         | Description               | Translation               | Result                 
+| ---         | ---                       | ---                         | ---                            
+| `a`         | Aggregate tradeID         | `a.toString`                | `trade_id`                      
+| `p`         | Price                     | `parseFloat(p)`             | `price`                      
+| `q`         | Quantity                  | `parseFloat(q)`             | `amount`                      
+| `T`         | Timestamp                 | `moment(T)`<sup>1</sup>     | `timestamp`                   
+| `m`         | Was the buyer the maker?  | none                        | `taker_side_sell`           
+
+*<sup>1</sup>:<a href="https://momentjs.com/" target="_blank">Moment.js</a>*
+
 ### Envelope
 
 > Response Example

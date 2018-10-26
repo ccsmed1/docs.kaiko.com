@@ -2,11 +2,10 @@
 title: Kaiko API Platform Reference
 language\_tabs:
   - curl
-toc_footers:
+toc\_footers:
   - <a href='https://www.kaiko.com/' target='_blank'>Kaiko</a>
   - <a href='https://www.kaiko.com/pages/contact' target='_blank'>Contact us</a>
 search: true
-
 ---
 
 # Introduction

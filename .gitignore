@@ -15,6 +15,7 @@ tmp
 build/
 .cache
 .vagrant
+.bash_history
 .sass-cache
 
 # YARD artifacts

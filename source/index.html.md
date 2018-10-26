@@ -782,6 +782,29 @@ This endpoint retrieves aggregated history for an instrument on an exchange. Ret
 
 The following intervals are currently supported: `1m`, `2m`, `3m`, `5m`, `10m`, `15m`, `30m`, `1h`, `2h`, `3h`, `4h`, `1d`.
 
+# Data Feed
+
+Receive historical and on-going [data](https://www.kaiko.com/collections/datafeed) directly to your cloud provider. If you purchased a monthly subscription of Trade Data, 10% Order Books, OHLCV or VWAP, your data will be delivered once a day to your cloud bucket. We support Amazon Web Services S3, Google storage, Azure blob storage, and other providers. Cloud storage services allow us to easily synchronize our data with you once a day.
+
+Cloud providers offer extensive storage services that will help you store large amounts of data. This eases the integration setup to feed whatever system you choose to integrate the data with.
+
+If you do not already have a cloud provider, we suggest working with Amazon Web Services which is a major provider with a strong track record. 
+
+## How to receive our data through AWS S3
+
+1. Open [https://s3.console.aws.amazon.com/s3/buckets/](https://s3.console.aws.amazon.com/s3/buckets/)
+2. Create a new bucket in the region of your choice. We suggest calling the bucket **kaiko-delivery-nameofyourcompany**
+3. We suggest you use the us-east-1 region unless you already are using a different region as your main presence
+4. Leave the properties on the default setting
+5. On the **Set permissions** tab press **Add account** and use the following id: **4d6be087cf0b9ee7af2f8d8c51469c81bc711e68ee9c6be386aee2322abc8175**
+6. Check all the checkboxes for permissions and press **Save**
+7. Ensure that the permissions dialog resembles the following: ![AWS Dialog](/images/S3_Management_Console_large.png)
+8. Enter the details into [this form](https://goo.gl/forms/JRJeXU6X0ZBrfgrD2)
+9. You should receive a confirmation email within a few working days confirming that the integration was set up correctly
+
+## For other cloud providers
+
+Please contact us at [hello@kaiko.com](mailto:hello@kaiko.com).
 
 # Future development
 

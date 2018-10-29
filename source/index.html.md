@@ -56,7 +56,7 @@ For daily aggregated data, the opening price is calculated as the first trade at
 # Reference Data API
 
 <aside class="notice">
-The Kaiko Reference Data API is currently in public beta. Endpoints, format and existing fields are stable but during the beta period we might introduce breaking changes in the data returned.
+The Kaiko Reference Data API is currently in public beta. Endpoints, format, and existing fields are stable but during the beta period we might introduce breaking changes in the data returned.
 </aside>
 
 ## Endpoints

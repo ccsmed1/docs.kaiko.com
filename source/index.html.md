@@ -11,7 +11,7 @@ search: true
 
 # Introduction
 
-Kaiko provides live and historical institutional quality market data for the digital assets. Our service retrieves and validates millions of trades each day from the world's leading cryptocurrency exchanges to deliver robust and reliable market data to financial institutions globally.
+Kaiko provides live and historical institutional quality market data for digital assets. Our service retrieves and validates millions of trades each day from the world's leading cryptocurrency exchanges to deliver robust and reliable market data to financial institutions globally.
 
 Kaiko currently provides two HTTP APIs:
 
